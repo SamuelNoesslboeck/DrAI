@@ -1,0 +1,6 @@
+[submodule "code/stepper_lib"]
+	path = code/stepper_lib
+	url = https://github.com/SamuelNoesslboeck/stepper_lib
+[submodule "code/sybot_lib"]
+	path = code/sybot_lib
+	url = https://github.com/SamuelNoesslboeck/sybot_lib
