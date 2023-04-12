@@ -6,6 +6,7 @@ import typing
 import torch
 import PIL
 import cv2
+import os
 
 def getRandomLine( imgSize : typing.Tuple, length : int = 40, step : int = 5, dDegree : int = 5 ) -> np.ndarray:
     #Initialize random points
@@ -35,8 +36,15 @@ def getText( image, clip ) -> str:
 def setupPipeline():
     #Initialize stable diffusion
     device = "cuda"
-    model_id_or_path = "runwayml/stable-diffusion-v1-5"
-    pipe = StableDiffusionImg2ImgPipeline.from_pretrained(model_id_or_path)
+    if os.path.exists( "./data/diffuser/" ):
+        modelPath = "./data/diffuser/" 
+    else:
+        modelPath = "runwayml/stable-diffusion-v1-5"
+    pipe = StableDiffusionImg2ImgPipeline.from_pretrained(modelPath)
+
+    if modelPath != "./data/diffuser/":
+        os.mkdir( "./data/diffuser/" )
+        pipe.save_pretrained( "./data/diffuser/" )
 
     #initialize clip transformer for text captioning
     ci = Interrogator( Config( clip_model_name="ViT-L-14/openai" ) )
