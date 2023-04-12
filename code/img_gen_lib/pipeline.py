@@ -1,6 +1,6 @@
 from clip_interrogator import Config, Interrogator
 from diffusers import StableDiffusionImg2ImgPipeline
-import code.img_gen_lib.wordcloud as wordcloud
+import utils.wordcloud as wordcloud
 import numpy as np
 import typing
 import torch
@@ -29,28 +29,25 @@ def getRandomLine( imgSize : typing.Tuple, length : int = 40, step : int = 5, dD
     points = np.array( points, dtype = np.int32 ).reshape( -1, 1, 2 )
     return points
 
-def getText( image : typing.Union[ PIL.Image, np.ndarray ], clip ) -> str:
+def getText( image, clip ) -> str:
     return clip.interrogate( image )
 
 def setupPipeline():
     #Initialize stable diffusion
     device = "cuda"
     model_id_or_path = "runwayml/stable-diffusion-v1-5"
-    pipe = StableDiffusionImg2ImgPipeline.from_pretrained(model_id_or_path, torch_dtype=torch.float16)
-    pipe = pipe.to(device)
+    pipe = StableDiffusionImg2ImgPipeline.from_pretrained(model_id_or_path)
 
     #initialize clip transformer for text captioning
     ci = Interrogator( Config( clip_model_name="ViT-L-14/openai" ) )
     return pipe, ci
 
-def overlapImg( orgImg : typing.Unionnp.ndarray, genImg : np.ndarray ) -> np.ndarray:
+def overlapImg( orgImg, genImg ) -> np.ndarray:
     if orgImg.shape[ : 2 ] != genImg.shape[ : 2 ]:
         raise( f"Error when overlapping images\nShapes do not match\noriginal Image has shape {orgImg.shape[:2]} and generated Image has shape {genImg.shape[:2] }" )
 
     return np.where( ( orgImg < 200 ) | ( genImg < 200 ), 0, 255 )
 
-def lineToPoints( image : typing.Union[ PIL.Image, np.ndarray ] ):
-    cv2.poly
 
 if __name__ == "__main__":
     #Setup stable diffusion pipeline
