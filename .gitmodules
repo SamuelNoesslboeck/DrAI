@@ -6,4 +6,4 @@
 	url = https://github.com/SamuelNoesslboeck/sybot_lib
 [submodule "electronics/robot_driver_mk1"]
 	path = electronics/robot_driver_mk1
-	url = https://github.com/SamuelNoesslboeck/robot_driver_mk1.git
+	url = https://github.com/SamuelNoesslboeck/robot_driver_mk1
