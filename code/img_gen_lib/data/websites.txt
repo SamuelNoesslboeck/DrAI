@@ -1,4 +1,0 @@
-https://datatofish.com/command-prompt-python/
-https://blog.roboflow.com/stable-diffusion-image-to-image-pipeline/
-https://github.com/CompVis/stable-diffusion
-https://github.com/Stability-AI/stablediffusion
