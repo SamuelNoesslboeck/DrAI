@@ -1,0 +1,3 @@
+Igus https://www.igus.de/info/flache-linearachse-mit-zahnriemenantrieb
+
+X-Achse: Hublänge = 605.5
