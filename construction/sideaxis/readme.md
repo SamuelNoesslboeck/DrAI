@@ -3,16 +3,19 @@
 ## 3D-Printing
 
 ### 1_side_axis_stepper
- - Accuracy: so genau wie möglich
- - Stability: so stabil wie möglich
- - Anzahl: 4
+
+- Accuracy: highest
+- Stability: highest
+- Amount: 4
 
 ### 2_side_axis_end_switch
- - Accuracy: mittelmäßig genau
- - Stability: so stabil wie möglich
- - Anzahl: 2
 
-### 3_side_axis_Trapezoidal_spindl
- - Accuracy: mittelmäßig genau
- - Stability: mittelmäßig genau
- - Anzahl: 2
+- Accuracy: medium
+- Stability: highest
+- Amount: 2
+
+### 3_side_axis_Trapezoidal_spindle
+
+- Accuracy: medium
+- Stability: medium
+- Amout: 2

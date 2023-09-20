@@ -7,3 +7,6 @@
 [submodule "electronics/robot_driver_mk1"]
 	path = electronics/robot_driver_mk1
 	url = https://github.com/SamuelNoesslboeck/robot_driver_mk1
+[submodule "drake_printer_files"]
+	path = drake_printer_files
+	url = https://github.com/SamuelNoesslboeck/drake_printer_files
