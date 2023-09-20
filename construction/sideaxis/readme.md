@@ -10,7 +10,7 @@
 ### 2_side_axis_end_switch
  - Accuracy: mittelmäßig genau
  - Stability: so stabil wie möglich
- - Anzahl: 4
+ - Anzahl: 2
 
 ### 3_side_axis_Trapezoidal_spindl
  - Accuracy: mittelmäßig genau
