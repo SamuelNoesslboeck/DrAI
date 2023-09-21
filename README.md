@@ -1,11 +1,11 @@
 # DrAI
 
-![](./documentation/images/main.PNG)
+![Main image (sketch)](./documentation/images/main.PNG)
 
 Diploma project created in January 2023
 
 Authors: **Rene Schwarz**, **Samuel Nösslböck**  
-Partner: **Ars Electronica Center Linz** 
+Partner: **Ars Electronica Center Linz**
 
 ## Overview
 
@@ -20,7 +20,7 @@ Partner: **Ars Electronica Center Linz**
 
 ### Goal
 
-We want to demonstrate the capabilities of AI in completing "creative" tasks in collaboration with humans.
+The goal of this project is to demonstrate the capabilities of AI in completing "creative" tasks in collaboration with humans.
 
 ### Task
 
@@ -33,7 +33,7 @@ The project can be split up into the two main parts AI (or in general software) 
 
 First the software has to locate the sheet with a digital camera mounted to the tool and take a picture of it. Then all the lines drawn by the user are detected and interpreted. The fewer lines made by the user, the more "creative" the AI can be. All the merged lines generated are then transfered to the robot.
 
-The software first puts the picture taken into a vision-transformer that creates a description for it, which is then used by a Stable Diffusion Algorithm to generate a colored RGB-image. Out of this images, another algorithm extracts the edges and merges them with the original image. 
+The software first puts the picture taken into a vision-transformer that creates a description for it, which is then used by a Stable Diffusion Algorithm to generate a colored RGB-image. Out of this images, another algorithm extracts the edges and merges them with the original image.
 
 The robot os is made in rust and allows basic movements required to draw the lines. (See [sybot_lib](https://github.com/SamuelNoesslboeck/sybot_lib))
 
@@ -42,3 +42,7 @@ The robot os is made in rust and allows basic movements required to draw the lin
 The robot has to, as already mentioned, be able to draw lines on an A5 sheet of paper. To do this, it will be equipped with a printer tool and three dynamic axes that it can move to any exact position in range it desires.
 
 The user interface should be as simple as possible, not more then two buttons even.
+
+## Electronics
+
+The electronics consist of the main robot driver and the additional control systems.
