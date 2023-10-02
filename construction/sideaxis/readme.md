@@ -2,6 +2,7 @@
 
 ## 3D-Printing
 
+<<<<<<< HEAD
 
 
 ### stepperholder
@@ -21,6 +22,8 @@
 - Amount: 4
 
 
+=======
+>>>>>>> advanced_cad
 ### 1_side_axis_stepper
 - Accuracy: highest
 - Stability: highest
@@ -36,7 +39,10 @@
 - Stability: highest
 - Amount: 1
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> advanced_cad
 ### 3_side_axis_Trapezoidal_spindle
 - Accuracy: medium
 - Stability: medium

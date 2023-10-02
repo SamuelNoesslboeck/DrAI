@@ -14,7 +14,7 @@ Partner: **Ars Electronica Center Linz**
   - [Task](#task)
     - [Software](#software)
     - [Robot](#robot)
-- [Electronics](./electronics/drake_electronics/Readme.md)
+- [Electronics](./electronics/drake_electronics/README.md)
 
 ## Summary
 
