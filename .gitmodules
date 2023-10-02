@@ -5,7 +5,7 @@
 	path = code/sybot_lib
 	url = https://github.com/SamuelNoesslboeck/sybot_lib
 [submodule "electronics/robot_driver"]
-	path = electronics/robot_driver_mk1
+	path = electronics/robot_driver
 	url = https://github.com/SamuelNoesslboeck/robot_driver
 [submodule "drake_printer_files"]
 	path = drake_printer_files
