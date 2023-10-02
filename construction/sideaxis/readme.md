@@ -6,7 +6,13 @@
 
 - Accuracy: medium (medium)
 - Stability: high (high)
-- Amount: 2 (2)
+- Amount: 1 (2)
+
+### 2_side_axis_end_switch_holder
+
+- Accuracy: medium (medium)
+- Stability: high (high)
+- Amount: 1 (2)
 
 ### 3_side_axis_trapezoidal_spindle_bearing
 
