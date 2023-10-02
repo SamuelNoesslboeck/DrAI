@@ -4,17 +4,23 @@
 
 Diploma project created in January 2023
 
-Authors: **Rene Schwarz**, **Samuel Nösslböck**  
-Partner: **Ars Electronica Center Linz** 
+Authors: 
+  [**Rene Schwarz**](https://github.com/SchwarzRene), 
+  [**Samuel Nösslböck**](https://github.com/SamuelNoesslboeck)  
+Partner: [**Ars Electronica Center Linz**](https://ars.electronica.art/news/en/)
 
 ## Overview
 
-- [Summary](#summary)
-  - [Goal](#goal)
-  - [Task](#task)
-    - [Software](#software)
-    - [Robot](#robot)
-- [Electronics](./electronics/drake_electronics/Readme.md)
+- [DrAI](#drai)
+  - [Overview](#overview)
+  - [Summary](#summary)
+    - [Goal](#goal)
+    - [Task](#task)
+      - [Software](#software)
+      - [Robot](#robot)
+  - [Construction](#construction)
+    - [Naming system](#naming-system)
+    - [About subassemblies](#about-subassemblies)
 
 ## Summary
 
@@ -42,3 +48,24 @@ The robot os is made in rust and allows basic movements required to draw the lin
 The robot has to, as already mentioned, be able to draw lines on an A5 sheet of paper. To do this, it will be equipped with a printer tool and three dynamic axes that it can move to any exact position in range it desires.
 
 The user interface should be as simple as possible, not more then two buttons even.
+
+## Construction
+
+### Naming system
+
+In order to keep the project clean, the filesystem for the construction has a strict naming scheme. 
+
+- Assemblies are referenced with an "a" prefix. Depending on the type of assembly a number can be added:
+  - The main assembly has no number (e.g. "a_drake")
+  - Subassemblies have a number attached to them (e.g. "a1_frame")
+  - There can be subassemblies of subassemblies (e.g. "a1.1_frame_base")
+- Standard parts have an "n{part-number}_" prefix
+  - They are placed in a "standard" directory
+- Modified parts (standard parts with modifications) have an "m{part-number}_" prefix
+  - They are placed in a "modified" directory
+- Custom parts just have their part number as prefix "{part-number}_"
+  - They are placed into the assembies root
+
+### About subassemblies
+
+The important rule about subassemblies is, that they should always work on their own. This can of course mean that standard parts can be found multiple times in a construction.
