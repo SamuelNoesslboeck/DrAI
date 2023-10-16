@@ -14,7 +14,8 @@ Partner: **Ars Electronica Center Linz**
   - [Task](#task)
     - [Software](#software)
     - [Robot](#robot)
-- [Electronics](./electronics/drake_electronics/README.md)
+- [Construction](#construction)
+- [Electronics](#electronics)
 
 ## Summary
 
@@ -43,6 +44,12 @@ The robot has to, as already mentioned, be able to draw lines on an A5 sheet of 
 
 The user interface should be as simple as possible, not more then two buttons even.
 
+## Construction
+
+The construction is similar to the one of a 3D-Printer including three stepper-motor controlled linear axis, a BLTouch and endswitches to measure home position and more.
+
 ## Electronics
 
 The electronics consist of the main robot driver and the additional control systems.
+
+[Driver README](./electronics/drake_electronics/README.md)
