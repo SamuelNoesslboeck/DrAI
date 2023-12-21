@@ -1,0 +1,6 @@
+Input:
+Add to the city's skyline a massive floating tower that appears to be made of glass and metal. The tower is surrounded by a lush green garden filled with colorful flowers and trees. In the foreground, there are several small boats sailing in the water, creating a peaceful and serene atmosphere. The overall style should be black and white linestyle, giving it
+
+
+
+Output:

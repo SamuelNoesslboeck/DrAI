@@ -1,0 +1,6 @@
+Input:
+A black and white linestyle drawing of a bird with a hat on its head, perched atop a tree branch. In the background is a magical forest filled with glowing mushrooms and ethereal wisps. To add to the enchanting atmosphere, the branches sway gently in the breeze while leaves fall softly around them. The bird's eyes sparkle with curiosity
+
+
+
+Output:

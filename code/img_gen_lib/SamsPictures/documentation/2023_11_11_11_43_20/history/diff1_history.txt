@@ -1,0 +1,6 @@
+Input:
+In the image there will be a magical garden with flowers of all colors and shapes. The bird with a hat on its head will be flying over it. There will also be a small pond in the center surrounded by lush greenery. In the background you can see a castle or an old mansion, which gives off an eerie vibe. The whole scene is
+
+
+
+Output:

@@ -1,0 +1,6 @@
+Input:
+A black and white linestyle drawing of a bird with a hat on its head and an owl-eyed mouse that speaks "Perry the Platypus" in the background. The bird is surrounded by a field of flowers and has a speech bubble coming out of it, saying "I'm not just any ordinary bird." The owl-eyed mouse is sitting on
+
+
+
+Output:
