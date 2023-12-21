@@ -1,12 +1,5 @@
-import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-
-import matplotlib.pyplot as plt
-import numpy as np
-import time
 import cv2
-
 
 def detectCornersOfPlatform( img ):
     imgHeight, imgWidth = img.shape

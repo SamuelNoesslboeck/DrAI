@@ -1,5 +1,5 @@
 import drawingSoftware
-import reconvertion_utils
+import reconvertion.reconvertion_utils as reconvertion_utils
 import numpy as np
 import json
 import cv2
@@ -29,7 +29,6 @@ def difference( orgImg, genImg ) -> np.ndarray:
 
 
 if __name__ == "__main__":
-    '''
     PAPERWIDTH = 21.5
     PAPERHEIGHT = 14
 
@@ -44,27 +43,15 @@ if __name__ == "__main__":
     topLeftRealPoint = np.array( [ topLeftPoint[ 0 ] * PLATTFORMWIDTH / plattformImg.shape[ 1 ],  topLeftPoint[ 1 ] * PLATTFORMHEIGHT / plattformImg.shape[ 0 ] ] )
 
     cv2.imwrite( "./orgImg.png" )
-    '''
+    
 
     #get a list of points to draw
     #the list contains json elements with p1: ( x, y ), p2: ( x, y )
 
+    lines = drawingSoftware.GetPointsFromImage( orgImgName = "./test.png", genImgName = "./SamsPictures/Original/orgImg.png" )
 
+    data = { "contour": lines }
 
-    import os
-
-    files = os.listdir( "./SamsPictures/Original/" )
-
-    for file in files:
-        lines = drawingSoftware.GetPointsFromImage( orgImgName = "./test.png", genImgName = "./SamsPictures/Original/" + file )
-
-        data = { "contour": lines }
-
-        n = file.replace( ".jpg", "" )
-        n = n.replace( ".png", "" )
-        json.dump( data, open( f"./{n}.json", "w+" ) )
-
-    '''
     for l in lines:
         p1 = np.array( l[ "p1" ] ).reshape( -1, )
         p1[ 1 ] = -p1[ 1 ]
@@ -75,6 +62,9 @@ if __name__ == "__main__":
 
         p1 += topLeftRealPoint
         
-    '''
+    n = file.replace( ".jpg", "" )
+    n = n.replace( ".png", "" )
+    json.dump( data, open( f"./{n}.json", "w+" ) )
+
     
     
