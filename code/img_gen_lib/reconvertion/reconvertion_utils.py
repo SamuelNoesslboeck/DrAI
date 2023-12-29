@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 
@@ -6,8 +7,11 @@ def detectCornersOfPlatform( img ):
 
     ###Use Canny for Edges
     canny = cv2.Canny( img, 10, 40 )
+
     canny = cv2.blur( canny, ( 3, 3 ) )
 
+    plt.imshow( canny )
+    plt.show()
     ###################
     # Find Contours 
     # sort by size 
@@ -66,15 +70,18 @@ def cornerDistances( indexes, imgWidth, imgHeight ):
     return cornerPositions, ( topLeftCorner, topRightCorner, bottomLeftCorner, bottomRightCorner )
 
 
-def transformPlatform( img ):
+def transformPlatform( img, r, g, b ):
     imgWidth = img.shape[ 1 ]; imgHeight = img.shape[ 0 ]
 
     ###########################################################################################################################################
     ###Detect Platform and transform the image 
     ###########################################################################################################################################
     platform = np.zeros( ( imgHeight, imgWidth ), dtype = np.uint8 )
-    platform = np.where( ( img[ :, :, 0 ] < 70 ) & ( ( img[ :, :, 1 ] > 50 ) & ( img[ :, :, 1 ] < 140 ) ) & ( img[ :, :, 2 ] > 220 ), 255, 0 )
+    platform = np.where( ( ( img[ :, :, 0 ] > r[ 0 ] ) & img[ :, :, 0 ] < r[ 1 ] ) & ( ( img[ :, :, 1 ] > g[ 0 ] ) & ( img[ :, :, 1 ] < g[ 1 ] ) ) & ( ( img[ :, :, 2 ] > b[ 0 ] ) & img[ :, :, 2 ] < b[ 1 ] ), 255, 0 )
     platform = platform.astype( np.uint8 )
+
+    plt.imshow( platform )
+    plt.show()
 
     indexes = detectCornersOfPlatform( platform )
 
@@ -200,11 +207,47 @@ def transformImg( img ):
     return final, ( minX, minY, maxX, maxY )
 
 
+def removeRest( img , points, color = ( 255, 165, 0 ) ):
+    cv2.fillPoly( img, pts = [ points ], color = ( 255, 165, 0 ) )
+    return img
+
+
+def showImg( img ):
+    fig = plt.figure()
+
+    ax1 = fig.add_subplot( 2, 2, 1 )
+    ax1.imshow( img[ :, :, 0 ], cmap = "gray" )
+
+    ax2 = fig.add_subplot( 2, 2, 2 )
+    ax2.imshow( img[ :, :, 1 ], cmap = "gray" )
+
+    ax3 = fig.add_subplot( 2, 2, 3 )
+    ax3.imshow( img[ :, :, 2 ], cmap = "gray" )
+
+    ax4 = fig.add_subplot( 2, 2, 4 )
+    ax4.imshow( img )
+
+    plt.show()
 
 if __name__ == "__main__":
 
-    pImg = cv2.imread( "./PapierTest/PaperTest.jpeg" )
-    p = transformPlatform( pImg )
+    pImg = cv2.imread( "./PapierTest/test4.png" )
+
+    topLeftCorner = np.array( [ [ 0, 0 ], [ 0, 250 ], [ 500, 0 ] ] ) 
+    pImg = removeRest( pImg, topLeftCorner )
+
+    topRightCorner = np.array( [ [ 700, 0 ], [ 1024, 0 ], [ 1024, 798 ] ] ) 
+    pImg = removeRest( pImg, topRightCorner )
+
+    bottomLeftCorner = np.array( [ [ 0, 350 ], [ 0, 798 ], [ 400, 798 ] ] ) 
+    pImg = removeRest( pImg, bottomLeftCorner )
+
+    bottomRightCorner = np.array( [ [ 300, 798 ], [ 1024, 0 ], [ 1024, 798 ] ] ) 
+    pImg = removeRest( pImg, bottomRightCorner )
+
+    showImg( pImg )
+     
+    p = transformPlatform( pImg, r = ( 0, 20 ), g = ( 0, 20 ), b = ( 0, 20 ) )
 
     iImg = cv2.imread( "./final.jpg" )
     i, points = transformImg( iImg )
