@@ -1,4 +1,4 @@
-# Y-Axis
+# Paperholder
 
 ## 3D-Printing
 
@@ -44,3 +44,4 @@
 - accuracy: low
 - Stability: low
 - Amount: 4
+- Kommentar: Wenns geht weiß oder dunkelblaue Farbe
