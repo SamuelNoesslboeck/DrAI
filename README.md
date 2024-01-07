@@ -18,6 +18,7 @@ Partner: [**Ars Electronica Center Linz**](https://ars.electronica.art/news/en/)
     - [Task](#task)
       - [Software](#software)
       - [Robot](#robot)
+  - [General information](#general-information)
   - [Construction](#construction)
     - [Naming system](#naming-system)
     - [About subassemblies](#about-subassemblies)
@@ -48,6 +49,10 @@ The robot os is made in rust and allows basic movements required to draw the lin
 The robot has to, as already mentioned, be able to draw lines on an A5 sheet of paper. To do this, it will be equipped with a printer tool and three dynamic axes that it can move to any exact position in range it desires.
 
 The user interface should be as simple as possible, not more then two buttons even.
+
+## General information
+
+
 
 ## Construction
 
