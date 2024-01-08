@@ -16,6 +16,7 @@ Partner: **Ars Electronica Center Linz**
     - [Aufgabe](#aufgabe)
       - [Software](#software)
       - [Roboter](#roboter)
+      - [Ausgangslage des Themas](#ausgangslage-des-themas)
   - [Aufbau](#aufbau)
   - [Elektronik](#elektronik)
 
@@ -45,6 +46,10 @@ Das Roboter-OS ist in Rust, einer eher neuen allerdings ziemlich fortgeschritten
 Der Roboter muss, wie bereits erwähnt, in der Lage sein, Linien auf ein A5-Blatt Papier zu zeichnen. Dazu wird er mit einem Zeichenwerkzeug und drei dynamischen Achsen (X, Y, Z) ausgestattet sein, die er in dem Bereich des Papieres exakt anfahren kann.
 
 Die Benutzeroberfläche sollte so einfach wie möglich sein, nicht mehr als zwei Tasten sogar.
+
+#### Ausgangslage des Themas
+
+Stable Diffusion Algorithmen sind ein eher neues Thema in der Welt der KI, sie ermöglichen es, Bilder oder andere Inhalte in einer Form zu generieren, die der menschlichen Kreativität sehr nahe kommen. Diese KIs werden jedoch hauptsächlich rein digital verwendet. Unser Ansatz soll diese Art von KIs mehr in die Realität bringen.
 
 ## Aufbau
 

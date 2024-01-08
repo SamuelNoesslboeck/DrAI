@@ -2,8 +2,8 @@
 
 ## TODO
 
-- [ ] Profil ausfüllen
-- [ ] Projekt einreichen
+- [x] Profil ausfüllen
+- [x] Projekt einreichen
 
 ## Projektdaten
 
