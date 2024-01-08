@@ -9,13 +9,15 @@ Partner: **Ars Electronica Center Linz**
 
 ## Overview
 
-- [Summary](#summary)
-  - [Goal](#goal)
-  - [Task](#task)
-    - [Software](#software)
-    - [Robot](#robot)
-- [Construction](#construction)
-- [Electronics](#electronics)
+- [DrAI](#drai)
+  - [Overview](#overview)
+  - [Summary](#summary)
+    - [Goal](#goal)
+    - [Task](#task)
+      - [Software](#software)
+      - [Robot](#robot)
+  - [Construction](#construction)
+  - [Electronics](#electronics)
 
 ## Summary
 
@@ -36,7 +38,7 @@ First the software has to locate the sheet with a digital camera mounted to the 
 
 The software first puts the picture taken into a vision-transformer that creates a description for it, which is then used by a Stable Diffusion Algorithm to generate a colored RGB-image. Out of this images, another algorithm extracts the edges and merges them with the original image.
 
-The robot os is made in rust and allows basic movements required to draw the lines. (See [sybot_lib](https://github.com/SamuelNoesslboeck/sybot_lib))
+The robot os is made in rust and allows basic movements required to draw the lines. (See [sybot](https://github.com/SamuelNoesslboeck/sybot))
 
 #### Robot
 
