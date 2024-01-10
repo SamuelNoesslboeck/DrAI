@@ -21,8 +21,8 @@ DIE NEUEN TERMINE IM ÜBERBLICK:
 
 ## TODO
 
-- [x] Anmeldung
-- [ ] Beschreibung einreichen
+- [x] Anmeldung                 (bis 30/11/2023)
+- [ ] Beschreibung einreichen   (bis 30/01/2024)
 
 ## Beschreibungen
 

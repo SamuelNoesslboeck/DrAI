@@ -7,6 +7,10 @@ Deadline:
 ## TODO
 
 - [x] Create Project
-- [ ] Fill out information
+- [ ] Fill out project information
+- [ ] Upload project images/details etc.
 
-## Project information
+## Technical details
+
+
+

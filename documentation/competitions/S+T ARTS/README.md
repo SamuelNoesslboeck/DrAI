@@ -2,3 +2,9 @@
 
 Entry start: *09/01/2024*
 Entry end: *01/03/2024*
+
+## TODO
+
+- [x] Create profile
+- [ ] Upload project
+- [ ] Upload entry
