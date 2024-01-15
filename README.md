@@ -17,6 +17,7 @@ Partner: **Ars Electronica Center Linz**
       - [Software](#software)
       - [Robot](#robot)
   - [Construction](#construction)
+  - [AI](#ai)
   - [Electronics](#electronics)
 
 ## Summary
@@ -53,6 +54,12 @@ The user interface has been kept as simple as possible, a button to start the pr
 ![New sketch](./documentation/images/main_new.PNG)
 
 The construction is similar to the one of a 3D-Printer including three stepper-motor controlled linear axis, a BLTouch and endswitches to measure home position and more. A welded aluminum frame is the basis for the robot and with the vast majority of the other parts being 3D-printed, the manufactoring process turned out to be quite simple.
+
+## AI
+
+![AI Example 1](./documentation/images/AI/ai_example_image_3.jpg)
+
+![AI Example 2](./documentation/images/AI/ai_example_image_4.jpg)
 
 ## Electronics
 
