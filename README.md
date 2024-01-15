@@ -1,6 +1,6 @@
-# DrAI
+![Logo](./documentation/images/logo.PNG)
 
-![Main image (sketch)](./documentation/images/main.PNG)
+# DrAI
 
 Diploma project created in January 2023
 
@@ -9,13 +9,15 @@ Partner: **Ars Electronica Center Linz**
 
 ## Overview
 
-- [Summary](#summary)
-  - [Goal](#goal)
-  - [Task](#task)
-    - [Software](#software)
-    - [Robot](#robot)
-- [Construction](#construction)
-- [Electronics](#electronics)
+- [DrAI](#drai)
+  - [Overview](#overview)
+  - [Summary](#summary)
+    - [Goal](#goal)
+    - [Task](#task)
+      - [Software](#software)
+      - [Robot](#robot)
+  - [Construction](#construction)
+  - [Electronics](#electronics)
 
 ## Summary
 
@@ -45,6 +47,10 @@ The robot has to, as already mentioned, be able to draw lines on an A5 sheet of 
 The user interface should be as simple as possible, not more then two buttons even.
 
 ## Construction
+
+![Old sketch](./documentation/images/main.PNG)
+
+![New sketch](./documentation/images/main_new.PNG)
 
 The construction is similar to the one of a 3D-Printer including three stepper-motor controlled linear axis, a BLTouch and endswitches to measure home position and more.
 
