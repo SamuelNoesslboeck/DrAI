@@ -1,6 +1,6 @@
-# DrAI
+![Logo](./documentation/images/logo.PNG)
 
-![Main image (sketch)](./documentation/images/main.PNG)
+# DrAI
 
 Diploma project created in January 2023
 
@@ -47,6 +47,10 @@ The robot has to, as already mentioned, be able to draw lines on an A5 sheet of 
 The user interface has been kept as simple as possible, a button to start the process and an emergency-halt in case something goes wrong.
 
 ## Construction
+
+![Old sketch](./documentation/images/main.PNG)
+
+![New sketch](./documentation/images/main_new.PNG)
 
 The construction is similar to the one of a 3D-Printer including three stepper-motor controlled linear axis, a BLTouch and endswitches to measure home position and more. A welded aluminum frame is the basis for the robot and with the vast majority of the other parts being 3D-printed, the manufactoring process turned out to be quite simple.
 
