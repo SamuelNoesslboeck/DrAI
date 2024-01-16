@@ -19,6 +19,7 @@ Partner: **Ars Electronica Center Linz**
   - [Construction](#construction)
   - [AI](#ai)
   - [Electronics](#electronics)
+  - [Further reading](#further-reading)
 
 ## Summary
 
@@ -65,4 +66,11 @@ The construction is similar to the one of a 3D-Printer including three stepper-m
 
 The electronics consist of the main robot driver and the additional control systems, with the main driver being equipped with multiple high-power stepper motor controllers, as we do not want the user to wait more than five minutes for their picture.
 
-[Driver README](./electronics/drake_electronics/README.md)
+- [Driver README](./electronics/drake_electronics/README.md)
+
+## Further reading
+
+See the documentation files in:
+
+- [English](./documentation/documentation.en.md)
+- [German](./documentation/dokumentation.de.md)
