@@ -28,6 +28,8 @@ DIE NEUEN TERMINE IM ÜBERBLICK:
 
 Komplexere Beschreibungen für den Wettbewerb.
 
+- [**Richtlinien**](https://www.jugendinnovativ.at/fileadmin/user_upload/Callunterlagen/PB_Anleitung_ENGINEERING.pdf)
+
 ### Kurzbeschreibung der Zielsetzung
 
 Ziel dieses Projekts ist es, die Fähigkeiten von KI bei der Erledigung "kreativer" Aufgaben in Zusammenarbeit mit Menschen zu demonstrieren. Der Roboter ist außerdem als Ausstellungsstück für das Machine Learning Studio des Ars Electronica Center Museums geplant.
