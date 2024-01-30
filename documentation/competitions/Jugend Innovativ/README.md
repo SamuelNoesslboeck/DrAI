@@ -3,7 +3,7 @@
 ## Infos
 
 [Link](https://www.jugendinnovativ.at/teilnahme/wettbewerb)
-Deadline: 30/11/2023
+Deadline: 30/01/2024
 
 ""  
 DIE NEUEN TERMINE IM ÜBERBLICK:
