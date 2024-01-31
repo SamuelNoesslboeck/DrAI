@@ -22,7 +22,7 @@ DIE NEUEN TERMINE IM ÜBERBLICK:
 ## TODO
 
 - [x] Anmeldung                 (bis 30/11/2023)
-- [ ] Beschreibung einreichen   (bis 30/01/2024)
+- [x] Beschreibung einreichen   (bis 30/01/2024)
 
 ## Beschreibungen
 
@@ -61,6 +61,8 @@ Die gezeichnete Skizze wird dann durch einen Clip-Interogator in einen Text-Prom
 Eine weiterer Aspekt ist die Steuerung des Roboters, die zu großen Teilen von uns in Rust angefertigt wurde, da es etwas vergleichbares in dieser Sprache noch nicht gibt. Rust hat uns durch ihre Eleganz, Sicherheit und überragende Performance überzeugt. Durch sie ist es möglich, die komplette Steuerung inklusive Bahnberechnungen auf einem simplen Raspberry Pi Einplatinencomputer laufen zu lassen. Da in einem Museum die Aufmerksamkeitsspanne der Besucher eher kurz ist, muss schnell gezeichnet werden. Was durch die robuste Konstruktion, die leistungsstarke Elektronik und die Software, die hochwertige Anlaufkurven für die Motoren berechnet, gewährleistet wird. 
 
 ### Projektergebnisse
+
+Zu Beginn unserer Entwicklung standen die Projektteilnehmer zur These, dass kreative Textbeschreibungen benötigt werden, um kreative Bilder durch KI zu generieren. Je weiter die Forschung des Algorithmus fortschritt, desto mehr festigte sich die Erkenntnis, dass diese These inkorrekt ist. Der erstellte Algorithmus hat einerseits die Möglichkeit, aus Bestehendem etwas Neues zu erzeugen und andererseits aus einem weißen Blatt Papier ohne textliche Beschreibungen oder menschliches Einwirken kreative Bilder zu malen. Es ist eine philosophische Frage, ob Maschinen kreativ sein können oder nicht, jedoch sehen die Resultate sehr vielversprechend aus. Die Frage, ob KI kreativ sein kann, wird eher zur Frage, wann KI kreativer wird, als die Menschheit es derzeit ist.
 
 ### Beschreibung der Zusammenarbeit
 
