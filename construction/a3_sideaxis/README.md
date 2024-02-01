@@ -2,22 +2,20 @@
 
 ## 3D-Printing
 
-### 1_side_axis_stepper
-- Accuracy: highest
-- Stability: highest
-- Amount: 4
+### 1_side_axis_end_switch_holder_long
 
-### 2_side_axis_end_switch
-- Accuracy: medium
-- Stability: highest
-- Amount: 1
+- Accuracy: medium (medium, 0.2)
+- Stability: high (high, 50%)
+- Amount: 1 (2)
 
-### 1_side_axis_end_switch_long
-- Accuracy: medium
-- Stability: highest
-- Amount: 1
+### 2_side_axis_end_switch_holder
 
-### 3_side_axis_Trapezoidal_spindle
-- Accuracy: medium
-- Stability: medium
-- Amout: 2
+- Accuracy: medium (medium, 0.2)
+- Stability: high (high, 50%)
+- Amount: 1 (1)
+
+### 3_side_axis_trapezoidal_spindle_bearing
+
+- Accuracy: medium (medium, 0.2)
+- Stability: medium (medium, 30%)
+- Amout: 2 (2)
