@@ -4,8 +4,10 @@
 
 Diploma project created in January 2023
 
-Authors: **Rene Schwarz**, **Samuel Nösslböck**  
-Partner: **Ars Electronica Center Linz**
+Authors: 
+  [**Rene Schwarz**](https://github.com/SchwarzRene), 
+  [**Samuel Nösslböck**](https://github.com/SamuelNoesslboeck)  
+Partner: [**Ars Electronica Center Linz**](https://ars.electronica.art/news/en/)
 
 ## Overview
 
@@ -16,7 +18,10 @@ Partner: **Ars Electronica Center Linz**
     - [Task](#task)
       - [Software](#software)
       - [Robot](#robot)
+  - [General information](#general-information)
   - [Construction](#construction)
+    - [Naming system](#naming-system)
+    - [About subassemblies](#about-subassemblies)
   - [AI](#ai)
   - [Electronics](#electronics)
   - [Further reading](#further-reading)
@@ -46,7 +51,11 @@ The robot os is made in rust and allows basic movements required to draw the lin
 
 The robot has to, as already mentioned, be able to draw lines on an A5 sheet of paper. To do this, it will be equipped with a printer tool and three dynamic (X, Y, Z) axes that it can move to any exact position in range it desires.
 
-The user interface has been kept as simple as possible, a button to start the process and an emergency-halt in case something goes wrong.
+The user interface should be as simple as possible, not more then two buttons even.
+
+## General information
+
+
 
 ## Construction
 
@@ -55,6 +64,26 @@ The user interface has been kept as simple as possible, a button to start the pr
 ![New sketch](./documentation/images/main_new.PNG)
 
 The construction is similar to the one of a 3D-Printer including three stepper-motor controlled linear axis, a BLTouch and endswitches to measure home position and more. A welded aluminum frame is the basis for the robot and with the vast majority of the other parts being 3D-printed, the manufactoring process turned out to be quite simple.
+
+### Naming system
+
+In order to keep the project clean, the filesystem for the construction has a strict naming scheme. 
+
+- Assemblies are referenced with an "a" prefix. Depending on the type of assembly a number can be added:
+  - The main assembly has no number (e.g. "a_drake")
+  - Subassemblies have a number attached to them (e.g. "a1_frame")
+  - There can be subassemblies of subassemblies (e.g. "a1.1_frame_base")
+- Standard parts have an "n{part-number}_" prefix
+  - They are placed in a "standard" directory
+- Modified parts (standard parts with modifications) have an "m{part-number}_" prefix
+  - They are placed in a "modified" directory
+- Custom parts just have their part number as prefix "{part-number}_"
+  - They are placed into the assembies root
+
+### About subassemblies
+
+The important rule about subassemblies is, that they should always work on their own. This can of course mean that standard parts can be found multiple times in a construction.
+The user interface has been kept as simple as possible, a button to start the process and an emergency-halt in case something goes wrong.
 
 ## AI
 
