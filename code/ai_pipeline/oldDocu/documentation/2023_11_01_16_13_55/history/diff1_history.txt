@@ -1,0 +1,6 @@
+Input:
+an extraordinary image of a duck with a top hat and monocle riding on the back of a giant egg, inspired by the works of Winsor McCay and Chuck Jones, in a retro-futuristic style with bold lines and shading, no areas should be filled, black and white linestyle.
+
+
+
+Output:

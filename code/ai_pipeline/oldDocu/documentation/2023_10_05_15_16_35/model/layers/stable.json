@@ -1,0 +1,6 @@
+{
+    "imagePath": "./test.png",
+    "cache": "./output/test.png",
+    "guidance_scale": 7,
+    "strength": 0.75
+}

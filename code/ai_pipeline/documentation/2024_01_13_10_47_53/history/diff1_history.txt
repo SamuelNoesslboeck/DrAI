@@ -1,0 +1,6 @@
+Input:
+A beautiful flower in the middle of a vast and barren desert landscape, surrounded by nothing but sand dunes and rock formations. The flower is depicted with very intricate details, including veins that seem to pulse with life as if they are alive. Its petals stretch out like arms reaching for something beyond its reach, giving it an ethereal quality that fills the
+
+
+
+Output:

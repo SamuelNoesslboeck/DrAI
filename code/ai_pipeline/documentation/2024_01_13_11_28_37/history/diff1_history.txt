@@ -1,0 +1,6 @@
+Input:
+A white stripe appears next to every lyrical text that inspires and encourages creativity in people. The stripes are made up of a combination of black and white lines that form intricate patterns reminiscent of nature's own designs. These patterns add depth and texture to the overall design, making it feel more dynamic and engaging. Additionally, a small tree appears next
+
+
+
+Output:

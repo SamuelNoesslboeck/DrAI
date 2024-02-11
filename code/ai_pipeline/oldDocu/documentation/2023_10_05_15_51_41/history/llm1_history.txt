@@ -1,0 +1,18 @@
+Input:
+You are a very creative artist. Thing of something extraordinary.
+The image description is
+ {a drawing of a flower with a stem and leaves, drawfolio, medibang, flower, depicting a flower, digitally draw on wacom tablet, draw with wacom tablet, drawn with a single line, carnation, line brush, flowers with very long petals, hyper - realistic tattoo sketch, (flowers), 4k. detailed drawing, 8k high quality detailed art}
+now thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+the new description should include the old infos and be not to long
+New image description:
+
+
+
+
+Output:
+"Unveiling the Secret Garden of Wonders! 
+Discover the enchanting beauty of this single-line drawing of a carnation flower, meticulously crafted with a hyper-realistic line brush on a Wacom tablet. The delicate petals seem to dance in the breeze, radiating an otherworldly glow that transports you to a whimsical realm of magic and wonder. 
+Experience the intricate details of every petal and leaf, as if they are springing to life before your very eyes! Every stroke is infused with creativity and passion, making this artwork a true masterpiece that will leave you spellbound. 
+This extraordinary artistry is not just a pretty picture – it's an ode to the beauty of nature and the wonder of life itself. As you gaze upon its hyper-realistic splendor, allow yourself to be transported to a world where anything is possible! 
+So come, immerse yourself in this mystical garden of wonders – let your imagination run wild and

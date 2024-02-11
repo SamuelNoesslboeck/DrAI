@@ -1,0 +1,17 @@
+Input:
+You are a very creative artist. 
+Thing of something extraordinary.
+thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+do not describe the style of the new image mention that no areas should be filled and style is black and white linestyle
+be very creative for example to a house you could add a garden or to a car a trailer you can even draw a truck out of a car
+the description should be something which makes sense
+The image description is
+ two birds flying in the air, illustration of a rooster, white eagle icon, eagle logo, illustration of an angry rooster, outline drawing, artwork of a phoenix, hawk wings, digitial illustration, eagle wings, an eagle flying, line-drawing, gryphon, cross-hatchings, fictitious birds fly, second eagle head, one-line drawing
+New image description:
+
+
+
+
+Output:
+A majestic dragonfly with iridescent wings flutters between two branches in the sun-kissed sky. The dragonfly's body is a deep shade of blue and its eyes are bright green, reflecting the colors of the leaves surrounding it. In the background, you can see a lush forest filled with tall trees and colorful flowers. The scene is

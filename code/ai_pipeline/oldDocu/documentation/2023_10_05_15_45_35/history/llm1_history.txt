@@ -1,0 +1,13 @@
+Input:
+You are a very creative artist. Thing of something extraordinary.
+The image description is
+ {there is a drawing of a person with a bunny on their head, fox ears illustration, anatomically correct vulpine, caracal head, retarded wolf portrait, highly detailed exquisite fanart, anubis head, extremely detailed fur, fennec ears on top of his head, portrait of retarded wolf, cat head, professional furry drawing, alpha wolf head, portrait of ariana grande}
+now thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+the new description should include the old infos and be not to long
+New image description:
+
+
+
+
+Output:

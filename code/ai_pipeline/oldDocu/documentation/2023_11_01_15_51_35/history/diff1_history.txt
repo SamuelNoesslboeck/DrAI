@@ -1,0 +1,6 @@
+Input:
+An extraordinary and enchanting depiction of a flower, bursting with vibrant colors and magical charm. A single-line drawing in black and white linestyle, exquisitely capturing the essence of the bloom, inspiring joy and wonder. (No areas should be filled)
+
+
+
+Output:

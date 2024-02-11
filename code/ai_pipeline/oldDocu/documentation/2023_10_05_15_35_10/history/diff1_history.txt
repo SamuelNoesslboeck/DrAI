@@ -1,0 +1,7 @@
+Input:
+"Amidst an intergalactic adventure, our dapper bird sporting a top hat, flaunts its dashing style. Its Jim Davis-inspired beak and perry the platypus-esque body are only surpassed by the Ren & Stimpy-style spaceship it pilots! The craft takes cues from Matt Groening's design sense, with a quacking cockpit and Donald Duck-like wings. But watch out for the Jubjub bird - this extraterrestrial menace may just have you saying 'Beware!' in no time!"
+Inspired by these incredible artists and their beloved characters, our image takes flight with bold lines and vibrant colors, sure to delight fans of all ages. Whether you're a seasoned space traveler or simply seeking adventure on Earth, this magical mashup will leave you grinning from ear to ear!"
+
+
+
+Output:
