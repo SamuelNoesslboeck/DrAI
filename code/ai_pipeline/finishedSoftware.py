@@ -1,5 +1,5 @@
 from utils.chains import *
-import drawingSoftware
+import utils.les as les
 from flask import Flask
 import raspberryClient
 
@@ -19,7 +19,7 @@ def getImage():
     
     AI_CHAIN.run()
     
-    points = drawingSoftware.GetPointsFromImage( "./test.png", "./output/output.png", penSize = 5 )
+    points = les.GetPointsFromImage( "./test.png", "./output/output.png", penSize = 5 )
 
     return { "points": points }
 
