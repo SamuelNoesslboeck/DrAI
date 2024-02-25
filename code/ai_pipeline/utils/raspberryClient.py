@@ -25,4 +25,5 @@ class RPClient():
 
         img = cv2.imdecode( numpyArray, cv2.IMREAD_COLOR )
 
-        return img
+        configData = self.ser.readline()
+        return img, configData

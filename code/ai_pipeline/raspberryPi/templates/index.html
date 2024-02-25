@@ -223,7 +223,6 @@
             <button type="submit" class="apply-button" id = "markerSubmit" >Apply</button>
         </div>
     </section>
-
     <section class = "configuration-container">
         <h2>Paper Detection</h2>
 
@@ -297,6 +296,18 @@
             <button type="submit" class="apply-button" id = "penSubmit" >Apply</button>
         </div>
     </section>
+
+    <section class = "configuration-container">
+        <h2>Pen Size in Px</h2>
+        <div class="filter-controls">
+            <div class="slider-container">
+                <p>1px ~ 0,3mm</p>
+                <label for="pen-size">Pen-Size:</label>
+                <input type="value" id="pen-size" min = "0">
+            </div>
+            <button type="submit" class="apply-button" id = "penSizeSubmit" >Apply</button>
+        </div>
+    </section>
 </body>
 
 <script src="{{url_for('static', filename='pen.js')}}"></script>
@@ -304,6 +315,9 @@
 <script src="{{url_for('static', filename='marker.js')}}"></script>
 <script src="{{url_for('static', filename='camera.js')}}"></script>
 <script>
+    const penSize = document.getElementById( "pen-size" );
+    const penSizeSubmit = document.getElementById( "penSizeSubmit" );
+
     function getValues(){
         fetch( "/values" ).then( data => data.json() ).then( ( data ) => {
             brightness.value = data["camera"][ "brightness" ];
@@ -351,8 +365,26 @@
 
             penVminValue.value = data["pen"][ "v-min" ];
             penVmaxValue.value = data["pen"][ "v-max" ];
+
+            penSize.value = data[ "penSize" ];
         })
     }
     getValues();
+
+    
+    penSizeSubmit.onclick = function(){
+        value = penSize.value;
+        
+        fetch( "/savePenSize", { 
+            method : "POST",
+            mode: 'no-cors',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            method: "POST",
+
+            body: JSON.stringify( { "value": value } )
+        } )
+    };
 </script>
 </html> 

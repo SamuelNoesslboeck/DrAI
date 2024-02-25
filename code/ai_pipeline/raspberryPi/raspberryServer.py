@@ -1,9 +1,7 @@
-# See 
-# https://opensource.com/article/20/5/usb-port-raspberry-pi-pythonpu
-
 from picamera import PiCamera
 import serial
 import time
+import json
 import cv2
 
 ser = serial.Serial( "/dev/ttyACM0", 9600 )
@@ -25,11 +23,21 @@ while True:
         img = cv2.imread( "/home/pi/Desktop/image.png" )
         img = cv2.imencode( ".png", img )[ 1 ]
         imgBytes = img.toString()
-        imgBytes = imgBytes.encode()
 
         bufferLength = ( 1024 - len( imgBytes ) ) * " " + str( len( imgBytes ) )
-        bufferLength = bufferLength.encode()
+        bufferLength = bufferLength.encode( "ascii" )
 
         ser.write( bufferLength )
-        ser.write( imgBytes.encode() )
+        ser.write( imgBytes.encode( "ascii" ) )
+
+        try:
+            jsonData = json.load( open( "./config.json", "r" ) )
+        except:
+            jsonData = { "Error": "no config.json file on the raspberry pi. Check if the setup was correctly completetd" }
+
+        data = json.dumps( jsonData )
+        ser.write( data.encode( "ascii" ) )
+        ser.flush()
+
+        
 

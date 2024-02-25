@@ -8,10 +8,23 @@ import flask
 import time
 import json
 
+"""
+Checking for existing settings and create a copy of those settings
+If no settings exist create new settings
+"""
+try:
+    SETTINGS = json.load( open( "./config.json", "r" ) )
+except:
+    SETTINGS = {"plattformHeight": 290, "plattformWidth": 167, "marker-height": 24.8, "marker-width": 39.8, "paperHeight": 210, "paperWidth": 148, "camera": {"brightness": 50, "sharpness": 0, "contrast": 50}, "pen": {"h-min": 0, "h-max": 255, "s-min": 0, "s-max": 255, "v-min": 55, "v-max": 150}, "markers": {"h-min": 100, "h-max": 125, "s-min": 200, "s-max": 255}, "plattform": {"h-min": 55, "h-max": 110, "s-min": 20, "s-max": 115}}
+
 
 SETTINGS = json.load( open( "./config.json", "r" ) )
+json.dump( SETTINGS, open( "./config_copy.json", "w+" ))
 
 
+"""
+Ckeck if it is possible to capture images with the raspberry pi camera
+"""
 try:
     from picamera import PiCamera, Color
     camera = PiCamera()
@@ -22,20 +35,18 @@ try:
 
     camera.start_preview()
     time.sleep( 0.5 )
-    camera.capture( "./image.jpg" )
+    camera.capture( "./IMAGE.jpg" )
 except:
     print( "error no picamera library" )
 
+image_path = "./IMAGE.jpg"
+IMAGE = cv2.imread(image_path)
+
+
+
+#Initialize the flask app
 app = Flask(__name__)
 
-SETTINGS = json.load( open( "./config.json", "r" ) )
-json.dump( SETTINGS, open( "./config_copy.json", "w+" ))
-
-
-# Load and convert the image to HSV
-image_path = './image.jpg'  # Replace with your image path
-image = cv2.imread(image_path)
-hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
 @app.route('/')
 def index():
@@ -111,6 +122,19 @@ def savePenValues():
     return "200"
 
 
+@app.route( "/savePenSize", methods = [ "POST" ] )
+def savePenSize():
+    configSettings = json.load( open( "./config.json", "r" ) )
+
+    data = json.loads( flask.request.data )
+
+    configSettings[ "penSize" ] = int( data[ "value" ] )
+
+    json.dump( configSettings, open( "./config.json", "w+" ) )
+
+    return "200"
+
+
 ###
 #
 # Send the images
@@ -118,7 +142,7 @@ def savePenValues():
 ###
 @app.route( "/take_image" )
 def take_image():
-    global image
+    global IMAGE
     try:
         data = json.loads( flask.request.data )
         camera.brightness =  int( data[ "brightness" ] )
@@ -127,11 +151,11 @@ def take_image():
 
         camera.start_preview()
         time.sleep( 0.5 )
-        camera.capture( "./image.jpg" )
+        camera.capture( "./IMAGE.jpg" )
     except:
         pass
 
-    image = cv2.imread( "./image.jpg" )
+    IMAGE = cv2.imread( "./IMAGE.jpg" )
     return "200"
 
 @app.route('/markerHSV', methods = [ "POST" ] ) 
@@ -186,26 +210,26 @@ def values():
 # Send the images
 #
 ###
-def getImage( image, result, coords ):
-    markerCorners = np.copy( image )
+def getImage( IMAGE, result, coords ):
+    markerCorners = np.copy( IMAGE )
 
     for i in range( len( coords ) ):
         x = int( coords[ i ][ 1 ] ); y = int( coords[ i ][ 0 ] )
         markerCorners = cv2.circle( markerCorners, ( x, y ), 4, ( 255, 255, 255 ), -1 )
         markerCorners = cv2.circle( markerCorners, ( x, y ), 10, ( 0, 255, 0 ), 4 )
 
-    hsvImage = cv2.cvtColor( image, cv2.COLOR_BGR2HSV )
+    hsvImage = cv2.cvtColor( IMAGE, cv2.COLOR_BGR2HSV )
 
-    mergedImg = np.zeros( ( image.shape[ 0 ], image.shape[ 1 ] * 4 ) )
+    mergedImg = np.zeros( ( IMAGE.shape[ 0 ], IMAGE.shape[ 1 ] * 4 ) )
 
-    mergedImg[ :, : image.shape[ 1 ] ] = result
-    mergedImg[ :, image.shape[ 1 ] : image.shape[ 1 ] * 2 ] = hsvImage[ :, :, 0 ]
-    mergedImg[ :, image.shape[ 1 ] * 2 : image.shape[ 1 ] * 3 ] = hsvImage[ :, :, 1 ] 
+    mergedImg[ :, : IMAGE.shape[ 1 ] ] = result
+    mergedImg[ :, IMAGE.shape[ 1 ] : IMAGE.shape[ 1 ] * 2 ] = hsvImage[ :, :, 0 ]
+    mergedImg[ :, IMAGE.shape[ 1 ] * 2 : IMAGE.shape[ 1 ] * 3 ] = hsvImage[ :, :, 1 ] 
 
     mergedImg = np.expand_dims( mergedImg, axis = -1 )
     mergedImg = np.concatenate( [ mergedImg, mergedImg, mergedImg ], axis = -1 )
 
-    mergedImg[ :, -image.shape[ 1 ] :, : ] = markerCorners
+    mergedImg[ :, -IMAGE.shape[ 1 ] :, : ] = markerCorners
 
     mergedImg = cv2.resize( mergedImg, ( 1280, 840 ), interpolation = cv2.INTER_LINEAR )
     return mergedImg
@@ -213,32 +237,32 @@ def getImage( image, result, coords ):
 
 @app.route('/original')
 def original_image_view():
-    _, buffer = cv2.imencode('.jpg', image)
+    _, buffer = cv2.imencode('.jpg', IMAGE)
     image_io = BytesIO(buffer)
-    return send_file(image_io, mimetype='image/jpeg', as_attachment=False)
+    return send_file(image_io, mimetype='IMAGE/jpeg', as_attachment=False)
 
 @app.route('/marker_image')
 def marker_image_view():
-    global image
-    result = pdars.markerPlattformCoords( image, resultImg = True, loadCopy = True )
+    global IMAGE
+    result = pdars.markerPlattformCoords( IMAGE, resultImg = True, loadCopy = True )
 
-    a, b = pdars.markerPlattformCoords( image, loadCopy = True )
-    plattformCords = pdars.getOutherPlattformPoints( image, a, b )
+    a, b = pdars.markerPlattformCoords( IMAGE, loadCopy = True )
+    plattformCords = pdars.getOutherPlattformPoints( IMAGE, a, b )
 
 
-    mergedImg = getImage( image, result, plattformCords )
+    mergedImg = getImage( IMAGE, result, plattformCords )
 
 
     _, buffer = cv2.imencode('.jpg', mergedImg )
     hsv_image_io = BytesIO(buffer)
-    return send_file(hsv_image_io, mimetype='image/jpeg', as_attachment=False)
+    return send_file(hsv_image_io, mimetype='IMAGE/jpeg', as_attachment=False)
 
 @app.route("/paper_image" )
 def paper_image_view():
-    global image
+    global IMAGE
 
-    plattformCords = pdars.markerPlattformCoords( image, loadCopy = True )
-    img1 = pdars.undisturbImg( image, plattformCords )
+    plattformCords = pdars.markerPlattformCoords( IMAGE, loadCopy = True )
+    img1 = pdars.undisturbImg( IMAGE, plattformCords )
 
     a, b = pdars.markerPlattformCoords( img1, loadCopy = True )
     plattformCords = pdars.getOutherPlattformPoints( img1, a, b )
@@ -253,16 +277,16 @@ def paper_image_view():
 
     _, buffer = cv2.imencode('.jpg', mergedImg )
     hsv_image_io = BytesIO(buffer)
-    return send_file(hsv_image_io, mimetype='image/jpeg', as_attachment=False)
+    return send_file(hsv_image_io, mimetype='IMAGE/jpeg', as_attachment=False)
 
 @app.route( "/pen_image" )
 def pen_image_view():
-    global image
+    global IMAGE
 
-    plattformCords = pdars.markerPlattformCoords( image )
-    img1 = pdars.undisturbImg( image, plattformCords )
+    plattformCords = pdars.markerPlattformCoords( IMAGE )
+    img1 = pdars.undisturbImg( IMAGE, plattformCords )
 
-    coords = pdars.getCoords( image ) 
+    coords = pdars.getCoords( IMAGE ) 
 
     #Transform the images to get the paper from bird view
     plattformImg = pdars.transform( img1, coords[ 0 ] )
@@ -271,7 +295,7 @@ def pen_image_view():
 
     result = pdars.penDetection( stableDiffImg1, loadCopy = True )
 
-    #generate image for the webserver
+    #generate IMAGE for the webserver
     mergedImg = np.zeros( ( result.shape[ 0 ], result.shape[ 1 ] * 4 ) )
 
     hsvImage = cv2.cvtColor( stableDiffImg1, cv2.COLOR_BGR2HSV )
@@ -288,7 +312,7 @@ def pen_image_view():
     
     _, buffer = cv2.imencode('.jpg', mergedImg )
     hsv_image_io = BytesIO(buffer)
-    return send_file(hsv_image_io, mimetype='image/jpeg', as_attachment=False)
+    return send_file(hsv_image_io, mimetype='IMAGE/jpeg', as_attachment=False)
 
 if __name__ == '__main__':
     app.run( host = "0.0.0.0" )

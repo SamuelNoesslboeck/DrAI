@@ -4,7 +4,6 @@ import requests
 import json
 import cv2
 
-SETTINGS = json.load( open( "./config.json", "r" ) )
 
 def img2Hsv( img ):
     img = cv2.cvtColor( img, cv2.COLOR_BGR2HSV )
@@ -438,7 +437,6 @@ def testImage():
     plt.show()
     #Convert the image to grayscale to detect where the user has drawn
 
-
 def preprocessImg( img ):
     img = cv2.rotate( img, cv2.ROTATE_90_COUNTERCLOCKWISE )
     img = cv2.rotate( img, cv2.ROTATE_90_COUNTERCLOCKWISE )
@@ -481,4 +479,5 @@ def process( img1, img2 ):
     return { "img": mergedImg, "offsets": offsets }
 
 if __name__ == "__main__":
+    SETTINGS = json.load( open( "./config.json", "r" ) )
     testImage()
