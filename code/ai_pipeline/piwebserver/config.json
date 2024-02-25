@@ -17,7 +17,9 @@
     "h-min": 100,
     "h-max": 125,
     "s-min": 200,
-    "s-max": 255
+    "s-max": 255,
+    "v-min": 100,
+    "v-max": 150
   },
 
   "markers": {

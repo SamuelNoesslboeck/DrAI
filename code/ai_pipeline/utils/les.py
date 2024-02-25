@@ -118,5 +118,8 @@ def GetPointsFromImage( orgImgName = "./images/chrisi/original/test4.png", genIm
 
     return lines_to_draw
 
+def pointsToRealWorld( points, offsets ):
+    points = 
+
 if __name__ == "__main__":
     lines = GetPointsFromImage()
