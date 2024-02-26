@@ -217,10 +217,11 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
         if area > 2000:
             areas.append( { "areas": area, "idx": i } )
 
-    areas = sorted( areas, key = lambda x: x[ "areas" ], reverse=True )
 
     markerCenters = []
     markerPoints = []
+
+    sortedValues = []
 
     for i in range( len( areas ) ):
         approx = cv2.approxPolyDP( contours[ areas[ i ][ "idx" ] ], 0.05 * cv2.arcLength(contours[ areas[ i ][ "idx" ] ], True), True) 
@@ -238,23 +239,27 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
 
         contourScope = cv2.arcLength( contours[ areas[ i ][ "idx" ] ], True )
 
-        if len( areas ) != 4:
-            if abs( 1 - boxArea / cv2.contourArea( contours[ areas[ i ][ "idx" ] ] ) ) < 0.5:
-                if abs( 1 - scope / contourScope ) < 0.2:
-                    if len( centerApprox ) >= 4:
-                        markerPoints.append( centerApprox )
-                        
-                        center = np.sum( centerApprox, axis = 0 ) / len( approx )
-                        markerCenters.append( center )
+        if len( centerApprox ) >= 4:
+            p = 1 - abs( 1 - boxArea / cv2.contourArea( contours[ areas[ i ][ "idx" ] ] ) ) *  abs( 1 - scope / contourScope )
+            sortedValues.append( { "idx": len( markerPoints ), "v": p } )
 
-        else:
-            approx = cv2.approxPolyDP( contours[ areas[ i ][ "idx" ] ], 0.05 * cv2.arcLength(contours[ areas[ i ][ "idx" ] ], True), True) 
-
-            centerApprox = np.reshape( approx, ( -1, 2 ) )
             markerPoints.append( centerApprox )
             
             center = np.sum( centerApprox, axis = 0 ) / len( approx )
             markerCenters.append( center )
+    
+    sortedValues = sorted( sortedValues, key = lambda x: x[ "v" ], reverse = True )
+
+    foundMarkerPoints = []
+    foundMarkerCenters = []
+    for i in range( min( 4, len( sortedValues ) ) ):
+        idx = sortedValues[ i ][ "idx" ]
+
+        foundMarkerPoints.append( markerPoints[ idx ] )
+        foundMarkerCenters.append( markerCenters[ idx ] )
+                    
+    markerCenters = foundMarkerCenters
+    markerPoints = foundMarkerPoints
 
     markerCenters = np.reshape( markerCenters, ( -1, 2 ) )
 
@@ -411,10 +416,11 @@ def penDetection( image, loadCopy = False ):
     return image
 
 def testImage():
-    img = cv2.imread( "./foo2.jpg" )
+    img = cv2.imread( "./img1.jpg" )
     img = preprocessImg( img )
     
     plattformCords = markerPlattformCoords( img )
+
     img = undisturbImg( img, plattformCords )
 
     coords = getCoords( img ) 
@@ -423,9 +429,12 @@ def testImage():
 
     offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
     print( offsets )
-
-    plt.imshow( plattformImg )
-    plt.show()
+    
+    print( coords[ 1 ] )
+    for i in range( len( coords[ 1 ] ) ):
+        plattformImg = cv2.circle( plattformImg, ( int( coords[ 1 ][ i ][ 1 ] ), int( coords[ 1 ][ i ][ 0 ] ) ), 10, ( 0, 255, 0 ), -1 )
+    
+    cv2.imwrite( "./result.png", plattformImg )
 
     stableDiffImg1 = transform( plattformImg, coords[ 1 ], device = "paper" )
 
@@ -479,8 +488,4 @@ def process( img1, img2 ):
 if __name__ == "__main__":
     SETTINGS = json.load( open( "./raspberryPi/config.json", "r" ) )
     
-    img1 = cv2.imread( "./img1.jpg" )
-    img2 = cv2.imread( "./img2.jpg" )
-
-    process( img1, img2 )
-
+    testImage()

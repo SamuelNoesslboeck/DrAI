@@ -31,9 +31,9 @@
   
   "plattform": {
     "h-min": 55,
-    "h-max": 110,
+    "h-max": 120,
     "s-min": 20,
-    "s-max": 115
+    "s-max": 120
   },
 
   "penSize": 5
