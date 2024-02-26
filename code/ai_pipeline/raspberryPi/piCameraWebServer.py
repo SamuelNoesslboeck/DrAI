@@ -29,6 +29,9 @@ try:
     from picamera import PiCamera, Color
     camera = PiCamera()
 
+    camera.resolution = ( 480 * 3 , 640 * 3 )
+    camera.rotation = 90
+
     camera.brightness = SETTINGS[ "camera" ][ "brightness" ] 
     camera.sharpness = SETTINGS[ "camera" ][ "sharpness" ] 
     camera.contrast = SETTINGS[ "camera" ][ "contrast" ]
@@ -140,7 +143,7 @@ def savePenSize():
 # Send the images
 #
 ###
-@app.route( "/take_image" )
+@app.route( "/take_image", methods = [ "POST" ] )
 def take_image():
     global IMAGE
     try:

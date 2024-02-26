@@ -118,8 +118,39 @@ def GetPointsFromImage( orgImgName = "./images/chrisi/original/test4.png", genIm
 
     return lines_to_draw
 
-def pointsToRealWorld( points, offsets ):
-    pass
+def rotMat( angle ):
+    mat = np.array( [
+        [ np.math.cos( angle ), -np.math.sin( angle ) ],
+        [ np.math.sin( angle ), np.math.cos( angle ) ] 
+    ] )
+    return mat
+
+def pointToRealWorld( p, offsets, paperWidth, paperHeight ):
+    p[ 0 ] = p[ 0 ] / 768 * paperHeight
+    p[ 1 ] = p[ 1 ] / 512 * paperWidth
+
+    rotatedPosition1 = rotMat( offsets[ "paperRotation" ] ) * p + np.array( [ offsets[ "offset-X" ], offsets[ "offset-Y" ] ] )
+    rotatedPosition1[ 0 ], rotatedPosition1[ 1 ] = rotatedPosition1[ 1 ], rotatedPosition1[ 0 ]
+    return rotatedPosition1
+
+
+def linesToRealWorld( points, offsets, config ):
+    """
+    Converts the pixel values of the points to real world coordinates
+    points: list[ dict[ "p1": [ x, y ], "p2": [x, y ] ] ]
+    offsets: { "paperRotation": paperRotation, "offset-X": offsetX, "offset-Y": offsetY }
+    """
+
+    toDrawOutputs = { "lines": [] }
+
+    for point in points:
+        p1 = point[ "p1" ]; p2 = point[ "p2" ]
+
+        p1 = pointToRealWorld( p1, offsets, config[ "paperWidth" ], config[ "paperHeight" ] )
+        p2 = pointToRealWorld( p2, offsets, config[ "paperWidth" ], config[ "paperHeight" ] )
+
+        toDrawOutputs[ "lines" ].append( { "p1": p1, "p2": p2 } )
+    return toDrawOutputs
 
 if __name__ == "__main__":
     lines = GetPointsFromImage()

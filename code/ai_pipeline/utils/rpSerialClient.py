@@ -4,12 +4,8 @@ import cv2
 
 class RPClient():
     def __init__( self, port = "COM1" ):
-        try: 
-            self.ser = serial.Serial( port, 9600 )
-        except Exception as e:
-            print( e )
-            print( ">>> Error setting up serial connection to port {port} with baud rate 9600" )
-
+        self.ser = serial.Serial( port, 9600 )
+        
     def getImage( self ):
         self.ser.write( "send_img\n".encode() )
 

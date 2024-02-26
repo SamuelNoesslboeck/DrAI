@@ -14,12 +14,12 @@
   },
 
   "pen": {
-    "h-min": 100,
-    "h-max": 125,
-    "s-min": 200,
+    "h-min": 0,
+    "h-max": 255,
+    "s-min": 0,
     "s-max": 255,
     "v-min": 0,
-    "v-max": 10
+    "v-max": 100
   },
 
   "markers": {

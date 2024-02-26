@@ -1,13 +1,12 @@
 from ctransformers import AutoModelForCausalLM
 import matplotlib.pyplot as plt
-from typing import Any
 from PIL import Image
+import numpy as np
 import torch
 import json
-import time
 import os
 import cv2
-import numpy as np
+
 
 from clip_interrogator import Config, Interrogator
 from langchain.llms import LlamaCpp
@@ -16,11 +15,15 @@ from diffusers import StableDiffusionImg2ImgPipeline
 configFile = "./model/config.json"
 configData = json.load( open( configFile, "r" ) )
 
-try:
-    STABLE_MODEL = StableDiffusionImg2ImgPipeline.from_pretrained( configData[ "stable-path" ], torch_dtype = torch.float16 )
-    print( ">>> [STABLE DIFFUSION]: Loaded Stable diffusion successfully" )
-    STABLE_MODEL = STABLE_MODEL.to( "cuda" )
-    print( ">>> [STABLE DIFFUSION]: Stable diffusion successfully loaded to gpu" )
+try: 
+    if torch.cuda.is_available():
+        STABLE_MODEL = StableDiffusionImg2ImgPipeline.from_pretrained( configData[ "stable-path" ], torch_dtype = torch.float16 )
+        STABLE_MODEL = STABLE_MODEL.to( "cuda" )
+        print( ">>> [STABLE DIFFUSION]: Stable diffusion successfully loaded to GPU" )
+    else:
+        STABLE_MODEL = StableDiffusionImg2ImgPipeline.from_pretrained( configData[ "stable-path" ], device_type = "cpu", low_cpu_mem_usage = True )
+        print( ">>> [STABLE DIFFUSION]: Stable diffusion successfully loaded to CPU" )
+
 except:
     print( "<<< ERROR >>> [STABLE DIFFUSION]: Error when setting up Stable diffusion. Check if your gpu is available and if the path to weights is correct" )
     STABLE_MODEL = None
@@ -47,18 +50,34 @@ elif configData[ "llm-model" ] == "mistral":
     print( "<<< INFO >>> [LLM]: Using Mistral-7b" )
     LLM_MODEL_ID = "Mistral"
     try:
-        LLM_MODEL = AutoModelForCausalLM.from_pretrained(
-            model_path_or_repo_id="TheBloke/Mistral-7B-Instruct-v0.1-GGUF", 
-            model_file="mistral-7b-instruct-v0.1.Q5_K_S.gguf", 
-            model_type="mistral",
-            temperature=0.7,
-            top_p=1,
-            top_k=50,
-            repetition_penalty=1.2,
-            context_length=8096,
-            max_new_tokens=2048,
-            gpu_layers=15
+        if torch.cuda.is_available():
+            LLM_MODEL = AutoModelForCausalLM.from_pretrained(
+                model_path_or_repo_id="TheBloke/Mistral-7B-Instruct-v0.1-GGUF", 
+                model_file="mistral-7b-instruct-v0.1.Q2_K.gguf", 
+                model_type="mistral",
+                temperature=0.7,
+                top_p=1,
+                top_k=50,
+                repetition_penalty=1.2,
+                context_length=8096,
+                max_new_tokens=2048,
+                gpu_layers=configData[ "llm-layers" ]
+                )
+            print( ">>> [LLM-MISTRAL]: LLM-MISTRAL successfully loaded to GPU" )
+
+        else:
+            LLM_MODEL = AutoModelForCausalLM.from_pretrained(
+                model_path_or_repo_id="TheBloke/Mistral-7B-Instruct-v0.1-GGUF", 
+                model_file="mistral-7b-instruct-v0.1.Q2_K.gguf", 
+                model_type="mistral",
+                temperature=0.7,
+                top_p=1,
+                top_k=50,
+                repetition_penalty=1.2,
+                context_length=8096,
+                max_new_tokens=2048,
             )
+            print( ">>> [LLM-MISTRAL]: LLM-MISTRAL successfully loaded to CPU" )
     except:
         print( "<<< ERROR >>> [LLM-MISTRAL]: No LLM weights found in the given directory" )
         LLM_MODEL = None

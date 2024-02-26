@@ -17,6 +17,10 @@ contrastValue.oninput = function(){ contrast.value = contrastValue.value; captur
 
 
 function capture(){
+    brightnessV = brightness.value;
+    sharpnessV = sharpness.value;
+    contrastV = contrast.value; 
+
     fetch( "/take_image",
     {   method : "POST",
         mode: 'no-cors',
@@ -25,7 +29,12 @@ function capture(){
         },
         body: JSON.stringify( { "brightness": brightnessV, "sharpness": sharpnessV, "contrast": contrastV } )
     } )
-    sendMarkerValues();
+
+    setTimeout( () => {
+        const originalImg = document.getElementById( "originalImg" );
+        originalImg.src = "/original?" + new Date().getTime();
+        sendMarkerValues();
+    }, 5000 )
 }
 
 function saveValues(){

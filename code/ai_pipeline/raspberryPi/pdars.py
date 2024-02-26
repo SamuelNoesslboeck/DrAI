@@ -190,7 +190,7 @@ def undisturbImg( img, points ):
 
     arangedPoints = np.reshape( arangedPoints, ( 1, -1, 2 ) )
 
-    ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera( objp, arangedPoints, [ img.shape[ 1 ], img.shape[ 0 ] ], None, None)
+    ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera( objp, arangedPoints, ( img.shape[ 1 ], img.shape[ 0 ] ), None, None)
     dst = cv2.undistort( img, mtx, dist, None, mtx )
 
     return dst
@@ -205,13 +205,7 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
 
     markerImg = markerDetection( img, ( SETTINGS[ "markers" ][ "h-min" ], SETTINGS[ "markers" ][ "h-max" ] ), ( SETTINGS[ "markers" ][ "s-min" ], SETTINGS[ "markers" ][ "s-max" ] ) )
     
-    canny = cv2.Canny( markerImg, 20, 255 )
- 
-    canny = cv2.blur( canny, ( 3, 3 ) )
-    canny = cv2.blur( canny, ( 3, 3 ) )
-
-    canny = np.where( canny > 40, 255, 0 )
-    canny = canny.astype( np.uint8 )
+    canny = markerImg.astype( np.uint8 )
     
     contours, _ = cv2.findContours(image=canny, mode=cv2.RETR_EXTERNAL, method=cv2.CHAIN_APPROX_NONE)
 
@@ -220,8 +214,7 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
         c = contours[ i ]
 
         area = cv2.contourArea(c)
-
-        if area > 500:
+        if area > 2000:
             areas.append( { "areas": area, "idx": i } )
 
     areas = sorted( areas, key = lambda x: x[ "areas" ], reverse=True )
@@ -230,6 +223,9 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
     markerPoints = []
 
     for i in range( len( areas ) ):
+        approx = cv2.approxPolyDP( contours[ areas[ i ][ "idx" ] ], 0.05 * cv2.arcLength(contours[ areas[ i ][ "idx" ] ], True), True) 
+        centerApprox = np.reshape( approx, ( -1, 2 ) )
+
         rect = cv2.minAreaRect( contours[ areas[ i ][ "idx" ] ] )
         box = cv2.boxPoints(rect)
         box = np.int0(box)
@@ -244,14 +240,12 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
 
         if len( areas ) != 4:
             if abs( 1 - boxArea / cv2.contourArea( contours[ areas[ i ][ "idx" ] ] ) ) < 0.5:
-                if abs( 1 - scope / contourScope ) < 0.1:
-                    approx = cv2.approxPolyDP( contours[ areas[ i ][ "idx" ] ], 0.05 * cv2.arcLength(contours[ areas[ i ][ "idx" ] ], True), True) 
-
-                    centerApprox = np.reshape( approx, ( -1, 2 ) )
-                    markerPoints.append( centerApprox )
-                    
-                    center = np.sum( centerApprox, axis = 0 ) / len( approx )
-                    markerCenters.append( center )
+                if abs( 1 - scope / contourScope ) < 0.2:
+                    if len( centerApprox ) >= 4:
+                        markerPoints.append( centerApprox )
+                        
+                        center = np.sum( centerApprox, axis = 0 ) / len( approx )
+                        markerCenters.append( center )
 
         else:
             approx = cv2.approxPolyDP( contours[ areas[ i ][ "idx" ] ], 0.05 * cv2.arcLength(contours[ areas[ i ][ "idx" ] ], True), True) 
@@ -371,7 +365,7 @@ def drawPoints( img, points ):
     imgCopy = np.copy( img )
 
     for point in points:
-        imgCopy = cv2.circle( imgCopy, ( int( point[ 1 ] ), int( point[ 0 ] ) ), 5, ( 255, 0, 0 ), -1 )
+        imgCopy = cv2.circle( imgCopy, ( int( point[ 1 ] ), int( point[ 0 ] ) ), 20, ( 255, 255, 0 ), -1 )
 
     cv2.imshow( "", imgCopy )
     cv2.waitKey( 0 )
@@ -384,12 +378,12 @@ def getRealWorldPaperPoints( coords, imgWidth, imgHeight ):
     bottom_right_paper_point = coords[ 1 ][ 2 ]
     bottom_left_paper_point = coords[ 1 ][ 3 ]
 
-    paperRotation = np.arctan2( -( bottom_right_paper_point[ 0 ] - bottom_left_paper_point[ 0 ] ), bottom_right_paper_point[ 1 ] - bottom_left_paper_point[ 1 ] )
+    paperRotation = np.arctan2( ( bottom_right_paper_point[ 0 ] - bottom_left_paper_point[ 0 ] ), bottom_right_paper_point[ 1 ] - bottom_left_paper_point[ 1 ] )
 
-    offsetY = ( imgHeight - bottom_left_paper_point[ 0 ] ) / imgHeight * SETTINGS[ "plattformHeight" ]
-    offsetX = (  bottom_left_paper_point[ 1 ] ) / imgWidth * SETTINGS[ "plattformWidth" ]
+    offsetX = ( imgHeight - bottom_left_paper_point[ 0 ] ) / imgHeight * SETTINGS[ "plattformHeight" ]
+    offsetY = (  bottom_left_paper_point[ 1 ] ) / imgWidth * SETTINGS[ "plattformWidth" ]
 
-    return { "paperRotation": paperRotation, "offset-X": offsetX, "offset-Y": offsetY }
+    return { "paperRotation": paperRotation, "offset-Y": offsetY, "offset-X": offsetX }
 
 def removeImageParts( img1 : np.ndarray, img2 : np.ndarray ) -> np.ndarray:
     """
@@ -399,7 +393,7 @@ def removeImageParts( img1 : np.ndarray, img2 : np.ndarray ) -> np.ndarray:
     global SETTINGS
     paper2 = markerDetection( img2, ( SETTINGS[ "plattform" ][ "h-min" ], SETTINGS[ "plattform" ][ "h-max" ] ), ( SETTINGS[ "plattform" ][ "s-min" ], SETTINGS[ "plattform" ][ "s-max" ] ) )
 
-    img1 = np.where( paper2 == 255, img2, img1 )
+    img1 = np.where( np.expand_dims( paper2,axis = -1) == 255, img2, img1 )
     return img1
 
 def penDetection( image, loadCopy = False ):
@@ -417,7 +411,7 @@ def penDetection( image, loadCopy = False ):
     return image
 
 def testImage():
-    img = cv2.imread( "./image.jpg" )
+    img = cv2.imread( "./foo2.jpg" )
     img = preprocessImg( img )
     
     plattformCords = markerPlattformCoords( img )
@@ -428,12 +422,16 @@ def testImage():
     plattformImg = transform( img, coords[ 0 ] )
 
     offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
+    print( offsets )
+
+    plt.imshow( plattformImg )
+    plt.show()
 
     stableDiffImg1 = transform( plattformImg, coords[ 1 ], device = "paper" )
 
     penImg = penDetection( stableDiffImg1 )
 
-    plt.imshow( penImg )
+    plt.imshow( stableDiffImg1 )
     plt.show()
     #Convert the image to grayscale to detect where the user has drawn
 
@@ -452,17 +450,19 @@ def process( img1, img2 ):
 
     #Detect the coordinates of the plattform and paper
     plattformCords = markerPlattformCoords( img1 )
+
+
     img1 = undisturbImg( img1, plattformCords )
+    img2 = undisturbImg( img2, plattformCords )
 
     coords = getCoords( img1 ) 
-
-
-    #Get the offsets of the image
-    offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
 
     #Transform the images to get the paper from bird view
     plattformImg = transform( img1, coords[ 0 ] )
     stableDiffImg1 = transform( plattformImg, coords[ 1 ], device = "paper" )
+
+    #Get the offsets of the image
+    offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
 
     #Transform the images to get the paper from bird view
     plattformImg = transform( img2, coords[ 0 ] )
@@ -472,12 +472,15 @@ def process( img1, img2 ):
     mergedImg = removeImageParts( stableDiffImg1, stableDiffImg2 )
     mergedImg = mergedImg.astype( np.uint8 )
 
-    #Convert the image to grayscale to detect where the user has drawn
-    mergedImg = cv2.cvtColor( mergedImg, cv2.COLOR_BGR2GRAY )
-    mergedImg = cv2.threshold( mergedImg, 128, 255, cv2.THRESH_BINARY)[1]
+    penImg = penDetection( mergedImg )
 
-    return { "img": mergedImg, "offsets": offsets }
+    return { "img": penImg, "offsets": offsets }
 
 if __name__ == "__main__":
-    SETTINGS = json.load( open( "./config.json", "r" ) )
-    testImage()
+    SETTINGS = json.load( open( "./raspberryPi/config.json", "r" ) )
+    
+    img1 = cv2.imread( "./img1.jpg" )
+    img2 = cv2.imread( "./img2.jpg" )
+
+    process( img1, img2 )
+
