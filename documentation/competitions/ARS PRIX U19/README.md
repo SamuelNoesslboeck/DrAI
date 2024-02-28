@@ -8,9 +8,15 @@ Deadline:
 
 - [x] Create Project
 - [ ] Fill out project information
-- [ ] Upload project images/details etc.
+  - [ ] Lebenslauf Samuel
+  - [ ] Lebenslauf Rene
+- [ ] Upload project images/details etc. (Till March 1)
 
-## Technical details
+## Descriptions
 
+### Kurzbeschreibung der Arbeit
 
+### Technische Details der Arbeit
+
+### Projektgeschichte
 
