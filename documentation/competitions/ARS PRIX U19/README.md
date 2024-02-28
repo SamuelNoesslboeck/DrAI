@@ -8,7 +8,7 @@ Deadline:
 
 - [x] Create Project
 - [ ] Fill out project information
-  - [ ] Lebenslauf Samuel
+  - [x] Lebenslauf Samuel
   - [ ] Lebenslauf Rene
 - [ ] Upload project images/details etc. (Till March 1)
 
