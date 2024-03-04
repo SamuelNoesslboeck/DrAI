@@ -8,5 +8,11 @@ electronics/drake_electronics/drake_electronics-backups
 # autosafe
 ~$
 
+# Python
+__pycache__
+
+# Rust
+target
+
 # Creds
 key
