@@ -65,6 +65,14 @@ def transform( img, corners, device = "plattform" ):
     destination_corners = [[0, 0], [maxWidth, 0], [maxWidth, maxHeight], [0, maxHeight]]
 
     corners = np.concatenate( [ np.expand_dims( corners[ :, 1 ], axis = -1 ), np.expand_dims( corners[ :, 0 ], axis = -1 ) ], axis = -1 )
+
+
+    for i in range( 4 ):
+        img = cv2.circle( img, (int( corners[ i ][ 0 ] ), int( corners[ i ][ 1 ]) ), 5, ( 255, 0, 0 ), -1 )
+
+        cv2.imwrite( f"./images/corners_{i}.png", img )
+
+
     M = cv2.getPerspectiveTransform(np.float32(corners), np.float32(destination_corners))
     final = cv2.warpPerspective( img, M, (destination_corners[2][0], destination_corners[2][1]), flags=cv2.INTER_LINEAR)
 
@@ -137,7 +145,7 @@ def undisturbImg( img, points ):
         [ img.shape[ 0 ], 0 ],
         [ img.shape[ 0 ], img.shape[ 1 ] ]
     ])
-
+    
     markerCenters = np.mean( markerPoints, axis = 1 )
 
     d = getDistanceToPoint( imageCorners, markerCenters )
@@ -157,6 +165,9 @@ def undisturbImg( img, points ):
     for mCIdx in range( 4 ):
         d = getDistanceToPoint( paperCenter, markerPoints[ mCIdx ] )
 
+        #Detect marker points
+        #P1 is outher marker point
+        #P4 is inner marker point
         p1 = markerPoints[ mCIdx ][ np.argmax( d, axis = -1 ) ]
         p4 = markerPoints[ mCIdx ][ np.argmin( d, axis = -1 ) ]
 
@@ -173,7 +184,7 @@ def undisturbImg( img, points ):
         d = getDistanceToPoint( sideMiddle, markerPoints[ mCIdx ] )
         p2 = markerPoints[ mCIdx ][ np.argmin( d, axis = -1 ) ]     
 
-        #Detect p3
+        #Detect P3
         if mCIdx == 0 or mCIdx == 2:
             sideMiddle = ( arangedMarkerCenters[ 0 ] + arangedMarkerCenters[ 2 ] ) / 2 
             sideMiddle[ 1 ] -= 100
@@ -268,7 +279,10 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
     if resultImg:
         return markerImg
     
-    return ( markerPoints, paperCenter )
+    if len( markerPoints ) == 4:
+        return ( markerPoints, paperCenter )
+    else:
+        raise ValueError( "Marker Points have not the right shape" )
 
 def getOutherPlattformPoints( img, markerPoints, paperCenter ):
     cornerPoints = []
@@ -335,7 +349,7 @@ def getPaperCorners( img, resultImg = False, loadCopy = False ):
     try:
         paperIdx = areas[ 0 ][ "idx" ]
 
-        approx = cv2.approxPolyDP( contours[ paperIdx ], 0.05 * cv2.arcLength(contours[ paperIdx ], True), True) 
+        approx = cv2.approxPolyDP( contours[ paperIdx ], 0.1 * cv2.arcLength(contours[ paperIdx ], True), True) 
 
         coords = np.reshape( approx, ( -1, 2 ) ) - 20
 
@@ -350,10 +364,13 @@ def getPaperCorners( img, resultImg = False, loadCopy = False ):
         cornerPoints = [ ( cornerIndexes[ 0 ][ pointIdxs[ i ] ], cornerIndexes[ 1 ][ pointIdxs[ i ] ] ) for i in range( len( distances ) ) ]
         cornerPoints = np.array( cornerPoints ).reshape( -1, 2 )
 
+        if cornerPoints.shape == ( 4, 2 ):
+            return cornerPoints 
+        else:
+            "a" + 3
+        
     except:
-        cornerPoints = np.zeros( ( 1, 2 ) )
-
-    return cornerPoints
+        raise ValueError( "Error detecting the paper" )
 
 def getCoords( img ):
     #Detect the plattform in the retransformed img and get the outher points
@@ -385,8 +402,8 @@ def getRealWorldPaperPoints( coords, imgWidth, imgHeight ):
 
     paperRotation = np.arctan2( ( bottom_right_paper_point[ 0 ] - bottom_left_paper_point[ 0 ] ), bottom_right_paper_point[ 1 ] - bottom_left_paper_point[ 1 ] )
 
-    offsetX = ( imgHeight - bottom_left_paper_point[ 0 ] ) / imgHeight * SETTINGS[ "plattformHeight" ]
-    offsetY = (  bottom_left_paper_point[ 1 ] ) / imgWidth * SETTINGS[ "plattformWidth" ]
+    offsetY = ( imgHeight - bottom_left_paper_point[ 0 ] ) / imgHeight * SETTINGS[ "plattformHeight" ]
+    offsetX = (  bottom_left_paper_point[ 1 ] ) / imgWidth * SETTINGS[ "plattformWidth" ]
 
     return { "paperRotation": paperRotation, "offset-Y": offsetY, "offset-X": offsetX }
 
@@ -396,9 +413,11 @@ def removeImageParts( img1 : np.ndarray, img2 : np.ndarray ) -> np.ndarray:
     Replace the parts in the image 1 where a paper in image 2 is detected
     """
     global SETTINGS
-    paper2 = markerDetection( img2, ( SETTINGS[ "plattform" ][ "h-min" ], SETTINGS[ "plattform" ][ "h-max" ] ), ( SETTINGS[ "plattform" ][ "s-min" ], SETTINGS[ "plattform" ][ "s-max" ] ) )
 
-    img1 = np.where( np.expand_dims( paper2,axis = -1) == 255, img2, img1 )
+    cv2.imwrite( "./images/img1.png", img1 )
+    cv2.imwrite( "./images/img2.png", img2 )
+    
+    img1 = np.where( img1 == 255, img1, img2 )
     return img1
 
 def penDetection( image, loadCopy = False ):
@@ -416,7 +435,8 @@ def penDetection( image, loadCopy = False ):
     return image
 
 def testImage():
-    img = cv2.imread( "./img1.jpg" )
+    img = cv2.imread( "./images/cameraImg1.png" )
+
     img = preprocessImg( img )
     
     plattformCords = markerPlattformCoords( img )
@@ -428,9 +448,7 @@ def testImage():
     plattformImg = transform( img, coords[ 0 ] )
 
     offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
-    print( offsets )
-    
-    print( coords[ 1 ] )
+
     for i in range( len( coords[ 1 ] ) ):
         plattformImg = cv2.circle( plattformImg, ( int( coords[ 1 ][ i ][ 1 ] ), int( coords[ 1 ][ i ][ 0 ] ) ), 10, ( 0, 255, 0 ), -1 )
     
@@ -451,15 +469,15 @@ def preprocessImg( img ):
     img = cv2.copyMakeBorder( img, 200, 200, 200, 200, cv2.BORDER_CONSTANT )
     return img
 
-def process( img1, img2 ):
+def process( img1, img2, set ):
     #prepcoess the images
+    global SETTINGS
+    SETTINGS = set
     img1 = preprocessImg( img1 )
     img2 = preprocessImg( img2 )
 
-
     #Detect the coordinates of the plattform and paper
     plattformCords = markerPlattformCoords( img1 )
-
 
     img1 = undisturbImg( img1, plattformCords )
     img2 = undisturbImg( img2, plattformCords )
@@ -472,20 +490,27 @@ def process( img1, img2 ):
 
     #Get the offsets of the image
     offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
-
+    print( offsets )
     #Transform the images to get the paper from bird view
     plattformImg = transform( img2, coords[ 0 ] )
     stableDiffImg2 = transform( plattformImg, coords[ 1 ], device = "paper" )
 
     #Remove the hidden servo parts
-    mergedImg = removeImageParts( stableDiffImg1, stableDiffImg2 )
+
+    penImg1 = penDetection( stableDiffImg1 )
+    penImg2 = penDetection( stableDiffImg2 )
+
+    mergedImg = removeImageParts( penImg1, penImg2 )
     mergedImg = mergedImg.astype( np.uint8 )
 
-    penImg = penDetection( mergedImg )
-
-    return { "img": penImg, "offsets": offsets }
+    return { "img": mergedImg, "offsets": offsets }
 
 if __name__ == "__main__":
     SETTINGS = json.load( open( "./raspberryPi/config.json", "r" ) )
     
-    testImage()
+    #testImage()
+
+    img1 = cv2.imread( "./images/cameraImg1.png" )
+    img2 = cv2.imread( "./images/cameraImg2.png" )
+
+    process( img1, img2, SETTINGS )

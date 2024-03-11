@@ -15,6 +15,8 @@ from diffusers import StableDiffusionImg2ImgPipeline
 configFile = "./model/config.json"
 configData = json.load( open( configFile, "r" ) )
 
+
+# Load the stable diffusion weights
 try: 
     if torch.cuda.is_available():
         STABLE_MODEL = StableDiffusionImg2ImgPipeline.from_pretrained( configData[ "stable-path" ], torch_dtype = torch.float16 )
@@ -28,15 +30,17 @@ except:
     print( "<<< ERROR >>> [STABLE DIFFUSION]: Error when setting up Stable diffusion. Check if your gpu is available and if the path to weights is correct" )
     STABLE_MODEL = None
 
+# Load the clip interrogator
 try:
     config = Config(clip_model_name="ViT-L-14/openai" )
     config.apply_low_vram_defaults()
-    INTEROGATOR = Interrogator( config )
+    Interrogator = Interrogator( config )
+
 except:
-    print( "<<< ERROR >>> [INTEROGATOR]: Error when setting up the interrogator" )
-    INTEROGATOR = None
+    print( "<<< ERROR >>> [Interrogator]: Error when setting up the interrogator" )
+    Interrogator = None
 
-
+#Load the LLM
 if configData[ "llm-model" ] == "llama2":
     print( "<<< INFO >>> [LLM]: Using LLama2-7b" )
     LLM_MODEL_ID = "LLama2"
@@ -83,6 +87,7 @@ elif configData[ "llm-model" ] == "mistral":
         LLM_MODEL = None
 
 
+#Parent Class of the Layers
 class ChainElement():
     def __init__( self ):
         pass
@@ -113,7 +118,8 @@ class ChainElement():
             raise Exception( f"Error with {path}\nThe filepath is not a {ending} file" )
         
 
-class Interogator( ChainElement ):
+#Implementation of the clip Interrogator
+class Interrogator( ChainElement ):
     def __init__( self, name, imagePath : str, prevElement = None ):
         super().__init__()
         
@@ -123,7 +129,7 @@ class Interogator( ChainElement ):
         self.name = name
 
     def forward( self, id : str, verbose : bool = True, document : bool = True ) -> str:
-        global INTEROGATOR
+        global Interrogator
 
         if self.prevElement != None:
             self.prevElement.forward( id, verbose )
@@ -131,10 +137,10 @@ class Interogator( ChainElement ):
         try:
             img = Image.open( self.__imgPath ).convert('RGB')
         except:
-            raise Exception( f"Error with Interogator\nCouldnt find image with the path{self.__imgPath}" )
+            raise Exception( f"Error with Interrogator\nCouldnt find image with the path{self.__imgPath}" )
 
-        print( ">>>[CHAIN][Interogator]: Generating prompt..." )
-        prompt = INTEROGATOR.interrogate_fast( img )
+        print( ">>>[CHAIN][Interrogator]: Generating prompt..." )
+        prompt = Interrogator.interrogate_fast( img )
 
         if document:
             self.addToHistory( id, self.name, output = prompt, inputImage = img )
@@ -142,6 +148,7 @@ class Interogator( ChainElement ):
         return prompt
     
 
+#Implementation of the Merger Layer
 class Merger( ChainElement ):
     def __init__( self, name, elements : list[ ChainElement ], mergingSymbole : str = " " ):
         super().__init__()
@@ -153,8 +160,13 @@ class Merger( ChainElement ):
 
     def forward( self, id : str, verbose : bool = True, document : bool = True ) -> str:
         print( ">>>[CHAIN][MERGER] Merging..." )
-        outputs = [ e.forward( id, verbose, document ) for i, e in enumerate( self.__elements ) ]
-        outputs = self.__mergingSymbole.join( outputs ) 
+
+        try:
+            outputs = [ e.forward( id, verbose, document ) for i, e in enumerate( self.__elements ) ]
+            outputs = self.__mergingSymbole.join( outputs ) 
+        except:
+            print( ">>>[CHAIN][MERGER] Error when merging the Layers, check if every layer of the merger returns a string" )
+            outputs = ""
 
         if document:
             self.addToHistory( id, self.name, outputs )
@@ -162,7 +174,7 @@ class Merger( ChainElement ):
         return outputs
     
 
-
+#Implementation of the LLM
 class LLM( ChainElement ):
     def __init__( self, name, prompt : [ None, ChainElement ] = None, prevElement : [None, ChainElement] = None, prevElementKey : str = "{input}" ):
         super().__init__()
@@ -180,9 +192,12 @@ class LLM( ChainElement ):
         prompt = self.__promptElement.forward( id, verbose, document )
         print( f">>>[CHAIN][LLM] prompt = {prompt}")
 
-        insertment = self.__prevElement.forward( id, verbose, document )
-        print( f">>>[CHAIN][LLM]: Insertment {insertment} " )
-        prompt = prompt.replace( self.__prevElementKey, insertment )
+        try:
+            insertment = self.__prevElement.forward( id, verbose, document )
+            print( f">>>[CHAIN][LLM]: Insertment {insertment} " )
+            prompt = prompt.replace( self.__prevElementKey, insertment )
+        except:
+            pass
 
         if verbose:
             print( f">>>[CHAIN][LLM]: Generating prompt..." )
@@ -208,6 +223,7 @@ class LLM( ChainElement ):
         return modelPrompt
     
 
+#Implementation of the Simple String Layer
 class SimpleString( ChainElement ):
     def __init__( self, name, stringPath : str ):
         super().__init__()
@@ -231,6 +247,7 @@ class SimpleString( ChainElement ):
         return p
     
 
+#Implementation of the Stable Diffusion Algorithm
 class StableDiffusion( ChainElement ):
     def __init__( self, name, parameterPath : str, prevElement : ChainElement, prevImageElement : ChainElement ):
         super().__init__()
@@ -271,8 +288,15 @@ class StableDiffusion( ChainElement ):
         if verbose:
             print( ">>>[CHAIN][DIFFUSION]: Getting Prompt..." )
 
-        self.__prevImageElement.forward( id, verbose, document )
-        prompt = self.__prevElement.forward( id, verbose, document )
+        try:
+            self.__prevImageElement.forward( id, verbose, document )
+        except:
+            pass
+
+        try:
+            prompt = self.__prevElement.forward( id, verbose, document )
+        except:
+            prompt = ""
 
         if verbose:
             print( ">>>[CHAIN][DIFFUSION]: Getting Image..." )
@@ -294,14 +318,17 @@ class StableDiffusion( ChainElement ):
         images[0].save( self.__cache )
 
 
+#Implementation of the Random Line Drawer
 class RandomLineDrawer( ChainElement ):
-    def __init__( self, name, prevElement, input_image : str, output_image : str, num_random_lines : int = 40, line_length : int = 40 ):
+    def __init__( self, name, prevElement, input_image : str, output_image : str, num_random_lines : int = 40, line_length : int = 40, pen_size : int = 4 ):
         super().__init__()
 
         self.name = name
         self.__prevElement = prevElement
         self.__inputPath = input_image
         self.__outputPath = output_image
+
+        self.__penSize = pen_size
 
         self.__num_random_lines = num_random_lines
         self.__line_length = line_length
@@ -317,7 +344,7 @@ class RandomLineDrawer( ChainElement ):
         image = np.copy( img )
         for i in range( self.__num_random_lines ):
             line = self.getRandomLine( image.shape, np.random.randint( 10, 40 ), dDegree = 30 )
-            image = cv2.polylines( image, line, True, ( 0, 0, 0 ), 8, lineType = cv2.LINE_AA )
+            image = cv2.polylines( image, line, True, ( 0, 0, 0 ), self.__penSize, lineType = cv2.LINE_AA )
         
         inputImage = Image.open( self.__inputPath ).convert('RGB')
 
@@ -327,7 +354,6 @@ class RandomLineDrawer( ChainElement ):
         if document:
             self.addToHistory(  id, self.name, inputImage = inputImage, outputImage = outputImage )
 
-        
         
         
     def getRandomLine( self, imgSize, length : int = 40, step : int = 5, dDegree : int = 5 ) -> np.ndarray:
@@ -352,8 +378,10 @@ class RandomLineDrawer( ChainElement ):
         points = np.array( points, dtype = np.int32 ).reshape( -1, 1, 2 )
         return points
 
+
+#Implementation of the overlapper
 class Overlapper( ChainElement ):
-    def __init__( self, name, prevElement, image_1 : str, image_2 : str, mergedOutputFolder : str = "./mergedOutputImages/" ):
+    def __init__( self, name, prevElement, image_1 : str, image_2 : str, mergedOutputFolder : str = "./mergedOutputImages/", outputImageName : str = "output.png" ):
         super().__init__()
 
         self.name = name
@@ -364,6 +392,8 @@ class Overlapper( ChainElement ):
 
         self.__image1 = image_1
         self.__image2 = image_2
+
+        self.__outputImageName = outputImageName
  
     def forward( self, id : str, verbose : bool = True, document : bool = True ):
         self.__prevElement.forward( id, verbose, document )
@@ -406,9 +436,10 @@ class Overlapper( ChainElement ):
         if document:
             self.addToHistory(  id, self.name, outputImage = img )
 
-        cv2.imwrite( self.__mergedOutputFolder + "output.png", newImg )
+        cv2.imwrite( self.__mergedOutputFolder + self.__outputImageName, newImg )
         
 
+#Implementation of the Model Class
 class Model():
     def __init__( self, output : ChainElement ):
         self.output = output

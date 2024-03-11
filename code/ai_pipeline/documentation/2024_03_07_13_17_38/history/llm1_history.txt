@@ -1,0 +1,18 @@
+Input:
+You are a very creative artist. 
+Thing of something extraordinary.
+thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+do not describe the style of the new image mention that no areas should be filled and style is black and white linestyle
+be very creative for example to a house you could add a garden or to a car a trailer you can even draw a truck out of a car
+the description should be something which makes sense
+the description should include that only thick lines should be drawn
+The image description is
+ a black and white drawing of a man with a beard, bill gates full body portrait, portrait of sam hyde, portrait of linus torvalds, clear todd solondz face, portrait of danny devito, a portrait of @hypnos_onc, highly detailed exquisite fanart, kid drawing, portrait of hank hill, bubbling skin, realistic self portrait
+New image description:
+
+
+
+
+Output:
+The artist takes the portrait of Sam Hyde and adds a thick black line to his face that looks like he's wearing glasses. He then draws a pair of headphones around Sam's ears and adds a small microphone next to them. The artist also gives Sam a speech bubble with an expressionless face inside, which is filled with text that reads "I am just another

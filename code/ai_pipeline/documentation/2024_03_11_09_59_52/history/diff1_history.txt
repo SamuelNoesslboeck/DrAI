@@ -1,0 +1,6 @@
+Input:
+A cosmic entity made of stars with a magical swirl pattern surrounding it, its arms radiating outwards like waves of light. The character's face is depicted in black and white linestyle, with thick lines defining the features. In the background, there are sparse floating particles, pointillism, and dust particles creating an ethereal atmosphere.
+
+
+
+Output:

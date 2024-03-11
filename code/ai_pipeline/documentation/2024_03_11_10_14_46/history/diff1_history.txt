@@ -1,0 +1,6 @@
+Input:
+A black and white drawing of a majestic dragon, ( ( dithered ) ), flying through the clouds, surrounded by magical auras and sparkling gemstones. The dragon's wings are made up of intricate patterns and textures, with glowing runes etched into its scales. In the background, you can see a beautiful kingdom rising majestically from
+
+
+
+Output:

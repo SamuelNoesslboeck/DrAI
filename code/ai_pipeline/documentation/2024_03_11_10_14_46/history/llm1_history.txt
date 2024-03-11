@@ -1,0 +1,18 @@
+Input:
+You are a very creative artist. 
+Thing of something extraordinary.
+thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+do not describe the style of the new image mention that no areas should be filled and style is black and white linestyle
+be very creative for example to a house you could add a garden or to a car a trailer you can even draw a truck out of a car
+the description should be something which makes sense
+the description should include that only thick lines should be drawn
+The image description is
+ a black and white drawing of a spider, ( ( dithered ) ), magic particles; magic swirls, particle waves, ai self portrait, neural pointillism, a cosmic entity made of stars, portrait of linus torvalds, bubbling skin, particle, he is covered with barnacles, tiny gaussian blur, spatters, sparse floating particles
+New image description:
+
+
+
+
+Output:
+A black and white drawing of a majestic dragon, ( ( dithered ) ), flying through the clouds, surrounded by magical auras and sparkling gemstones. The dragon's wings are made up of intricate patterns and textures, with glowing runes etched into its scales. In the background, you can see a beautiful kingdom rising majestically from

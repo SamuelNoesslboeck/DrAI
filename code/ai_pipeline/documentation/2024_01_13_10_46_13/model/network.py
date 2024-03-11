@@ -3,7 +3,7 @@ from utils.layers import *
 input_image = "./test.png"
 
 
-inp = Interogator( "inter1", input_image )
+inp = Interrogator( "inter1", input_image )
 rand = RandomLineDrawer( "rand0", inp, input_image, "./stableoutput/test.png" )
 
 simp0 = SimpleString( "simp0", "./model/layers/string0.txt" )

@@ -1,6 +1,6 @@
 from utils.layers import *
 
-inp = Interogator( "inter1", "./test.png" )
+inp = Interrogator( "inter1", "./test.png" )
 
 simp0 = SimpleString( "simp0", "./model/layers/string0.txt" )
 simp1 = SimpleString( "simp0", "./model/layers/string1.txt" )

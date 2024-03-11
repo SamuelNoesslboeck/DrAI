@@ -2,7 +2,7 @@ from utils.layers import *
 
 input_image = "./test.png"
 
-inp = Interogator( "inter1", input_image )
+inp = Interrogator( "inter1", input_image )
 
 simp0 = SimpleString( "simp0", "./model/layers/string0.txt" )
 simp1 = SimpleString( "simp1", "./model/layers/string1.txt" )

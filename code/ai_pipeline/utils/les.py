@@ -129,8 +129,7 @@ def pointToRealWorld( p, offsets, paperWidth, paperHeight ):
     p[ 0 ] = p[ 0 ] / 768 * paperHeight
     p[ 1 ] = p[ 1 ] / 512 * paperWidth
 
-    rotatedPosition1 = rotMat( offsets[ "paperRotation" ] ) * p + np.array( [ offsets[ "offset-X" ], offsets[ "offset-Y" ] ] )
-    rotatedPosition1[ 0 ], rotatedPosition1[ 1 ] = rotatedPosition1[ 1 ], rotatedPosition1[ 0 ]
+    rotatedPosition1 = p + np.array( [ offsets[ "offset-Y" ], offsets[ "offset-X" ] ] )
     return rotatedPosition1
 
 
@@ -149,8 +148,17 @@ def linesToRealWorld( points, offsets, config ):
         p1 = pointToRealWorld( p1, offsets, config[ "paperWidth" ], config[ "paperHeight" ] )
         p2 = pointToRealWorld( p2, offsets, config[ "paperWidth" ], config[ "paperHeight" ] )
 
-        toDrawOutputs[ "lines" ].append( { "p1": p1, "p2": p2 } )
+        toDrawOutputs[ "lines" ].append( { "p1": p1.tolist(), "p2": p2.tolist() } )
     return toDrawOutputs
 
 if __name__ == "__main__":
-    lines = GetPointsFromImage()
+    img1 = np.ones( ( 512, 768 ) ) * 255
+    img2 = np.ones( ( 512, 768 ) ) * 255
+    img2 = cv2.circle( img2, ( 100, 500 ), 1, ( 0, 0, 0 ), -1 )
+
+    cv2.imwrite( "./images/testImg1.png", img1 )
+    cv2.imwrite( "./images/testImg2.png", img2 )
+
+    lines = GetPointsFromImage( "./images/testImg1.png", "./images/testImg2.png" )
+    lines = linesToRealWorld( lines, { "offset-X": 10, "offset-Y": 40, "paperRotation": 0 }, { "paperWidth": 148, "paperHeight": 210 } )
+    print( lines )
