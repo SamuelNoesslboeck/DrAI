@@ -7,7 +7,9 @@ Diploma project created in January 2023
 Authors: 
   [**Rene Schwarz**](https://github.com/SchwarzRene), 
   [**Samuel Nösslböck**](https://github.com/SamuelNoesslboeck)  
-Partner: [**Ars Electronica Center Linz**](https://ars.electronica.art/news/en/)
+Partner: [**Ars Electronica Center Linz**](https://ars.electronica.art/)
+
+The diploma work is available for anyone to read [here](/documentation/Projektbeschreibung.pdf).
 
 ## Overview
 
