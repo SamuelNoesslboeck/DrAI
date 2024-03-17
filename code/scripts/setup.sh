@@ -1,9 +1,9 @@
 # Main setup script, execute after installing
 
 echo
-echo   DrAI - Setup script
+echo "  DrAI - Setup script"
 echo =======================
-echo -> ATTENTION: This script must be executed from the projects root folder!
+echo " -> ATTENTION: This script must be executed from the projects root folder!"
 
 sh "code/scripts/update.sh"
 
@@ -25,3 +25,5 @@ git fetch
 git checkout rework
 
 cd ../..
+
+echo " => Setup done!"

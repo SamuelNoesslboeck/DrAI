@@ -1,6 +1,5 @@
-
 echo
-echo   DrAI - Update batch file
+echo "  DrAI - Update batch file"
 echo ============================
 echo -> ATTENTION: This script must be executed from the projects root folder!
 echo
