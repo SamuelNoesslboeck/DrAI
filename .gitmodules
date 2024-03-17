@@ -1,12 +1,12 @@
-[submodule "code/stepper_lib"]
-	path = code/stepper_lib
-	url = https://github.com/SamuelNoesslboeck/stepper_lib
-[submodule "code/sybot_lib"]
-	path = code/sybot_lib
-	url = https://github.com/SamuelNoesslboeck/sybot_lib
-[submodule "electronics/robot_driver"]
-	path = electronics/robot_driver
-	url = https://github.com/SamuelNoesslboeck/robot_driver
 [submodule "drake_printer_files"]
 	path = drake_printer_files
 	url = https://github.com/SamuelNoesslboeck/drake_printer_files
+[submodule "code/syact"]
+	path = code/syact
+	url = https://github.com/SamuelNoesslboeck/syact
+[submodule "code/sylo"]
+	path = code/sylo
+	url = https://github.com/SamuelNoesslboeck/sylo
+[submodule "code/sybot"]
+	path = code/sybot
+	url = https://github.com/SamuelNoesslboeck/sybot

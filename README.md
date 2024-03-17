@@ -9,18 +9,24 @@ Authors:
   [**Samuel Nösslböck**](https://github.com/SamuelNoesslboeck)  
 Partner: [**Ars Electronica Center Linz**](https://ars.electronica.art/)
 
-The diploma work is available for anyone to read [here](/documentation/Projektbeschreibung.pdf).
+## Thesis and further reading
+
+The thesis is available for everyone to read [here](/documentation/Projektbeschreibung.pdf).
+
+All the important folders of this repository contains a *README.md*-file with basic information about the folder itself and important subfolders. As does this folder:
+
+- [code](code/): Contains all the code projects for robot control, AI and more
 
 ## Overview
 
 - [DrAI](#drai)
+  - [Thesis and further reading](#thesis-and-further-reading)
   - [Overview](#overview)
   - [Summary](#summary)
     - [Goal](#goal)
     - [Task](#task)
       - [Software](#software)
       - [Robot](#robot)
-  - [General information](#general-information)
   - [Construction](#construction)
     - [Naming system](#naming-system)
     - [About subassemblies](#about-subassemblies)
@@ -54,10 +60,6 @@ The robot os is made in rust and allows basic movements required to draw the lin
 The robot has to, as already mentioned, be able to draw lines on an A5 sheet of paper. To do this, it will be equipped with a printer tool and three dynamic (X, Y, Z) axes that it can move to any exact position in range it desires.
 
 The user interface should be as simple as possible, not more then two buttons even.
-
-## General information
-
-
 
 ## Construction
 
