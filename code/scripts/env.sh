@@ -2,6 +2,10 @@
 
 echo "Setting environment variables ..."
 
+# General
+export DRAI_DIR="~/DrAI"
+export DRAI_LOG_DIR="/logs"
+
 # Networking
 export DRAI_CAMERA_PORT=40324
 export DRAI_POINTS_PORT=40325

@@ -1,5 +1,6 @@
 # general
 ignore
+logs
 
 # electronics
 electronics/drake_electronics/#auto_saved_files#
@@ -13,6 +14,7 @@ __pycache__
 
 # Rust
 target
+Cargo.lock
 
 # Creds
 key
