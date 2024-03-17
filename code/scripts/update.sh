@@ -1,7 +1,7 @@
 echo
 echo "  DrAI - Update batch file"
 echo ============================
-echo -> ATTENTION: This script must be executed from the projects root folder!
+echo "-> ATTENTION: This script must be executed from the projects root folder!"
 echo
 echo Checking for updates in the main repo ...
 echo

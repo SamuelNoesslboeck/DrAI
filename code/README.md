@@ -1,4 +1,4 @@
-# code
+# Code
 
 Contains all the code projects for robot control, AI and more
 
