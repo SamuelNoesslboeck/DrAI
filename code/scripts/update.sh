@@ -8,7 +8,7 @@ echo Checking for updates in the main repo ...
 echo
 
 git fetch
-git checkout master
+# git checkout master
 git pull origin
 
 echo
