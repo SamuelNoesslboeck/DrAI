@@ -1,4 +1,4 @@
-echo   manual_check_switch
+echo "  manual_check_switch"
 echo =======================
 echo
 echo Manually check if a endswitch is working
