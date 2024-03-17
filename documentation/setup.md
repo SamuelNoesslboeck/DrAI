@@ -16,7 +16,7 @@ cd DrAI
 sh "code/scripts/setup.sh"
 ```
 
-The next step depends on *which device you are setting up:*
+The next step depends on *which device you are setting up*! 
 
 ### DrAI-Camera
 
@@ -40,4 +40,13 @@ To setup autostart and more for the robot control, run the following script with
 
 ```sh
 sudo sh "code/scripts/setup/drai_server.sh"
+```
+
+## After installation
+
+Now the software is ready and will be started as a system process once the device is booted up!
+Instead of starting the software manually it is recommened to reboot the system.
+
+```sh
+sudo reboot
 ```
