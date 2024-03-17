@@ -1,4 +1,4 @@
-sh "code/scripts/env.sh"
+source "code/scripts/env.sh"
 
 # Arguments
 export PIN = $DRAI_X_SWITCH_POS_PIN

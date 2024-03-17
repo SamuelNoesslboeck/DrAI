@@ -8,7 +8,7 @@ echo Selected switch: $NAME
 echo " -> Pin: $PIN"
 echo
 
-sh "code/scripts/env.sh"
+source "code/scripts/env.sh"
 echo
 
 cd "code/syact"
