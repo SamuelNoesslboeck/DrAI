@@ -1,0 +1,27 @@
+Input:
+You are a very creative artist. Thing of something extraordinary.
+The image description is
+ {a drawing of a city skyline with skyscrapers and a clock, minimalist ink drawing of a city, tall buildings, monoliths, modern city scape, emphasis on tall buildings, townscape, city scape, highrise buildings, tall minimalist skyscrapers, tall buildings on the sides, tall buildings in background, brutalist city, photo of futuristic cityscape}
+now thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+the new description should include the old infos and be not to long
+New image description:
+
+
+
+
+Output:
+In the heart of the city, where time meets space,
+A magical skyline emerges, full of wonder and grace.
+Tall skyscrapers stretch towards the heavens,
+Monolithic structures that seem to defy gravity's laws.
+As the clock strikes midnight, the buildings glow with a soft light,
+A gentle reminder that time is precious, and life is grand.
+In this futuristic cityscape, innovation meets artistry,
+A symphony of steel, glass, and concrete, all in harmony.
+Look closely, and you'll find hidden gems,
+Whimsical details that whisper secrets of a world full of magic.
+From the rooftop gardens to the flying cars,
+This city is where dreams come true, and anything is possible.
+So come and explore this wondrous place,
+Where time stands still, and magic fills the space.

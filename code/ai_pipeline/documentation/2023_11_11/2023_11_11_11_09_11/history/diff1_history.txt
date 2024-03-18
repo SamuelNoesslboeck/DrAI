@@ -1,0 +1,6 @@
+Input:
+A black and white linestyle drawing of a bird with a hat on its head. No areas should be filled. Inspired by Tex Avery's work on Donald Duck in Huey Pigoot. The style is reminiscent of Matt Groening's Simpsons. The duck-shaped spaceship is inspired by Jim Davis' Garfield, while the
+
+
+
+Output:

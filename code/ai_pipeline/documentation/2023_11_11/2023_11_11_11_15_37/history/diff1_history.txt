@@ -1,0 +1,6 @@
+Input:
+a beautiful linestyle drawing of a bird with a hat on its head. The bird is surrounded by a field of flowers and has a little picnic basket in front of it. There are no areas filled, only black and white lines. The style is reminiscent of Matt Groening's work. In the background, there is a quack-shaped spaceship that is
+
+
+
+Output:

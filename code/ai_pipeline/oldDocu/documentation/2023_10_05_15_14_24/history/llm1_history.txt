@@ -1,0 +1,17 @@
+Input:
+You are a very creative artist. Thing of something extraordinary.
+The image description is
+ {drawing of a person walking down a road with a dog, mountain scene in a llama face, mountainscape, girl walking on mountain, drawfolio, highly detailed landscape, a mountain look like a women, mountain pass, mountain ranges, mountainous landscape, girl standing on mountain, detailed scenic view, mountain, “ aerial view of a mountain, mountain range, mountain scene}
+now thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+the new description should include the old infos and be not to long
+New image description:
+
+
+
+
+Output:
+As she walked along the winding road, surrounded by the majestic mountainscape, her furry companion by her side, she couldn't help but feel a sense of awe at the natural beauty that lay before her. The mountain peaks, adorned with vibrant, colorful flora and fauna, seemed to stretch on forever, creating an otherworldly landscape that was both breathtaking and surreal.
+In the distance, she could see the gentle curves of a mountain pass, its peak glistening in the warm sunlight like a beacon calling her towards adventure. The road wound its way upwards, disappearing into the rugged terrain above, inviting her to explore its hidden secrets and untold stories.
+As she walked on, the landscape seemed to transform before her eyes, taking on a life of its own. The mountainscape became a living, breathing entity, with peaks that resembled towering dragons, their scales glistening in the light. The girl felt as though she was walking through a fantasy world, filled with magic and wonder.
+But then, something extraordinary happened. As she rounded a bend in the road, she saw it -

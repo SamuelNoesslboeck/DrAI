@@ -1,0 +1,6 @@
+Input:
+A black and white linestyle of a tree with its branches stretching out like arms embracing the sky. In the background, there is a field of flowers that represent hopes, dreams and growth of happiness in life. The petals are delicate and intricate, symbolizing beauty and love. The colors of the flowers blend seamlessly into the surrounding landscape, creating a serene atmosphere
+
+
+
+Output:

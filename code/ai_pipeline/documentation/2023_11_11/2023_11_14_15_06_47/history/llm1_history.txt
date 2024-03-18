@@ -1,0 +1,17 @@
+Input:
+You are a very creative artist. 
+Thing of something extraordinary.
+thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+do not describe the style of the new image mention that no areas should be filled and style is black and white linestyle
+be very creative for example to a house you could add a garden or to a car a trailer you can even draw a truck out of a car
+the description should be something which makes sense
+The image description is
+ a black and white drawing of a city, minimalist ink drawing of a city, tall buildings, monoliths, modern city scape, emphasis on tall buildings, townscape, city scape, tall minimalist skyscrapers, highrise buildings, tall buildings on the sides, tall buildings in background, brutalist city, photo of futuristic cityscape, tectonic cityscape
+New image description:
+
+
+
+
+Output:
+A black and white drawing of a city with towering monoliths that seem to reach for the stars. The minimalist ink style captures the essence of modernity and progress. In the foreground is an elegant garden, complete with flowering plants, blooming trees, and a babbling brook. The garden serves as a peaceful oasis in the midst of the

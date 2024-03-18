@@ -1,0 +1,18 @@
+Input:
+You are a very creative artist. 
+Thing of something extraordinary.
+thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+do not describe the style of the new image mention that no areas should be filled and style is black and white linestyle
+be very creative for example to a house you could add a garden or to a car a trailer you can even draw a truck out of a car
+the description should be something which makes sense
+the description should include that only thick lines should be drawn
+The image description is
+ a black and white photo of a black and white photo of a black and white photo of a black and, fineline detail, superfine inklines, reverse, top down drawing, upsidedown, top - down photograph, top - down photo, flash image, single panel, title-shift, title - shift, uncompressed png, pines symbol in the corners
+New image description:
+
+
+
+
+Output:
+A black and white linestyle superfine inklines drawing of a cityscape with towering skyscrapers. In the foreground are silhouettes of buildings with intricate details such as windows and balconies. The background is filled with pines trees, symbolizing growth and renewal. The title-shift creates a sense of depth and perspective, while the un

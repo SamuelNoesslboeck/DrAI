@@ -1,0 +1,6 @@
+Input:
+The artist takes the portrait of Sam Hyde and adds a thick black line to his face that looks like he's wearing glasses. He then draws a pair of headphones around Sam's ears and adds a small microphone next to them. The artist also gives Sam a speech bubble with an expressionless face inside, which is filled with text that reads "I am just another
+
+
+
+Output:

@@ -1,0 +1,6 @@
+Input:
+The bird has been transported to a magical land filled with lush green trees and sparkling waterfalls. It is now wearing a crown made of glittering jewels and feathers adorn its head as it basks in its regal glory. The background shows an enchanting castle, towering high above the landscape, with flags flying proudly from its tur
+
+
+
+Output:

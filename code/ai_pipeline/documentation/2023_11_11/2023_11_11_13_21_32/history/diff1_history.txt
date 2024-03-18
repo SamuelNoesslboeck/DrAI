@@ -1,0 +1,6 @@
+Input:
+A black and white ink drawing of a futuristic city, emphasizing geometric shapes and clean lines. In the foreground, the tower-top has the face on it representing some spiritual meaning for that future society. The towers are connected by bridges with light beams shining on them representing optimism about communication technology in this new era. The background is filled with a gradient
+
+
+
+Output:

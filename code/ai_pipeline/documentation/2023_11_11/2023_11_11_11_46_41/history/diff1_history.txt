@@ -1,0 +1,6 @@
+Input:
+A black and white linestyle drawing of a majestic dragon with wings spread wide, soaring through an endless sky filled with colorful clouds. The dragon's body is sleek and powerful, with scales that shimmer in the sunlight. In its claws, it holds a magical crystal ball that glows with a soft light. As it flies, it leaves behind a trail
+
+
+
+Output:

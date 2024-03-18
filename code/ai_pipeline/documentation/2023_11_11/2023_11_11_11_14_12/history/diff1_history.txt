@@ -1,0 +1,6 @@
+Input:
+An elegant space ship flying above a cloud filled sky with its ducks and quack crew.
+
+
+
+Output:
