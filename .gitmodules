@@ -10,3 +10,6 @@
 [submodule "code/sybot"]
 	path = code/sybot
 	url = https://github.com/SamuelNoesslboeck/sybot
+[submodule "electronics/robot_driver"]
+	path = electronics/robot_driver
+	url = https://github.com/SamuelNoesslboeck/robot_driver
