@@ -2,25 +2,26 @@
 
 # DrAI
 
-Diploma project created in January 2023
+Diploma project estimated in January 2023 in collaboration with [**Ars Electronica Center Linz**](https://ars.electronica.art/) and the [higher secondary vocational college Neufelden](https://htl-neufelden.at).
 
-Authors: 
-  [**Rene Schwarz**](https://github.com/SchwarzRene), 
-  [**Samuel Nösslböck**](https://github.com/SamuelNoesslboeck)  
-Partner: [**Ars Electronica Center Linz**](https://ars.electronica.art/)
-
-## Thesis and further reading
+## Thesis, repo folders and further reading
 
 The thesis is available for everyone to read [here](/documentation/Projektbeschreibung.pdf).
 
 All the important folders of this repository contains a *README.md*-file with basic information about the folder itself and important subfolders. As does this folder:
 
-- [code](code/): Contains all the code projects for robot control, AI and more
+- [code](code/): Code projects for robot control, AI and more 
+- [construction](construction/): Parts and drawings for the robot, electronics and other builds
+- [documentation](documentation/): Images, graphics, the documentation and the written diploma thesis
+- [drake_printer_files](https://github.com/sn-printer-files/drake_printer_files): A subrepository for managing all the *GCODE*-files for the 3D-printed parts of the project
+- [electronics](electronics/): Contains all the schematics for the electronics of the project
+- [sketches](sketches/): Sketches and basic concept art created for this project, indexed and documentated
+- [standard](standard/): Folder with additional standard-parts, will be removed in the future
 
 ## Overview
 
 - [DrAI](#drai)
-  - [Thesis and further reading](#thesis-and-further-reading)
+  - [Thesis, repo folders and further reading](#thesis-repo-folders-and-further-reading)
   - [Overview](#overview)
   - [Summary](#summary)
     - [Goal](#goal)
@@ -32,7 +33,6 @@ All the important folders of this repository contains a *README.md*-file with ba
     - [About subassemblies](#about-subassemblies)
   - [AI](#ai)
   - [Electronics](#electronics)
-  - [Further reading](#further-reading)
 
 ## Summary
 
@@ -100,10 +100,3 @@ The user interface has been kept as simple as possible, a button to start the pr
 The electronics consist of the main robot driver and the additional control systems, with the main driver being equipped with multiple high-power stepper motor controllers, as we do not want the user to wait more than five minutes for their picture.
 
 - [Driver README](./electronics/drake_electronics/README.md)
-
-## Further reading
-
-See the documentation files in:
-
-- [English](./documentation/documentation.en.md)
-- [German](./documentation/dokumentation.de.md)
