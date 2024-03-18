@@ -2,6 +2,6 @@
 
 cd "code/drake_ctrl"
 
-cargo build --features rasp
+cargo build --verbose --features rasp
 
 cd "../../"
