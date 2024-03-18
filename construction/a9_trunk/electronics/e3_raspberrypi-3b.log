@@ -1,0 +1,41 @@
+STEP in Solid Edge konvertieren
+Datum: Montag,März 18,2024 03:17
+Quelldatei: H:\DrAI\construction\a9_trunk\electronics\e3_raspberrypi-3b.step
+Autor: Unknown
+Organisation: Unknown
+Ausgangssystem: SolidWorks 2021
+
+Hardware:
+Prozessor: Intel(R) Core(TM) i5-9500 CPU @ 3.00GHz
+Betriebssystem: Windows 10
+Installierter Speicher: 7.77 GB
+
+Software-Informationen
+Parasolid-Version: 34.0.153
+PSBodyShop-Version: 34.0.110
+Step-Adapterversion: 9.0.104
+Solid Edge-Version: 222.00.06.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: H:\DrAI\construction\a9_trunk\electronics
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 04
