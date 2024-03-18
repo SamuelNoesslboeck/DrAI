@@ -17,3 +17,5 @@ echo
 git submodule update --init --recursive
 
 echo
+echo Update script done!
+echo
