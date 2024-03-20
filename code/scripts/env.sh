@@ -8,10 +8,14 @@ export DRAI_LOG_DIR="/logs"
 
 # Networking
 export DRAI_CAMERA_PORT=40324
-export DRAI_POINTS_PORT=40325
+export DRAI_SERVER_PORT=40325
 
-export DRAI_CAMERA_USER_FILE="/key/drai-cam/username.key"
-export DRAI_CAMERA_PW_FILE="/key/drai-cam/password.key"
+export DRAI_CAMERA_USER_FILE="/key/drai-camera/username.key"
+export DRAI_CAMERA_PW_FILE="/key/drai-camera/password.key"
+export DRAI_CTRL_USER_FILE="/key/drai-ctrl/username.key"
+export DRAI_CTRL_PW_FILE="/key/drai-ctrl/password.key"
+export DRAI_SERVER_USER_FILE="/key/drai-server/username.key"
+export DRAI_SERVER_PW_FILE="/key/drai-server/password.key"
 
 # Controls
 ## Stepper 

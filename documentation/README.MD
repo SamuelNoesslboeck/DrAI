@@ -8,6 +8,7 @@ Descriptions, schematics, general documentation and even the diploma thesis itse
 
 - [Setup](./setup.md): Information about setting up the project
 - [Update](./updating.md): How to correctly update the software
+- [Testing](./testing.md): Testing components and checking functionality
 
 ## Other content
 
