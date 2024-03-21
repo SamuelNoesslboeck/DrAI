@@ -74,6 +74,7 @@ The electronics of the project are built into a small trunk equipped with the ri
 - **Extras**
   - ( BL ): Bed-Layer touch attached to the tool
   - ( SC ): The servo-controller board of the drawing table
+  - ( UT ): The user terminal
 - **Optional (might not be included)**
   - ( H1 ): First servo of the head
   - ( H2 ): Second servo of the head
