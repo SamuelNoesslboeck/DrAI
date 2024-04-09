@@ -13,3 +13,4 @@ Descriptions, schematics, general documentation and even the diploma thesis itse
 ## Other content
 
 - [competitions](./competitions/): Information about all the competitions entered with this project
+- [datasheets](./datasheets/): List of datasheets for the components used in the project
