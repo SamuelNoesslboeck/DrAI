@@ -12,7 +12,7 @@ cd "code/syact"
 
 export SYACT_DEVICE_NAME=$2
 
-cargo run --features=rasp --example hardware-meas-endswitch -- $1
+cargo run --features rasp --example hardware-meas-endswitch -- $1
 
 unset SYACT_DEVICE_NAME
 
