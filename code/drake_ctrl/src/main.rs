@@ -9,6 +9,9 @@ use sybot::prelude::*;
 mod robot;
 pub use robot::*;
 
+mod table;
+pub use table::*;
+
 pub const DRAW_SPEED_DEFAULT : SpeedFactor = unsafe {
     SpeedFactor::from_unchecked(0.25)
 };

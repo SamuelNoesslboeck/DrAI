@@ -16,6 +16,9 @@ serde_json = "1.0.108"
 
 syact = { path = "../syact" }
 sybot = { path = "../sybot" }
+pwm-pca9685 = { version = "1.0.0", features = [ "std" ] }
+rppal = { version = "0.17.1", features = [ "hal" ], optional = true }
 
 [features]
-rasp = [ "syact/rasp", "sybot/rasp" ]
+default = [ "rasp" ]
+rasp = [ "syact/rasp", "sybot/rasp", "dep:rppal" ]
