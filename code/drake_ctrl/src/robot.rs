@@ -5,7 +5,6 @@ use sybot::prelude::*;
 use syact::meas::take_simple_meas;
 use sybot::robs::stepper::{LinearXYStepperRobot, LinearXYStepperActuators};
 
-
 // Constants
     pub const OFFSET_X : Delta = Delta(-50.0);
     pub const OFFSET_Y : Delta = Delta(-50.0);
