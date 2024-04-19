@@ -4,5 +4,4 @@
 
 ## TODO
 
-- [ ] Enter competition (till 15/04/2024)
-  - [ ] 
+- [x] Enter competition (till 15/04/2024)
