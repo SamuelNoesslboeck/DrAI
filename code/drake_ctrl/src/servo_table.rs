@@ -1,6 +1,7 @@
 use pwm_pca9685::{Address, Channel, Pca9685};
 use rppal::i2c::I2c;
 
+use syact::Setup;
 use syact::units::*;
 
 // Servo signals
@@ -53,20 +54,18 @@ use syact::units::*;
     }
 // 
 
-struct ServoTable {
+pub struct ServoTable {
     pub pwm : Pca9685<I2c>,
     pub signals : [u16; 8]
 }
 
 impl ServoTable {
-    pub fn new(i2c : I2c) -> Result<Self, Box<std::error::Error>> {
+    pub fn new(i2c : I2c) -> Result<Self, Box<dyn std::error::Error>> {
         let mut pwm = Pca9685::new(i2c, Address::default())?;
 
-        pwm.set_prescale(100)?;
-        pwm.enable()?;
-
         Ok(Self {
-            pwm
+            pwm,
+            signals: [0; 8]
         })
     }
 
@@ -107,4 +106,39 @@ impl ServoTable {
             self.set_servo_signal(id, SERVO_STATE_STANDBY)
         }
     // 
+
+    // All servos
+        pub fn set_all_closed(&mut self, id : u8) -> Result<(), ServoTableError> {
+            for i in 0 .. 8 {
+                self.set_servo_closed(i)?;
+            }
+            
+            Ok(())
+        }
+
+        pub fn set_all_open(&mut self, id : u8) -> Result<(), ServoTableError> {
+            for i in 0 .. 8 {
+                self.set_servo_open(i)?;
+            }
+            
+            Ok(())
+        }
+
+        pub fn set_all_standby(&mut self, id : u8) -> Result<(), ServoTableError> {
+            for i in 0 .. 8 {
+                self.set_servo_standby(i)?;
+            }
+            
+            Ok(())
+        }
+    // 
+}
+
+impl Setup for ServoTable { 
+    fn setup(&mut self) -> Result<(), syact::Error> {
+        self.pwm.enable()?;
+        self.pwm.set_prescale(100)?;
+
+        Ok(())
+    }
 }

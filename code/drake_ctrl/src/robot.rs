@@ -69,7 +69,9 @@ use sybot::robs::stepper::{LinearXYStepperRobot, LinearXYStepperActuators};
 //
 
 // Robots
-    pub fn linear_xy_robot_new() -> LinearXYStepperRobot {
+    pub type DrakeRobot = LinearXYStepperRobot;
+
+    pub fn drake_robot_new() -> DrakeRobot {
         LinearXYStepperRobot::new([
             AngleConfig {
                 offset: OFFSET_X,
@@ -101,11 +103,11 @@ use sybot::robs::stepper::{LinearXYStepperRobot, LinearXYStepperActuators};
 // 
 
 // Station
-    pub struct LinearXYStation { 
+    pub struct DrakeStation { 
         pub z_axis : StateActuator<LinearAxis<Stepper>, 2>
     }
 
-    impl LinearXYStation {
+    impl DrakeStation {
         pub fn new() -> Self {
             Self {
                 z_axis: StateActuator::new(
@@ -136,13 +138,13 @@ use sybot::robs::stepper::{LinearXYStepperRobot, LinearXYStepperActuators};
         }
     }
 
-    impl Setup for LinearXYStation {
+    impl Setup for DrakeStation {
         fn setup(&mut self) -> Result<(), syact::Error> {
             self.z_axis.setup()
         }
     }
 
-    impl Station<LinearXYStepperActuators, dyn StepperActuator, 2> for LinearXYStation {
+    impl Station<LinearXYStepperActuators, dyn StepperActuator, 2> for DrakeStation {
         type Robot = LinearXYStepperRobot;
 
         fn home(&mut self, rob : &mut Self::Robot) -> Result<(), sybot::Error> {

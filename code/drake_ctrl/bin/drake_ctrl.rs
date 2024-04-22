@@ -1,3 +1,4 @@
+use core::time::Duration;
 use std::io::{stdout, stdin, Read, Write};
 
 use clap::{command, arg, value_parser};
@@ -6,8 +7,7 @@ use indicatif::ProgressBar;
 use syact::prelude::*;
 use sybot::prelude::*;
 
-use drake::robot::*;
-use drake::table::*;
+use drake::*;
 
 pub const DRAW_SPEED_DEFAULT : SpeedFactor = unsafe {
     SpeedFactor::from_unchecked(0.25)
@@ -71,11 +71,13 @@ fn main() {
     // 
 
     // RDS
-        let mut rob = linear_xy_robot_new();
+        let mut rob = drake_robot_new();
 
         // let desc = LinearXYDescriptor::new();
 
-        let mut stat = LinearXYStation::new();
+        let mut stat = DrakeStation::new(
+            rppal::i2c::I2c::new()?
+        );
     // 
 
     // Lines
@@ -95,10 +97,23 @@ fn main() {
 
     stat.home(&mut rob).unwrap();
 
-    // Debug
-        println!("Press enter to start drawing");
+    // Wait until start has been pressed
+        let counter = 0;
 
-        pause();
+        loop {
+            if (counter % 20) {
+                stat.user_terminal.set_start_led(
+                    !stat.user_terminal.is_halt_led_on()
+                )
+            }
+
+            if (stat.user_terminal.check_start()) {
+                break;
+            }
+
+            std::thread::sleep(Duration::from_millis(25));
+            counter += 1;
+        }
     // 
 
     println!("Starting to draw ... ");
