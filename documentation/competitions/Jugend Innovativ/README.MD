@@ -49,7 +49,7 @@ Eine weiterer Aspekt ist die Steuerung des Roboters, die zu großen Teilen von u
 
 ### Kurzbeschreibung der Zielsetzung
 
-Ziel dieses Projekts ist es, die Fähigkeiten von KI bei der Erledigung kreativer Aufgaben in Zusammenarbeit mit Menschen als Museumsstation zu demonstrieren und menschliche Kreativität nachzuahmen. Es beschäftZiel dieses Projekts ist es, die Fähigkeiten von KI bei der Erledigung kreativer Aufgaben in Zusammenarbeit mit Menschen zu demonstrieren und menschliche Kreativität nachzuahmen. Es beschäftigt sich außerdem mit der Frage, wie weit Kreativität überhaupt menschlich ist. Die Demonstration gelingt durch das Einbauen der KI in einen kleinen Roboter für eine neue Museumsstation des Ars Electronica Center Linz.igt sich außerdem mit der Frage, wie weit Kreativität überhaupt menschlich ist. 
+Ziel dieses Projekts ist es, die Fähigkeiten von KI bei der Erledigung kreativer Aufgaben in Zusammenarbeit mit Menschen zu demonstrieren und menschliche Kreativität nachzuahmen. Es beschäftigt sich außerdem mit der Frage, wie weit Kreativität überhaupt menschlich ist. Die Demonstration gelingt durch das Einbauen der KI in einen kleinen Roboter für eine neue Museumsstation des Ars Electronica Center Linz.
 
 ### Kurzbeschreibung des Lösungsweges
 

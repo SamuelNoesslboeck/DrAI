@@ -62,7 +62,12 @@ impl ServoTable {
     pub fn new(i2c : I2c) -> Result<Self, Box<std::error::Error>> {
         let mut pwm = Pca9685::new(i2c, Address::default())?;
 
-        pwm.set_prescale(100);
+        pwm.set_prescale(100)?;
+        pwm.enable()?;
+
+        Ok(Self {
+            pwm
+        })
     }
 
     pub fn set_servo_signal(&mut self, id : u8, signal : u16) -> Result<(), ServoTableError> {
