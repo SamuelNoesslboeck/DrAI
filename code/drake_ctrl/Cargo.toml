@@ -2,6 +2,19 @@
 name = "drake_ctrl"
 version = "0.1.0-alpha"
 edition = "2021"
+default-run = "drake_ctrl"
+
+[lib]
+name = "drake"
+path = "src/lib.rs"
+
+[[bin]]
+name = "drake_ctrl"
+path = "bin/drake_ctrl.rs"
+
+[[bin]]
+name = "drake_table_test"
+path = "bin/drake_table_test.rs"
 
 [dependencies]
 clap = "4.4.11"

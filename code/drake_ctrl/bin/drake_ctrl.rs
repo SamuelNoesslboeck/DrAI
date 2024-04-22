@@ -6,11 +6,8 @@ use indicatif::ProgressBar;
 use syact::prelude::*;
 use sybot::prelude::*;
 
-mod robot;
-pub use robot::*;
-
-mod table;
-pub use table::*;
+use drake::robot::*;
+use drake::table::*;
 
 pub const DRAW_SPEED_DEFAULT : SpeedFactor = unsafe {
     SpeedFactor::from_unchecked(0.25)
