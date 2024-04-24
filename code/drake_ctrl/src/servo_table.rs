@@ -49,6 +49,7 @@ use syact::units::*;
         Channel::C4, Channel::C5, Channel::C6, Channel::C7
     ];
 
+    #[derive(Debug, Clone)]
     pub enum ServoTableError {
         BadId(u8),
         AngleOutOfRange(u8, Gamma)
