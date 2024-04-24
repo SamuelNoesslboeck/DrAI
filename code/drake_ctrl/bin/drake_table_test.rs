@@ -11,7 +11,7 @@ fn main() {
     // Cmd
         let matches = command!() 
             .about("Table testing program for the drake robot")
-            .arg(arg!([state_opt] "The state to set the table to (open/closed/standby), the program will not be halted if a state is given").value_parser(value_parser!(String)))
+            .arg(arg!([state] "The state to set the table to (open/closed/standby), the program will not be halted if a state is given").value_parser(value_parser!(String)))
             .get_matches();
 
         let state_opt : Option<&String> = matches.get_one::<String>("state");
