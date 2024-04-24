@@ -82,7 +82,7 @@ impl ServoTable {
         }
 
         self.pwm.set_channel_on_off(CHANNEL_IDS[id as usize], 0, signal).unwrap();   // TODO: Add board error
-        self.signals[id] = id;
+        self.signals[id as usize] = signal;
 
         Ok(())
     }
