@@ -108,7 +108,7 @@ impl ServoTable {
     // 
 
     // All servos
-        pub fn set_all_closed(&mut self, id : u8) -> Result<(), ServoTableError> {
+        pub fn set_all_closed(&mut self) -> Result<(), ServoTableError> {
             for i in 0 .. 8 {
                 self.set_servo_closed(i)?;
             }
@@ -116,7 +116,7 @@ impl ServoTable {
             Ok(())
         }
 
-        pub fn set_all_open(&mut self, id : u8) -> Result<(), ServoTableError> {
+        pub fn set_all_open(&mut self) -> Result<(), ServoTableError> {
             for i in 0 .. 8 {
                 self.set_servo_open(i)?;
             }
@@ -124,7 +124,7 @@ impl ServoTable {
             Ok(())
         }
 
-        pub fn set_all_standby(&mut self, id : u8) -> Result<(), ServoTableError> {
+        pub fn set_all_standby(&mut self) -> Result<(), ServoTableError> {
             for i in 0 .. 8 {
                 self.set_servo_standby(i)?;
             }
