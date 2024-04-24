@@ -139,7 +139,7 @@ use crate::user_terminal::UserTerminal;
                     ),
                     STATES_Z
                 ),
-                servo_table: ServoTable::new(i2c),
+                servo_table: ServoTable::new(i2c).unwrap(), // TODO: Find solution without unwrap
                 user_terminal: UserTerminal::new(
                     PIN_UT_START_SWITCH,
                     PIN_UT_START_LED,

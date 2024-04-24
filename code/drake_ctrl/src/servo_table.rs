@@ -17,13 +17,14 @@ use syact::units::*;
 
     /// Returns the required amount of ticks for the servo pwm signal for the servo to match the given angle
     pub fn signal_for_angle(angle : Gamma) -> Option<u16> {
-        if (angle < SERVO_ANG_MIN) {
+        if angle < SERVO_ANG_MIN {
             None    // Angle out of range (smaller)
-        } else if (angle > SERVO_ANG_MAX) {
+        } else if angle > SERVO_ANG_MAX {
             None    // Angle out of range (bigger)
         } else {
             Some(
-                (((angle - SERVO_ANG_MIN) / (SERVO_ANG_MAX - SERVO_ANG_MIN)).into() * ((SERVO_SIG_MAX - SERVO_SIG_MIN) as f32)) as u16 + SERVO_SIG_MIN
+                SERVO_SIG_MAX   // TODO: FIX
+                // (((angle - SERVO_ANG_MIN) / (SERVO_ANG_MAX - SERVO_ANG_MIN)).into() * ((SERVO_SIG_MAX - SERVO_SIG_MIN) as f32)) as u16 + SERVO_SIG_MIN
             )
         }
     }
@@ -31,19 +32,19 @@ use syact::units::*;
 
 // Configuration
     /// Whether the servo with the given ID should be inverted or not
-    pub const SERVO_INV : [bool; 8] = [ false, true, false, true, true, false, true, false, true ];
+    pub const SERVO_INV : [bool; 8] = [ false, true, false, true, true, false, true, false ];
 
     /// Servo position in the "closed" state
-    pub const SERVO_STATE_CLOSED : u16 = SERVO_ANG_MAX;
+    pub const SERVO_STATE_CLOSED : u16 = SERVO_SIG_MAX;
     /// Servo position in the "open" state
-    pub const SERVO_STATE_OPEN : u16 = SERVO_ANG_MIN;
+    pub const SERVO_STATE_OPEN : u16 = SERVO_SIG_MIN;
     /// Servo position in the "standby" state
     pub const SERVO_STATE_STANDBY : u16 = (SERVO_SIG_MIN + SERVO_SIG_MAX) / 2;
 // 
 
 // Errors & Helpers
     /// Helper array for channel ids
-    pub const CHANNEL_IDS : [Channel; u8] = [ 
+    pub const CHANNEL_IDS : [Channel; 8] = [ 
         Channel::C0, Channel::C1, Channel::C2, Channel::C3, 
         Channel::C4, Channel::C5, Channel::C6, Channel::C7
     ];
@@ -71,16 +72,16 @@ impl ServoTable {
 
     pub fn set_servo_signal(&mut self, id : u8, signal : u16) -> Result<(), ServoTableError> {
         // Check if the servo id given is valid
-        if (id >= 8) {
-            return ServoTableError::BadId(id);
+        if id >= 8 {
+            return Err(ServoTableError::BadId(id));
         }
 
         // Maybe invert signal
-        if (SERVO_INV[id]) {
+        if SERVO_INV[id as usize] {
             signal = SERVO_SIG_MAX - signal;
         }
 
-        self.pwm.set_channel_on_off(CHANNEL_IDS[id], 0, signal).unwrap();   // TODO: Add board error
+        self.pwm.set_channel_on_off(CHANNEL_IDS[id as usize], 0, signal).unwrap();   // TODO: Add board error
         self.signals[id] = id;
 
         Ok(())
