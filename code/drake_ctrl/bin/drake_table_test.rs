@@ -23,7 +23,9 @@ fn main() {
 
     table.setup().unwrap();
 
-    if let Some(&state) = state_opt {
+    if let Some(state_ref) = state_opt {
+        let state = state_ref.clone();
+        
         if state == "open" {
             table.set_all_open().unwrap();
         } else if state == "closed" {
