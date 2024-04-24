@@ -62,7 +62,7 @@ pub struct ServoTable {
 
 impl ServoTable {
     pub fn new(i2c : I2c) -> Result<Self, Box<dyn std::error::Error>> {
-        let mut pwm = Pca9685::new(i2c, Address::default())?;
+        let pwm = Pca9685::new(i2c, Address::default())?;
 
         Ok(Self {
             pwm,
@@ -70,7 +70,7 @@ impl ServoTable {
         })
     }
 
-    pub fn set_servo_signal(&mut self, id : u8, signal : u16) -> Result<(), ServoTableError> {
+    pub fn set_servo_signal(&mut self, id : u8, mut signal : u16) -> Result<(), ServoTableError> {
         // Check if the servo id given is valid
         if id >= 8 {
             return Err(ServoTableError::BadId(id));
@@ -87,7 +87,7 @@ impl ServoTable {
         Ok(())
     }
 
-    pub fn set_servo_angle(&mut self, id : u8, mut angle : Gamma) -> Result<(), ServoTableError> {
+    pub fn set_servo_angle(&mut self, id : u8, angle : Gamma) -> Result<(), ServoTableError> {
         // Get the signal for the given angle and write it to the servo
         let signal = signal_for_angle(angle).ok_or(ServoTableError::AngleOutOfRange(id, angle))?;
         

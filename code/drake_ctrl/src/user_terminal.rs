@@ -16,7 +16,7 @@ impl UserTerminal {
             switch_start: UniInPin::new(switch_start_pin),
             led_start: LED::new(led_start_pin),
             
-            switch_halt: UniInPin::new(switch_start_pin),
+            switch_halt: UniInPin::new(switch_halt_pin),
             led_halt: LED::new(led_halt_pin)
         }
     }
