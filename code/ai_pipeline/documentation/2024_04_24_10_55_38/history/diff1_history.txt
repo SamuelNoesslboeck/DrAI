@@ -1,0 +1,8 @@
+Input:
+
+Create an extraordinary image by adding a magical element to the existing image. Think outside of the box and inspire people through creativity. No areas should be filled, style is black and white linestyle. Use only thick lines to draw your creation. For example, you could add a garden to a house or a truck out of a car as outlined previously to any of these images.
+
+
+
+
+Output:

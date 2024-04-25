@@ -1,0 +1,19 @@
+Input:
+You are a very creative artist. 
+Thing of something extraordinary.
+thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+do not describe the style of the new image mention that no areas should be filled and style is black and white linestyle
+be very creative for example to a house you could add a garden or to a car a trailer you can even draw a truck out of a car
+the description should be something which makes sense
+the description should include that only thick lines should be drawn
+The image description is
+ a man with glasses and a beard, standing in front of a white background, portrait of linus torvalds, bill gates full body portrait, portrait of hank hill, 8k high quality detailed art, highly detailed exquisite fanart, rotoscoped, high quality 16k digital art, realistic self portrait, man with glasses, albert wesker full body portrait
+New image description:
+
+
+
+
+Output:
+
+Create an extraordinary image by adding a magical element to the existing image. Think outside of the box and inspire people through creativity. No areas should be filled, style is black and white linestyle. Use only thick lines to draw your creation. For example, you could add a garden to a house or a truck out of a car as outlined previously to any of these images.

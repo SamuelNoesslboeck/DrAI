@@ -8,7 +8,7 @@ import os
 import cv2
 
 
-from clip_interrogator import Config, Interrogator
+import clip_interrogator
 from langchain.llms import LlamaCpp
 from diffusers import StableDiffusionImg2ImgPipeline
 
@@ -32,9 +32,9 @@ except:
 
 # Load the clip interrogator
 try:
-    config = Config(clip_model_name="ViT-L-14/openai" )
+    config = clip_interrogator.Config(clip_model_name="ViT-L-14/openai" )
     config.apply_low_vram_defaults()
-    Interrogator = Interrogator( config )
+    INTER = clip_interrogator.Interrogator( config )
 
 except:
     print( "<<< ERROR >>> [Interrogator]: Error when setting up the interrogator" )
@@ -129,7 +129,7 @@ class Interrogator( ChainElement ):
         self.name = name
 
     def forward( self, id : str, verbose : bool = True, document : bool = True ) -> str:
-        global Interrogator
+        global INTER
 
         if self.prevElement != None:
             self.prevElement.forward( id, verbose )
@@ -140,7 +140,7 @@ class Interrogator( ChainElement ):
             raise Exception( f"Error with Interrogator\nCouldnt find image with the path{self.__imgPath}" )
 
         print( ">>>[CHAIN][Interrogator]: Generating prompt..." )
-        prompt = Interrogator.interrogate_fast( img )
+        prompt = INTER.interrogate_fast( img )
 
         if document:
             self.addToHistory( id, self.name, output = prompt, inputImage = img )
@@ -192,12 +192,10 @@ class LLM( ChainElement ):
         prompt = self.__promptElement.forward( id, verbose, document )
         print( f">>>[CHAIN][LLM] prompt = {prompt}")
 
-        try:
-            insertment = self.__prevElement.forward( id, verbose, document )
-            print( f">>>[CHAIN][LLM]: Insertment {insertment} " )
-            prompt = prompt.replace( self.__prevElementKey, insertment )
-        except:
-            pass
+
+        insertment = self.__prevElement.forward( id, verbose, document )
+        print( f">>>[CHAIN][LLM]: Insertment {insertment} " )
+        prompt = prompt.replace( self.__prevElementKey, insertment )
 
         if verbose:
             print( f">>>[CHAIN][LLM]: Generating prompt..." )
@@ -288,10 +286,7 @@ class StableDiffusion( ChainElement ):
         if verbose:
             print( ">>>[CHAIN][DIFFUSION]: Getting Prompt..." )
 
-        try:
-            self.__prevImageElement.forward( id, verbose, document )
-        except:
-            pass
+        self.__prevImageElement.forward( id, verbose, document )
 
         try:
             prompt = self.__prevElement.forward( id, verbose, document )
@@ -335,7 +330,8 @@ class RandomLineDrawer( ChainElement ):
 
 
     def forward( self, id : str, verbose : bool = True, document : bool = True ):
-        self.__prevElement.forward( id, verbose, document )
+        if self.__prevElement != None:
+            self.__prevElement.forward( id, verbose, document )
 
         img = cv2.imread( self.__inputPath )
         img = cv2.resize( img, ( 768, 512 ) )
@@ -344,9 +340,11 @@ class RandomLineDrawer( ChainElement ):
         image = np.copy( img )
         for i in range( self.__num_random_lines ):
             line = self.getRandomLine( image.shape, np.random.randint( 10, 40 ), dDegree = 30 )
-            image = cv2.polylines( image, line, True, ( 0, 0, 0 ), self.__penSize, lineType = cv2.LINE_AA )
+            image = cv2.polylines( image, [ line ], False, ( 0, 0, 0 ), self.__penSize )
         
         inputImage = Image.open( self.__inputPath ).convert('RGB')
+
+        print( f">>> [CHAIN][OVERLAPPER] Saving Image to {self.__outputPath}")
 
         cv2.imwrite( self.__outputPath, image )
 
@@ -446,3 +444,5 @@ class Model():
 
     def forward( self, id : str = "", verbose : bool = True, document : bool = True ):
         self.output.forward( id, verbose, document )
+
+
