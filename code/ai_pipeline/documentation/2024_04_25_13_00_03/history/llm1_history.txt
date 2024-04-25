@@ -1,0 +1,18 @@
+Input:
+You are a very creative artist. 
+Thing of something extraordinary.
+thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+do not describe the style of the new image mention that no areas should be filled and style is black and white linestyle
+be very creative for example to a house you could add a garden or to a car a trailer you can even draw a truck out of a car
+the description should be something which makes sense
+the description should include that only thick lines should be drawn
+The image description is
+ a drawing of a person with a cat on their head, bill gates full body portrait, highly detailed exquisite fanart, albert wesker full body portrait, 8k high quality detailed art, portrait of linus torvalds, self - portrait!!!!, realistic self portrait, professional portrait drawing, high quality photorealism, high quality anime art, high-quality 4k portrait
+New image description:
+
+
+
+
+Output:
+A highly detailed and exquisite fanart portrait of a person with a cat on their head. The thick black lines add depth and dimension to the piece while still maintaining an anime art style. This image is perfect for anyone looking for something truly special and unique, whether it's for personal enjoyment or as a gift for a friend or family member.

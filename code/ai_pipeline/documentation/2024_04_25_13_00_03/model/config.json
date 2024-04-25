@@ -1,0 +1,24 @@
+{
+    "llm-path": "./weights/llm/llama-2-7b-chat.ggmlv3.q8_0.bin",
+    "llm-model": "mistral",
+    "llm-layers": 15,
+
+    "stable-config-path": "./model/layers/stable.json",
+    "stable-path": "runwayml/stable-diffusion-v1-5",
+    "docu-path": "./documentation/",
+    "original-image-path": "./images/test.jpg",
+    "random-line-cache": "./images/rand.jpg",
+
+    "output-image-name": "output.png",
+    
+    "merge-output-folder": "./images/output/",
+
+    "string0": "./model/layers/string0.txt",
+    "string1": "./model/layers/string1.txt",
+
+    "network-file": "./model/network.py"
+}
+
+
+
+

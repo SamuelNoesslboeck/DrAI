@@ -1,0 +1,6 @@
+Input:
+A black and white linestyle drawing of a man wearing glasses sitting on top of his car, overlooking a serene forest landscape. The thick lines convey the texture and depth of the surroundings while also highlighting the intricacies of the man's attire. In the background, you can see a faint outline of a mountain range, which adds to the feeling of vastness
+
+
+
+Output:

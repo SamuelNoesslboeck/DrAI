@@ -13,4 +13,3 @@ if __name__ == "__main__":
         c.run()
         #Wait for user to start the chain again
         inp = input()
-        

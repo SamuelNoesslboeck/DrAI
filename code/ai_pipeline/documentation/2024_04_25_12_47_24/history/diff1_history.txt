@@ -1,0 +1,6 @@
+Input:
+A man in a lab coat standing on the rooftop of an office building looking out at the city skyline. In his hand is a holographic device that displays a 3D model of himself holding a holographic representation of each of these individuals. He has a satisfied smile on his face as he examines and compares their unique features. Behind him
+
+
+
+Output:

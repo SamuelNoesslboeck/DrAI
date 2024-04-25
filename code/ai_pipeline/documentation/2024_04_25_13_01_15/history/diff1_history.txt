@@ -1,0 +1,6 @@
+Input:
+A man in a suit and tie stands confidently in front of a sleek black car. The car is parked on the side of the road, with its headlights shining brightly towards him. In his hand, he holds a briefcase, which he clutches tightly to his chest. His glasses rest neatly on top of his nose, framing his sharp features.
+
+
+
+Output:

@@ -1,0 +1,6 @@
+Input:
+A man standing in front of a black background with only his upper body visible. His beard and glasses are shown as well. Behind him is an imaginary landscape consisting of mountains, clouds, and trees. In the foreground is a large tree trunk that has been carved into a chair, which he is sitting on. The tree trunk is decorated with intricate carvings depicting
+
+
+
+Output:
