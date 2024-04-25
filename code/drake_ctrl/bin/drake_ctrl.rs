@@ -122,6 +122,7 @@ fn main() {
 
     // Safe to use
     let mut last_point = unsafe { core::mem::zeroed() };
+    
 
     if let Some(&init_line) = lines.contour.first() {
         let [ p1, _ ] = convert_line(init_line);

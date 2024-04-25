@@ -14,6 +14,8 @@ use crate::user_terminal::UserTerminal;
 
     pub mod robot;
 
+    pub mod routines;
+
     pub mod servo_table;
 
     pub mod user_terminal;

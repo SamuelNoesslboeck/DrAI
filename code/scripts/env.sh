@@ -55,6 +55,4 @@ export DRAI_UT_LED_START_PIN=0
 export DRAI_UT_SWITCH_HALT_PIN=0
 export DRAI_UT_LED_HALT_PIN=0
 
-
-
 echo " -> done!"

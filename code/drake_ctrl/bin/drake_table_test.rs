@@ -14,14 +14,14 @@ use syact::Setup;
 // 
 
 fn main() {
-        // Init logging
+    // Init logging
         env_logger::init();
     // 
 
     // Cmd
         let matches = command!() 
             .about("Table testing program for the drake robot")
-            .arg(arg!([state] "The state to set the table to (open/closed/standby), the program will not be halted if a state is given").value_parser(value_parser!(String)))
+            .arg(arg!([state] "The state to set the table to (open/closed/standby/single), the program will not be halted if a state is given").value_parser(value_parser!(String)))
             .get_matches();
 
         let state_opt : Option<&String> = matches.get_one::<String>("state");
@@ -39,12 +39,34 @@ fn main() {
         if state == "open" {
             table.set_all_open().unwrap();
             println!("Servos are now open!")
+
         } else if state == "closed" {
             table.set_all_closed().unwrap();
             println!("Servos are now closed!");
+
         } else if state == "standby" {
             println!("Servos are now on standby!");
             table.set_all_standby().unwrap();
+
+        } else if state == "single" {
+            println!("Starting single table tester ... ");
+
+            table.set_all_standby().unwrap();
+
+            for id in 0 .. 8 {
+                println!("Servo with id {} now open", id);
+                table.set_servo_open(id).unwrap();
+
+                pause();
+
+                println!("Servo with id {} now closed", id);
+                table.set_servo_open(id).unwrap();
+
+                pause();
+
+                table.set_servo_standby(id).unwrap();
+            }
+
         } else {
             println!("Invalid state given!");
         }
