@@ -31,6 +31,7 @@ syact = { path = "../syact" }
 sybot = { path = "../sybot" }
 pwm-pca9685 = { version = "1.0.0", features = [ "std" ] }
 rppal = { version = "0.17.1", features = [ "hal" ], optional = true }
+lazy_static = "1.4.0"
 
 [features]
 default = [ "rasp" ]
