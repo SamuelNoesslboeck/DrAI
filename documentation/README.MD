@@ -2,7 +2,7 @@
 
 Descriptions, schematics, general documentation and even the diploma thesis itself can be read here.
 
-- [Diploma thesis](./Projektbeschreibung.pdf): The diploma thesis as it was published in German, including summaries of setup instructions, details and more
+- [Diploma thesis](./DrAI%20-%20Diplomarbeit.pdf): The diploma thesis as it was published in German, including summaries of setup instructions, details and more
 
 ## Relevant content
 
