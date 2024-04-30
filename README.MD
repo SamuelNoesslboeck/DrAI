@@ -6,7 +6,7 @@ Diploma project estimated in January 2023 in collaboration with [**Ars Electroni
 
 ## Thesis, repo folders and further reading
 
-The thesis is available for everyone to read [here](/documentation/Projektbeschreibung.pdf).
+The thesis is available for everyone to read [here](/documentation/DrAI%20-%20Diplomarbeit.pdf).
 
 All the important folders of this repository contains a *README.md*-file with basic information about the folder itself and important subfolders. As does this folder:
 

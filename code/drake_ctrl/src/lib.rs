@@ -1,7 +1,3 @@
-pub mod robot;
-pub mod servo_table;
-pub mod user_terminal;
-
 use rppal::i2c::I2c;
 use syact::act::StateActuator;
 use syact::prelude::*;
@@ -13,25 +9,54 @@ use sybot::robs::stepper::{LinearXYStepperRobot, LinearXYStepperActuators};
 use crate::servo_table::ServoTable;
 use crate::user_terminal::UserTerminal;
 
-// Constants
-    // Pins
-        pub const PIN_STEP_X : u8 = 12;
-        pub const PIN_STEP_Y : u8 = 20;
-        pub const PIN_STEP_Z : u8 = 19;
+// Submodules
+    pub mod config;
 
-        pub const PIN_DIR_X : u8 = 21;
-        pub const PIN_DIR_Y : u8 = 13; 
-        pub const PIN_DIR_Z : u8 = 26;
+    pub mod robot;
 
-        pub const PIN_MEAS_X_POS : u8 = 5;
-        pub const PIN_MEAS_Y_POS : u8 = 6;
-        pub const PIN_MEAS_Z_POS : u8 = 0;
+    pub mod routines;
 
-        pub const PIN_UT_START_SWITCH : u8 = 0;
-        pub const PIN_UT_START_LED : u8 = 0;
-        pub const PIN_UT_HALT_SWITCH : u8 = 0;
-        pub const PIN_UT_HALT_LED : u8 = 0;
-    // 
+    pub mod servo_table;
+
+    pub mod user_terminal;
+// 
+
+// Constants & Statics
+    lazy_static::lazy_static! {
+        // Pins
+            // Stepper
+                pub static ref DRAI_X_AXIS_STEP_PIN : u8 = env!("DRAI_X_AXIS_STEP_PIN").parse::<u8>().unwrap();
+                pub static ref DRAI_Y_AXIS_STEP_PIN : u8 = env!("DRAI_Y_AXIS_STEP_PIN").parse::<u8>().unwrap();
+                pub static ref DRAI_Z_AXIS_STEP_PIN : u8 = env!("DRAI_Z_AXIS_STEP_PIN").parse::<u8>().unwrap();
+
+                pub static ref DRAI_X_AXIS_DIR_PIN : u8 = env!("DRAI_X_AXIS_DIR_PIN").parse::<u8>().unwrap();
+                pub static ref DRAI_Y_AXIS_DIR_PIN : u8 = env!("DRAI_Y_AXIS_DIR_PIN").parse::<u8>().unwrap(); 
+                pub static ref DRAI_Z_AXIS_DIR_PIN : u8 = env!("DRAI_Z_AXIS_DIR_PIN").parse::<u8>().unwrap();
+
+                pub static ref DRAI_X_SWITCH_POS_PIN : u8 = env!("DRAI_X_SWITCH_POS_PIN").parse::<u8>().unwrap();
+                pub static ref DRAI_Y_SWITCH_POS_PIN : u8 = env!("DRAI_Y_SWITCH_POS_PIN").parse::<u8>().unwrap();
+                // pub static ref DRAI_Z_SWITCH_POS_PIN : u8 = env!("DRAI_Z_SWITCH_POS_PIN").parse::<u8>().unwrap();
+
+                pub static ref DRAI_X_SWITCH_NEG_PIN : u8 = env!("DRAI_X_SWITCH_NEG_PIN").parse::<u8>().unwrap();
+                // pub static ref DRAI_Y_SWITCH_NEG_PIN : u8 = env!("DRAI_Y_SWITCH_NEG_PIN").parse::<u8>().unwrap();
+                pub static ref DRAI_Z_SWITCH_NEG_PIN : u8 = env!("DRAI_Z_SWITCH_NEG_PIN").parse::<u8>().unwrap();
+            //
+
+            // User-Terminal
+                pub static ref DRAI_UT_SWITCH_START_PIN : u8 = env!("DRAI_UT_SWITCH_START_PIN").parse::<u8>().unwrap();
+                pub static ref DRAI_UT_LED_START_PIN : u8 = env!("DRAI_UT_LED_START_PIN").parse::<u8>().unwrap();
+
+                pub static ref DRAI_UT_SWITCH_HALT_PIN : u8 = env!("DRAI_UT_SWITCH_HALT_PI").parse::<u8>().unwrap();
+                pub static ref DRAI_UT_LED_HALT_PIN : u8 = env!("DRAI_UT_LED_HALT_PIN").parse::<u8>().unwrap();
+            //
+        //
+
+        // Static-Config
+            pub static ref DRAI_X_MICROSTEPS : u8 = env!("DRAI_X_MICROSTEPS").parse::<u8>().unwrap();
+            pub static ref DRAI_Y_MICROSTEPS : u8 = env!("DRAI_Y_MICROSTEPS").parse::<u8>().unwrap();
+            pub static ref DRAI_Z_MICROSTEPS : u8 = env!("DRAI_Z_MICROSTEPS").parse::<u8>().unwrap();
+        // 
+    }
 
     pub const OFFSET_X : Delta = Delta(-50.0);
     pub const OFFSET_Y : Delta = Delta(-50.0);
@@ -99,17 +124,17 @@ use crate::user_terminal::UserTerminal;
             }
         ], LinearXYStepperActuators {
             x: LinearAxis::new(
-                Stepper::new(GenericPWM::new(PIN_STEP_X, PIN_DIR_X).unwrap(), StepperConst::MOT_17HE15_1504S)
+                Stepper::new(GenericPWM::new(DRAI_X_AXIS_STEP_PIN, DRAI_X_AXIS_DIR_PIN).unwrap(), StepperConst::MOT_17HE15_1504S)
                     .add_interruptor_inline(Box::new(
-                        EndSwitch::new(false, Some(Direction::CW), UniInPin::new(PIN_MEAS_X_POS))
+                        EndSwitch::new(false, Some(Direction::CW), UniInPin::new(DRAI_X_SWITCH_POS_PIN))
                             .setup_inline().unwrap()
                     ))
                 , RATIO_X
             ),
             y: LinearAxis::new(
-                Stepper::new(GenericPWM::new(PIN_STEP_Y, PIN_DIR_Y).unwrap(), StepperConst::MOT_17HE15_1504S)
+                Stepper::new(GenericPWM::new(DRAI_Y_AXIS_STEP_PIN, DRAI_Y_AXIS_DIR_PIN).unwrap(), StepperConst::MOT_17HE15_1504S)
                     .add_interruptor_inline(Box::new(
-                        EndSwitch::new(false, Some(Direction::CW), UniInPin::new(PIN_MEAS_Y_POS))
+                        EndSwitch::new(false, Some(Direction::CW), UniInPin::new(DRAI_Y_SWITCH_POS_PIN))
                             .setup_inline().unwrap()
                     ))
                 , RATIO_Y
@@ -132,7 +157,7 @@ use crate::user_terminal::UserTerminal;
                 z_axis: StateActuator::new(
                     LinearAxis::new(
                         Stepper::new(
-                            GenericPWM::new(PIN_STEP_Z, PIN_DIR_Z).unwrap(),
+                            GenericPWM::new(DRAI_Z_AXIS_STEP_PIN, DRAI_Z_AXIS_DIR_PIN).unwrap(),
                             StepperConst::MOT_17HE15_1504S
                         ),
                         RATIO_Z
@@ -141,10 +166,10 @@ use crate::user_terminal::UserTerminal;
                 ),
                 servo_table: ServoTable::new(i2c).unwrap(), // TODO: Find solution without unwrap
                 user_terminal: UserTerminal::new(
-                    PIN_UT_START_SWITCH,
-                    PIN_UT_START_LED,
-                    PIN_UT_HALT_SWITCH,
-                    PIN_UT_HALT_LED
+                    DRAI_UT_SWITCH_START_PIN,
+                    DRAI_UT_LED_START_PIN,
+                    DRAI_UT_SWITCH_HALT_PIN,
+                    DRAI_UT_LED_HALT_PIN
                 )
             }
         }
@@ -170,6 +195,10 @@ use crate::user_terminal::UserTerminal;
             self.servo_table.setup()?;
             self.user_terminal.setup()?;
 
+            // Set mircosteps
+                self.z_axis.set_microsteps(MicroSteps::from(DRAI_Z_MICROSTEPS));
+            // 
+            
             Ok(())
         }
     }
