@@ -22,41 +22,41 @@ use crate::user_terminal::UserTerminal;
 // 
 
 // Constants & Statics
-    lazy_static::lazy_static! {
+    //lazy_static::lazy_static! {
         // Pins
             // Stepper
-                pub static ref DRAI_X_AXIS_STEP_PIN : u8 = env!("DRAI_X_AXIS_STEP_PIN").parse::<u8>().unwrap();
-                pub static ref DRAI_Y_AXIS_STEP_PIN : u8 = env!("DRAI_Y_AXIS_STEP_PIN").parse::<u8>().unwrap();
-                pub static ref DRAI_Z_AXIS_STEP_PIN : u8 = env!("DRAI_Z_AXIS_STEP_PIN").parse::<u8>().unwrap();
+                pub const DRAI_X_AXIS_STEP_PIN : u8 = 18;
+                pub const DRAI_Y_AXIS_STEP_PIN : u8 = 9;
+                pub const DRAI_Z_AXIS_STEP_PIN : u8 = 8;
 
-                pub static ref DRAI_X_AXIS_DIR_PIN : u8 = env!("DRAI_X_AXIS_DIR_PIN").parse::<u8>().unwrap();
-                pub static ref DRAI_Y_AXIS_DIR_PIN : u8 = env!("DRAI_Y_AXIS_DIR_PIN").parse::<u8>().unwrap(); 
-                pub static ref DRAI_Z_AXIS_DIR_PIN : u8 = env!("DRAI_Z_AXIS_DIR_PIN").parse::<u8>().unwrap();
+                pub const DRAI_X_AXIS_DIR_PIN : u8 = 17;
+                pub const DRAI_Y_AXIS_DIR_PIN : u8 = 10; 
+                pub const DRAI_Z_AXIS_DIR_PIN : u8 = 11;
 
-                pub static ref DRAI_X_SWITCH_POS_PIN : u8 = env!("DRAI_X_SWITCH_POS_PIN").parse::<u8>().unwrap();
-                pub static ref DRAI_Y_SWITCH_POS_PIN : u8 = env!("DRAI_Y_SWITCH_POS_PIN").parse::<u8>().unwrap();
-                // pub static ref DRAI_Z_SWITCH_POS_PIN : u8 = env!("DRAI_Z_SWITCH_POS_PIN").parse::<u8>().unwrap();
+                pub const DRAI_X_SWITCH_POS_PIN : u8 = 12;
+                pub const DRAI_Y_SWITCH_POS_PIN : u8 = 23;
+                // pub const DRAI_Z_SWITCH_POS_PIN : u8 = env!("DRAI_Z_SWITCH_POS_PIN").parse::<u8>().unwrap();
 
-                pub static ref DRAI_X_SWITCH_NEG_PIN : u8 = env!("DRAI_X_SWITCH_NEG_PIN").parse::<u8>().unwrap();
-                // pub static ref DRAI_Y_SWITCH_NEG_PIN : u8 = env!("DRAI_Y_SWITCH_NEG_PIN").parse::<u8>().unwrap();
-                pub static ref DRAI_Z_SWITCH_NEG_PIN : u8 = env!("DRAI_Z_SWITCH_NEG_PIN").parse::<u8>().unwrap();
+                pub const DRAI_X_SWITCH_NEG_PIN : u8 = 23;
+                // pub const DRAI_Y_SWITCH_NEG_PIN : u8 = env!("DRAI_Y_SWITCH_NEG_PIN").parse::<u8>().unwrap();
+                // pub const DRAI_Z_SWITCH_NEG_PIN : u8 = 0;
             //
 
             // User-Terminal
-                pub static ref DRAI_UT_SWITCH_START_PIN : u8 = env!("DRAI_UT_SWITCH_START_PIN").parse::<u8>().unwrap();
-                pub static ref DRAI_UT_LED_START_PIN : u8 = env!("DRAI_UT_LED_START_PIN").parse::<u8>().unwrap();
+                pub const DRAI_UT_SWITCH_START_PIN : u8 = 26;
+                pub const DRAI_UT_LED_START_PIN : u8 = 27;
 
-                pub static ref DRAI_UT_SWITCH_HALT_PIN : u8 = env!("DRAI_UT_SWITCH_HALT_PI").parse::<u8>().unwrap();
-                pub static ref DRAI_UT_LED_HALT_PIN : u8 = env!("DRAI_UT_LED_HALT_PIN").parse::<u8>().unwrap();
+                pub const DRAI_UT_SWITCH_HALT_PIN : u8 = 21;
+                pub const DRAI_UT_LED_HALT_PIN : u8 = 13;
             //
         //
 
         // Static-Config
-            pub static ref DRAI_X_MICROSTEPS : u8 = env!("DRAI_X_MICROSTEPS").parse::<u8>().unwrap();
-            pub static ref DRAI_Y_MICROSTEPS : u8 = env!("DRAI_Y_MICROSTEPS").parse::<u8>().unwrap();
-            pub static ref DRAI_Z_MICROSTEPS : u8 = env!("DRAI_Z_MICROSTEPS").parse::<u8>().unwrap();
+            pub const DRAI_X_MICROSTEPS : u8 = 1;
+            pub const DRAI_Y_MICROSTEPS : u8 = 1;
+            pub const DRAI_Z_MICROSTEPS : u8 = 1;
         // 
-    }
+    // }
 
     pub const OFFSET_X : Delta = Delta(-50.0);
     pub const OFFSET_Y : Delta = Delta(-50.0);
