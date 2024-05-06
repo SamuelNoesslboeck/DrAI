@@ -67,6 +67,9 @@ def getImage():
         data = pdars.process( img1, img2, configData )
         mergedImg = data[ "img" ]
 
+        print( "Found image with offsets" )
+        print( data[ "offsets" ] )
+
         #Rotate the image to get it in the right perspective for the stable diffusion algorithm
         mergedImg = cv2.rotate( mergedImg, cv2.ROTATE_90_CLOCKWISE )
         mergedImg = np.where( mergedImg == 255, 0, 255 )

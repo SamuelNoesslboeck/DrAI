@@ -4,6 +4,14 @@ import requests
 import json
 import cv2
 
+def drawPoints( img, points ):
+    imgCopy = np.copy( img )
+
+    for point in points:
+        imgCopy = cv2.circle( imgCopy, ( int( point[ 0 ] ), int( point[ 1 ] ) ), 10, ( 255, 255, 0 ), -1 )
+
+    cv2.imshow( "", imgCopy )
+    cv2.waitKey( 0 )
 
 def img2Hsv( img ):
     img = cv2.cvtColor( img, cv2.COLOR_BGR2HSV )
@@ -67,10 +75,10 @@ def transform( img, corners, device = "plattform" ):
     corners = np.concatenate( [ np.expand_dims( corners[ :, 1 ], axis = -1 ), np.expand_dims( corners[ :, 0 ], axis = -1 ) ], axis = -1 )
 
 
-    for i in range( 4 ):
-        img = cv2.circle( img, (int( corners[ i ][ 0 ] ), int( corners[ i ][ 1 ]) ), 5, ( 255, 0, 0 ), -1 )
+    #for i in range( 4 ):
+    #    img = cv2.circle( img, (int( corners[ i ][ 0 ] ), int( corners[ i ][ 1 ]) ), 5, ( 255, 0, 0 ), -1 )
 
-        cv2.imwrite( f"./images/corners_{i}.png", img )
+    #    cv2.imwrite( f"./images/corners_{i}.png", img )
 
 
     M = cv2.getPerspectiveTransform(np.float32(corners), np.float32(destination_corners))
@@ -145,7 +153,7 @@ def undisturbImg( img, points ):
         [ img.shape[ 0 ], 0 ],
         [ img.shape[ 0 ], img.shape[ 1 ] ]
     ])
-    
+
     markerCenters = np.mean( markerPoints, axis = 1 )
 
     d = getDistanceToPoint( imageCorners, markerCenters )
@@ -225,7 +233,7 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
         c = contours[ i ]
 
         area = cv2.contourArea(c)
-        if area > 2000:
+        if area > 500:
             areas.append( { "areas": area, "idx": i } )
 
 
@@ -233,14 +241,14 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
     markerPoints = []
 
     sortedValues = []
-
+    print( f"Found {len(areas)} which could be markers" )
     for i in range( len( areas ) ):
         approx = cv2.approxPolyDP( contours[ areas[ i ][ "idx" ] ], 0.05 * cv2.arcLength(contours[ areas[ i ][ "idx" ] ], True), True) 
         centerApprox = np.reshape( approx, ( -1, 2 ) )
 
         rect = cv2.minAreaRect( contours[ areas[ i ][ "idx" ] ] )
         box = cv2.boxPoints(rect)
-        box = np.int0(box)
+        box = box.astype( np.int32 )
         
         length = np.sum( ( box[ 0 ] - box[ 1 ] ) ** 2 ) ** 0.5
         width = np.sum( ( box[ 1 ] - box[ 2 ] ) ** 2 ) ** 0.5
@@ -249,7 +257,7 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
         boxArea = length * width
 
         contourScope = cv2.arcLength( contours[ areas[ i ][ "idx" ] ], True )
-
+        
         if len( centerApprox ) >= 4:
             p = 1 - abs( 1 - boxArea / cv2.contourArea( contours[ areas[ i ][ "idx" ] ] ) ) *  abs( 1 - scope / contourScope )
             sortedValues.append( { "idx": len( markerPoints ), "v": p } )
@@ -268,21 +276,23 @@ def markerPlattformCoords( img, resultImg = False, loadCopy = False ):
 
         foundMarkerPoints.append( markerPoints[ idx ] )
         foundMarkerCenters.append( markerCenters[ idx ] )
+
+        #drawPoints( img, markerPoints[ idx ] )
                     
     markerCenters = foundMarkerCenters
     markerPoints = foundMarkerPoints
 
     markerCenters = np.reshape( markerCenters, ( -1, 2 ) )
-
+    
     paperCenter = np.sum( markerCenters, axis = 0 ) / max( len( markerCenters ), 1 )
 
     if resultImg:
         return markerImg
-    
+
     if len( markerPoints ) == 4:
         return ( markerPoints, paperCenter )
     else:
-        raise ValueError( "Marker Points have not the right shape" )
+        raise ValueError( f"Marker Points have not the right shape, found {len(markerPoints)}" )
 
 def getOutherPlattformPoints( img, markerPoints, paperCenter ):
     cornerPoints = []
@@ -383,15 +393,6 @@ def getCoords( img ):
 
     return ( plattformCords, paperCoords )
 
-def drawPoints( img, points ):
-    imgCopy = np.copy( img )
-
-    for point in points:
-        imgCopy = cv2.circle( imgCopy, ( int( point[ 1 ] ), int( point[ 0 ] ) ), 20, ( 255, 255, 0 ), -1 )
-
-    cv2.imshow( "", imgCopy )
-    cv2.waitKey( 0 )
-
 def radtodeg( angle ):
     return angle / ( 2 * np.math.pi ) * 360
 
@@ -435,22 +436,23 @@ def penDetection( image, loadCopy = False ):
     return image
 
 def testImage():
-    img = cv2.imread( "./images/cameraImg1.png" )
+    img = cv2.imread( "./IMAGE.jpg" )
 
-    img = preprocessImg( img )
-    
+    img = cv2.copyMakeBorder( img, 200, 200, 200, 200, cv2.BORDER_CONSTANT )
     plattformCords = markerPlattformCoords( img )
 
     img = undisturbImg( img, plattformCords )
 
     coords = getCoords( img ) 
 
+    #Transform the images to get the paper from bird view
     plattformImg = transform( img, coords[ 0 ] )
+    stableDiffImg1 = transform( plattformImg, coords[ 1 ], device = "paper" )
 
     offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
 
-    for i in range( len( coords[ 1 ] ) ):
-        plattformImg = cv2.circle( plattformImg, ( int( coords[ 1 ][ i ][ 1 ] ), int( coords[ 1 ][ i ][ 0 ] ) ), 10, ( 0, 255, 0 ), -1 )
+    #for i in range( len( coords[ 1 ] ) ):
+    #    plattformImg = cv2.circle( plattformImg, ( int( coords[ 1 ][ i ][ 1 ] ), int( coords[ 1 ][ i ][ 0 ] ) ), 10, ( 0, 255, 0 ), -1 )
     
     cv2.imwrite( "./result.png", plattformImg )
 
@@ -463,10 +465,10 @@ def testImage():
     #Convert the image to grayscale to detect where the user has drawn
 
 def preprocessImg( img ):
-    img = cv2.rotate( img, cv2.ROTATE_90_COUNTERCLOCKWISE )
-    img = cv2.rotate( img, cv2.ROTATE_90_COUNTERCLOCKWISE )
+    #img = cv2.rotate( img, cv2.ROTATE_90_COUNTERCLOCKWISE )
+    #img = cv2.rotate( img, cv2.ROTATE_90_COUNTERCLOCKWISE )
 
-    img = cv2.copyMakeBorder( img, 200, 200, 200, 200, cv2.BORDER_CONSTANT )
+    img = cv2.copyMakeBorder( img, 100, 100, 100, 100, cv2.BORDER_CONSTANT )
     return img
 
 def process( img1, img2, set ):
@@ -506,9 +508,9 @@ def process( img1, img2, set ):
     return { "img": mergedImg, "offsets": offsets }
 
 if __name__ == "__main__":
-    SETTINGS = json.load( open( "./raspberryPi/config.json", "r" ) )
+    SETTINGS = json.load( open( "./config.json", "r" ) )
     
-    #testImage()
+    testImage()
 
     img1 = cv2.imread( "./images/cameraImg1.png" )
     img2 = cv2.imread( "./images/cameraImg2.png" )
