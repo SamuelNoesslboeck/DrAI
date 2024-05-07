@@ -1,6 +1,0 @@
-Input:
-A black and white linestyle drawing of a tree with its branches reaching out to touch the stars in the sky. The tree is surrounded by a field of flowers that are glowing softly with an ethereal light. In the foreground, there's a small cottage with a warm fire burning inside. A sense of peacefulness and tranquility fills the air as the
-
-
-
-Output:

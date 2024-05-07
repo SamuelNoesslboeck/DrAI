@@ -1,6 +1,0 @@
-Input:
-A black and white linestyle drawing of a man with a knife, standing in front of an old castle. The man is holding the knife tightly in one hand and pointing it towards the sky with the other. Behind him, there's a beautiful garden filled with colorful flowers. In the background, you can see the moon shining brightly behind the clouds. The drawing style is
-
-
-
-Output:

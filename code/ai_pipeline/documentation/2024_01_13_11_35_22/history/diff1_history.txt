@@ -1,6 +1,0 @@
-Input:
-A black and white linestyle silhouette of a grandiose Victorian mansion with intricate wrought iron balconies and ornate carvings. The house stands proudly in an enchanting garden filled with vibrant flowers and lush greenery, creating a serene atmosphere. In the background, you can see majestic mountains that reach towards the sky,
-
-
-
-Output:

@@ -1,6 +1,0 @@
-Input:
-This linestyle drawing brings joy and inspiration to all who see it. The bird with a hat on its head is reminiscent of Tex Avery's classic cartoon characters, while the quack-shaped spaceship adds an element of adventure and excitement. The intricate details of the duck give it a unique personality that will make you smile every time you look at it.
-
-
-
-Output:

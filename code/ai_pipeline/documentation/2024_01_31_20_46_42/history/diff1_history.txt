@@ -1,6 +1,0 @@
-Input:
-The new image features an AI-powered robot standing tall on the right side of the original logo while a draco creature sits atop its head. The draco's wings are spread wide as it gazes off into the distance with its piercing eyes. On the left side, there is a digital asset that looks like a 3D model of a dragon, which seems
-
-
-
-Output:

@@ -1,6 +1,0 @@
-Input:
-This linestyle drawing shows a bird wearing a hat with the letter "T" on it. The style is reminiscent of Tex Avery's work. It takes place in an imaginary world inspired by Matt Groening and Jim Davis. In this world, there are anthropomorphic duck-shaped spaceships flying around, similar to those found in Matt Groening's
-
-
-
-Output:

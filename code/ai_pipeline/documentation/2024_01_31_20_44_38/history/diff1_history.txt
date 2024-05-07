@@ -1,8 +1,0 @@
-Input:
-The new image features an extraordinary addition to the original DRAI logo - a magnificent dragon made of pure light and energy. The dragon's wings are outstretched, its tail twirling in graceful motion as it soars through the sky. In the background, you can see the cityscape below, with towering buildings and bustling streets.
-
-The new image
-
-
-
-Output:

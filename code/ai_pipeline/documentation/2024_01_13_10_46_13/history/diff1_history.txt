@@ -1,6 +1,0 @@
-Input:
-A black and white linestyle drawing of a magnificent medieval tower with a stunning view of the surrounding landscape. The tower is decorated with intricate stonework designs that add to its grandeur. Atop the tower sits a majestic flagstaff fluttering in the breeze, casting a shadow over the ground below. A group of knights can be seen engaged in swordplay on one
-
-
-
-Output:

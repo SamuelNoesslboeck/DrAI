@@ -1,6 +1,0 @@
-Input:
-A white and black striped rug with a white border, 2 5 6 x 2 5 6 pixels. The centerpiece is a majestic phoenix rising from the ashes. The background has a gradient of warm colors that represent hope and rebirth. Informative texts surround the image, including quotes about the power of creativity and self-expression.
-
-
-
-Output:

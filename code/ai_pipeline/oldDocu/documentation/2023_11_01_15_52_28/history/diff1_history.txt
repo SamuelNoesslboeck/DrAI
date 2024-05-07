@@ -1,6 +1,0 @@
-Input:
-"A mesmerizing depiction of a carnation in full bloom, captured in a single, flowing line that showcases its delicate beauty and intricate details. The hyper-realistic tattoo sketch style brings the flower to life, with each petal seemingly floating on the page. The black and white linestyle adds an air of mystery and elegance, inviting the viewer to marvel at the sheer craftsmanship of this stunning image."
-
-
-
-Output:

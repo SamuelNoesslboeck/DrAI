@@ -1,6 +1,0 @@
-Input:
- The scene unfolds atop a floating island, surrounded by an endless sea. Towering above is a city made entirely of glass and steel, its gleaming skyscrapers reaching towards the heavens like colossal shards of ice. Nestled amidst this urban jungle are lush gardens filled with vibrant flowers and cascading waterfalls, their verd
-
-
-
-Output:

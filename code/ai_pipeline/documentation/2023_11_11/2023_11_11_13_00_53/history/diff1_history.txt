@@ -1,6 +1,0 @@
-Input:
-A bird with a hat on its head and wings spread wide is flying over an enchanted forest. In the background, there's a mystical mountain range illuminated by a soft golden light. The bird has a magical quill that emits vibrant colors as it writes in the sky. Suddenly, a group of friendly animals appear below to cheer for its performance,
-
-
-
-Output:

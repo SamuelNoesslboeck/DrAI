@@ -1,6 +1,0 @@
-Input:
-A luminous city skyline rises in the background of a dark forest. The silhouette of an ancient castle looms over the scene. A dragon's head peeks out from behind the trees, its eyes glowing with a fierce light. In the foreground, a young boy and his loyal dog stand facing the viewer. Their arms are raised high,
-
-
-
-Output:

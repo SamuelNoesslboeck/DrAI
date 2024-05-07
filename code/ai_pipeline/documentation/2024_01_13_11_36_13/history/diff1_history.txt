@@ -1,6 +1,0 @@
-Input:
-A black and white linestyle silhouette of a majestic castle with a towering turret that pierces the sky. The castle is surrounded by a lush garden filled with vibrant flowers and colorful butterflies. In the distance, you can see a bustling cityscape with tall buildings and busy streets. Above it all, a magnificent rainbow arches over
-
-
-
-Output:

@@ -1,1 +1,0 @@
-sh "code/scripts/test/motor.sh" $DRAI_Z_AXIS_STEP_PIN $DRAI_Z_AXIS_DIR_PIN $DRAI_Z_MICROSTEPS

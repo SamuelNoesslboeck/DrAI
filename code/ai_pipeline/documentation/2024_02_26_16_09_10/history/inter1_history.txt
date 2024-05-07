@@ -1,7 +1,0 @@
-Input:
-
-
-
-
-Output:
-a white and black photo of a woman in a white dress, black smoke particles, ( ( dithered ) ), black ambient background, black tar particles, lots of particles, brush texture, splattered black goo, black fluid simulation, dirt texture, static colorful noise glitch, noise effects filter, noise grain film, ( ( generative ) ), depths of field effect

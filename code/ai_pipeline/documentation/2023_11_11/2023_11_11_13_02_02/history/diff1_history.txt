@@ -1,6 +1,0 @@
-Input:
-A black and white linestyle drawing of a majestic eagle perched on top of an old wooden bridge overlooking a calm lake. In front of it, there's a small rowboat with a single oar floating in the water. The boat is adorned with colorful patterns reminiscent of quack-themed objects and has a duck-shaped spaces
-
-
-
-Output:

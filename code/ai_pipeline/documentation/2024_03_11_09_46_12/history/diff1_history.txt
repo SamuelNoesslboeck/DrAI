@@ -1,6 +1,0 @@
-Input:
-The image could depict a cartoon character with a lot of stars and swirling galaxies surrounding them. The cosmic entity is depicted as an AI self-portrait in black and white linestyle, with thick lines representing the intricate details of its design. Magic particles fly through space as magic swirls encircle the figure, creating a sense of wonder and excitement.
-
-
-
-Output:

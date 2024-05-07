@@ -1,6 +1,0 @@
-Input:
-A beautiful, hand-drawn black and white linestyle bird wearing a top hat sits atop an otherworldly, futuristic platform surrounded by colorful flora and fauna. The bird's eyes sparkle with curiosity as it gazes out into the vast expanse of space beyond its home planet. In the distance can be seen small spaceships dart
-
-
-
-Output:

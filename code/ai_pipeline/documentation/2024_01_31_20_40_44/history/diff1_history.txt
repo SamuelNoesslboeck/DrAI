@@ -1,6 +1,0 @@
-Input:
-A dragon in the sky, holding a sword and shield, flying above an old castle, with ruins spread out below it. The dragon's scales are shimmering in the sunlight, giving them a rainbow-colored sheen. In the background, you can see a group of knights on horseback, riding towards the castle to face the dragon. They are all
-
-
-
-Output:

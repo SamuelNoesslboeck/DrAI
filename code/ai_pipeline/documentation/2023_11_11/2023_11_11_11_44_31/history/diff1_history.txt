@@ -1,6 +1,0 @@
-Input:
-A beautiful bird with a hat on its head, soaring through the sky in a magical quack-shaped spaceship. The background is black and white linestyle and full of detail. No areas should be filled to keep it simple yet elegant. Inspired by Matt Groening's style, this image captures the essence of Jim Davis' duck world while paying homage to
-
-
-
-Output:

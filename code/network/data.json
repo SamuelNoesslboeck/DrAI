@@ -1,7 +1,0 @@
-{
-    "startKeyWord": "img",
-    "maxImageBufferLength": 128,
-    "compromiseImg": true,
-    "compromisingType": ".png",
-    "baudrate": 115200
-}

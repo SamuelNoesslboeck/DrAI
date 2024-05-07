@@ -1,8 +1,0 @@
-Input:
-! Get ready for an out-of-this-world adventure with our enchanting flying goat, Andy Milonakis!  This whimsical artwork is inspired by the likes of Bill Traylor, William Steig, and Joan Miro, but our talented artist has put their own magical twist on it. 
-In this fantastical scene, Andy has transformed into a flying goat, soaring above a picturesque countryside filled with curious animals. A playful cow and pig look on as the goat gracefully glides by, while a majestic flying pig flies in the distance!  It's a one-of-a-kind masterpiece that will transport you to a world of wonder and delight. 
-Not only is this artwork visually stunning, but it also carries a special message - the power of creativity and imagination can take us to places beyond our wildest dreams! So why not let
-
-
-
-Output:

@@ -1,6 +1,0 @@
-Input:
-A cross drawn in black ink, with a small circle on one end and an arrow pointing towards it. The circle is surrounded by intricate patterns that resemble the shape of a heart. In the center of the heart, there is a large diamond shape filled with swirling colors. On top of the diamond, there is a figure standing in profile view, wearing a flowing gown that
-
-
-
-Output:

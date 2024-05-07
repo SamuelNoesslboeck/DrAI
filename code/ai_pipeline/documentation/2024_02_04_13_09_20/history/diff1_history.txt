@@ -1,6 +1,0 @@
-Input:
-A black and white linestyle drawing of a futuristic cityscape with towering skyscrapers and flying cars. In the foreground is a massive spaceship hovering above the city, its sleek design and glowing lights illuminating the scene. The background is filled with intricate details such as holographic advertisements and floating platforms. The image has
-
-
-
-Output:

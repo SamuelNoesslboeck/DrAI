@@ -1,6 +1,0 @@
-Input:
-A white and black striped rug with a white border, 2 5 6 x 2 5 6 pixels, informative texts, youtube logo, clean background trending, uncompressed png, on a botanical herbarium paper, banner, /r/pixelart, pictogram, full width, superrare trending
-
-
-
-Output:

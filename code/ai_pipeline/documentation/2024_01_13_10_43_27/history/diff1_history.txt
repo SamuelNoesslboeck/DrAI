@@ -1,6 +1,0 @@
-Input:
-A black and white ink drawing of a bustling city that feels alive with energy. The towering skyscrapers are adorned with colorful murals depicting scenes from the city's history and culture. In the foreground, there is a lively marketplace filled with vendors selling exotic goods from around the world. People of all walks of life gather here
-
-
-
-Output:

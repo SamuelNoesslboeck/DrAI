@@ -1,6 +1,0 @@
-{
- "imagePath": "./images/test.jpg", 
- "cache": "./images/testCache.jpg", 
- "guidance_scale": 7, 
- "strength": 0.7 
-}

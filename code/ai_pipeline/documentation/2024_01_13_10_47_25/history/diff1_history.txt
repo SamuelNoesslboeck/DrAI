@@ -1,6 +1,0 @@
-Input:
-A Christmas tree with snowy twigs covering it is planted in a field surrounded by tall trees. In the background, you can see mountains, a beautiful sky full of color and birds flying between the trees. The whole scene is drawn in black and white linestyle with minimalistic details that add depth to the image.
-
-
-
-Output:

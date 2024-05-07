@@ -1,6 +1,0 @@
-Input:
-A colorful whale, riding on a rainbow-colored cloud, with a top hat and cane, reminiscent of Disney's Pinocchio. The background is filled with vibrant flowers and sparkling diamonds. In the foreground, there are two friendly dolphins playing with each other, creating intricate patterns in the water. The whale is
-
-
-
-Output:

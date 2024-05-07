@@ -1,6 +1,0 @@
-Input:
-A majestic dragonfly with iridescent wings flutters between two branches in the sun-kissed sky. The dragonfly's body is a deep shade of blue and its eyes are bright green, reflecting the colors of the leaves surrounding it. In the background, you can see a lush forest filled with tall trees and colorful flowers. The scene is
-
-
-
-Output:

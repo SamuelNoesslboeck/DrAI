@@ -10,3 +10,9 @@
 [submodule "code/sybot"]
 	path = code/sybot
 	url = https://github.com/SamuelNoesslboeck/sybot
+[submodule "code/drai_ctrl"]
+	path = code/drai_ctrl
+	url = https://github.com/SamuelNoesslboeck/drai_ctrl
+[submodule "code/drai_ai_pipeline"]
+	path = code/drai_ai_pipeline
+	url = https://github.com/SamuelNoesslboeck/drai_ai_pipeline
