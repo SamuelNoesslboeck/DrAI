@@ -10,8 +10,7 @@ app.config['SERVER_NAME'] = 'raspberrypi:40324'
 SETTINGS = json.load(open("./config.json", "r"))
 
 CAMERA = Picamera2()
-config = CAMERA.create_still_configuration(main={"size": (1920 * 2, 1080 * 2)}, lores={"size": (640, 480)}, display="lores")
-CAMERA.configure(config)
+config = CAMERA.create_preview_configuration({"size": ( 480 * 3, 640 * 3 ) })
 
 CAMERA.options["quality"] = 100
 
