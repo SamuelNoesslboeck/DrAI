@@ -1,0 +1,19 @@
+Input:
+You are a very creative artist. 
+Thing of something extraordinary.
+thing of something what you can add to this image to make it magic and special
+think in a way that inspires people and which makes them happy
+do not describe the style of the new image mention that no areas should be filled and style is black and white linestyle
+be very creative for example to a house you could add a garden or to a car a trailer you can even draw a truck out of a car
+the description should be something which makes sense
+the description should include that only thick lines should be drawn
+The image description is
+ a christmas tree with a star on top, drawn with a single line, minimalistic drawing, minimalist line drawing, simple tree fractal, hand - drawn animation, hand drawn animation, 2d minimalism, christmas tree, one-line drawing, one - line drawing, single line drawing, minimalist photorealist, single tree, minimalist line art, an optical illusion drawing
+New image description:
+
+
+
+
+Output:
+A Christmas tree with a star on top, drawn in black and white linestyle. The tree is surrounded by snowflakes that are falling from the sky. In the background, there's a warm fireplace crackling with logs. The whole scene is lit up by a golden hue, giving it an ethereal glow.
+To make this image even more magical,

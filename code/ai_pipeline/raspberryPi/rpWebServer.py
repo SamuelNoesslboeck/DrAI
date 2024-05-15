@@ -5,7 +5,6 @@ import cv2
 from picamera2 import Picamera2
 
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'raspberrypi:40324'
 
 SETTINGS = json.load(open("./config.json", "r"))
 
@@ -18,13 +17,14 @@ CAMERA.options["quality"] = 100
 CAMERA.controls.Brightness  = ( SETTINGS[ "camera" ][ "brightness" ] - 50 ) / 100
 CAMERA.controls.Sharpness  = ( SETTINGS[ "camera" ][ "sharpness" ] - 50 ) / 100
 
+CAMERA.start_preview()
+CAMERA.start()
 
 @app.route("/image")
 def image():
+    print( "Capturing Image" )
     try:
-        SETTINGS = json.load(open("./config.json", "r"))
-
-        CAMERA.capture('./IMAGE.jpg')
+        CAMERA.capture_file('./IMAGE.jpg')
 
         img = cv2.imread("./IMAGE.jpg" )
         img = cv2.rotate( img, cv2.ROTATE_90_CLOCKWISE )

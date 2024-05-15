@@ -353,7 +353,7 @@ def getPaperCorners( img, resultImg = False, loadCopy = False ):
     try:
         paperIdx = areas[ 0 ][ "idx" ]
 
-        approx = cv2.approxPolyDP( contours[ paperIdx ], 0.01 * cv2.arcLength(contours[ paperIdx ], True), True) 
+        approx = cv2.approxPolyDP( contours[ paperIdx ], 0.04 * cv2.arcLength(contours[ paperIdx ], True), True) 
 
         coords = np.reshape( approx, ( -1, 2 ) ) - 20
 

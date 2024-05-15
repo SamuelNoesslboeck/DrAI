@@ -1,18 +1,13 @@
-import cv2
-import matplotlib.pyplot as plt
+import requests
 
-img = cv2.imread( "./infinity.jpg" )
-img = cv2.cvtColor( img, cv2.COLOR_BGR2HSV )
 
-fig = plt.figure()
+data = requests.request( url = "http://192.168.8.122:40324/image", method = "get" )
 
-ax1 = fig.add_subplot( 3, 1, 1 )
-ax1.imshow( img[ :, :, 0 ] )
+print( data.json() )
 
-ax1 = fig.add_subplot( 3, 1, 2 )
-ax1.imshow( img[ :, :, 1 ] )
 
-ax1 = fig.add_subplot( 3, 1, 3 )
-ax1.imshow( img[ :, :, 2 ] )
+data = requests.request( url = "http://192.168.8.114:40325/points", method = "get" )
 
-plt.show()
+print( data.json() )
+
+
