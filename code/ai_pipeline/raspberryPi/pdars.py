@@ -427,6 +427,7 @@ def removeImageParts( img1 : np.ndarray, img2 : np.ndarray ) -> np.ndarray:
     cv2.imwrite( "./images/img2.png", img2 )
     
     img1 = np.where( img1 == 255, img1, img2 )
+    img1 = np.where( img2 == 255, img2, img1 )
     return img1
 
 def penDetection( image, loadCopy = False ):
@@ -444,10 +445,7 @@ def penDetection( image, loadCopy = False ):
     return image
 
 def testImage():
-    img = cv2.imread( "./Image_Y39_X9_2.jpg" )
-
-    img = cv2.rotate( img, cv2.ROTATE_90_COUNTERCLOCKWISE )
-    img = cv2.rotate( img, cv2.ROTATE_90_COUNTERCLOCKWISE )
+    img = cv2.imread( "./images/rpImg1.png" )
 
     img = cv2.copyMakeBorder( img, 300, 300, 300, 300, cv2.BORDER_CONSTANT )
 
@@ -455,12 +453,18 @@ def testImage():
 
     img = undisturbImg( img, plattformCords )
 
+    cv2.imwrite( "./images/undisturbed1.png", img )
+
     coords = getCoords( img ) 
 
     #Transform the images to get the paper from bird view
     plattformImg = transform( img, coords[ 0 ] )
 
+    cv2.imwrite( "./images/plattformImg1.png", plattformImg )
+
     stableDiffImg1 = transform( plattformImg, coords[ 1 ], device = "paper" )
+
+    cv2.imwrite( "./images/stableDiffImg1.png", stableDiffImg1 )
 
     offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
     
@@ -491,22 +495,43 @@ def process( img1, img2, set ):
 
     #Detect the coordinates of the plattform and paper
     plattformCords = markerPlattformCoords( img1 )
-
     img1 = undisturbImg( img1, plattformCords )
+
+    try:
+        cv2.imwrite( "./images/undisturbed1.png", img1 )
+    except:
+        pass
+
+    plattformCords = markerPlattformCoords( img2 )
     img2 = undisturbImg( img2, plattformCords )
+
+    try:
+        cv2.imwrite( "./images/undisturbed2.png", img2 )
+    except:
+        pass
 
     coords = getCoords( img1 ) 
 
     #Transform the images to get the paper from bird view
     plattformImg = transform( img1, coords[ 0 ] )
     stableDiffImg1 = transform( plattformImg, coords[ 1 ], device = "paper" )
+    
+    try:
+        cv2.imwrite( "./images/stableDiffImg1.png", stableDiffImg1 )
+    except:
+        pass
 
     #Get the offsets of the image
     offsets = getRealWorldPaperPoints( coords, plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
-    print( offsets )
+
     #Transform the images to get the paper from bird view
     plattformImg = transform( img2, coords[ 0 ] )
     stableDiffImg2 = transform( plattformImg, coords[ 1 ], device = "paper" )
+
+    try:
+        cv2.imwrite( "./images/stableDiffImg2.png", stableDiffImg2 )
+    except:
+        pass
 
     #Remove the hidden servo parts
 
@@ -519,6 +544,6 @@ def process( img1, img2, set ):
     return { "img": mergedImg, "offsets": offsets }
 
 if __name__ == "__main__":
-    SETTINGS = json.load( open( "./config.json", "r" ) )
+    SETTINGS = json.load( open( "./raspberryPi/config.json", "r" ) )
     
     testImage()

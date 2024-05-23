@@ -26,6 +26,7 @@ json.dump( SETTINGS, open( "./config_copy.json", "w+" ))
 Ckeck if it is possible to capture images with the raspberry pi camera
 """
 
+
 from picamera2 import Picamera2
 CAMERA = Picamera2()
 config = CAMERA.create_preview_configuration()
@@ -45,13 +46,14 @@ CAMERA.capture_file( "./IMAGE.jpg" )
 
 img = cv2.imread("./IMAGE.jpg" )
 img = cv2.rotate( img, cv2.ROTATE_90_CLOCKWISE )
+img = cv2.rotate( img, cv2.ROTATE_90_CLOCKWISE )
+img = cv2.rotate( img, cv2.ROTATE_90_CLOCKWISE )
 cv2.imwrite( "./IMAGE.jpg", img )
-
+print( "Image shape:", img.shape )
 
 image_path = "./IMAGE.jpg"
 IMAGE = cv2.imread(image_path)
 IMAGE = cv2.copyMakeBorder( IMAGE, 200, 200, 200, 200, cv2.BORDER_CONSTANT )
-
 
 
 #Initialize the flask app
@@ -168,7 +170,11 @@ def take_image():
 
     img = cv2.imread("./IMAGE.jpg" )
     img = cv2.rotate( img, cv2.ROTATE_90_CLOCKWISE )
+    img = cv2.rotate( img, cv2.ROTATE_90_CLOCKWISE )
+    img = cv2.rotate( img, cv2.ROTATE_90_CLOCKWISE )
     cv2.imwrite( "./IMAGE.jpg", img )
+
+    print( "Image shape:", img.shape )
 
     IMAGE = cv2.imread( "./IMAGE.jpg" )
     IMAGE = cv2.copyMakeBorder( IMAGE, 200, 200, 200, 200, cv2.BORDER_CONSTANT )
@@ -298,17 +304,16 @@ def paper_image_view():
     global IMAGE
 
     plattformCords = pdars.markerPlattformCoords( IMAGE, loadCopy = True )
-
-    #img1 = IMAGE
     img1 = pdars.undisturbImg( IMAGE, plattformCords )
 
-    #img1 = IMAGE
     cv2.imwrite( "./undisturbed.png", img1 )
 
     a, b = pdars.markerPlattformCoords( img1, loadCopy = True )
     plattformCords = pdars.getOutherPlattformPoints( img1, a, b )
 
     plattformImg = pdars.transform( img1, plattformCords, device = "plattform" )
+
+    cv2.imwrite( "./plattform.png", plattformImg )
 
     result = pdars.getPaperCorners( plattformImg, resultImg = True, loadCopy = True )
     
@@ -319,7 +324,7 @@ def paper_image_view():
     
     try:
         offsets = pdars.getRealWorldPaperPoints( ( plattformCords, paperCoords ), plattformImg.shape[ 1 ], plattformImg.shape[ 0 ] )
-        print( "Offsets paper" )
+        print( "Offsets" )
         print( offsets )
     except:
         pass

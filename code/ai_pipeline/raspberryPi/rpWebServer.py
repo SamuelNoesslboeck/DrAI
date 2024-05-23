@@ -9,7 +9,7 @@ app = Flask(__name__)
 SETTINGS = json.load(open("./config.json", "r"))
 
 CAMERA = Picamera2()
-config = CAMERA.create_still_configuration(main={"size": (1920 * 2, 1080 * 2)}, lores={"size": (640, 480)}, display="lores")
+config = CAMERA.create_still_configuration(main={"size": (640 * 4, 480 * 4)}, lores={"size": (640*4, 480*4)}, display="lores")
 CAMERA.configure(config)
 
 CAMERA.options["quality"] = 100
@@ -22,13 +22,8 @@ CAMERA.start()
 
 @app.route("/image")
 def image():
-    print( "Capturing Image" )
     try:
         CAMERA.capture_file('./IMAGE.jpg')
-
-        img = cv2.imread("./IMAGE.jpg" )
-        img = cv2.rotate( img, cv2.ROTATE_90_CLOCKWISE )
-        cv2.imwrite( "./IMAGE.jpg", img )
 
         with open("./IMAGE.jpg", "rb") as img_file:
             img_string = base64.b64encode(img_file.read())

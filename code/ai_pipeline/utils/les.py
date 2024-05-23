@@ -69,7 +69,6 @@ def Draw( lines, contours, penSize = 3 ):
 
     return lines, len( ret[ "idx" ] ), output_lines
 
-
 def GetPointsFromImage( orgImgName = "./images/chrisi/original/test4.png", genImgName = "./images/chrisi/merged/overloaded.png", penSize = 2 ):
     '''
     Parameters
@@ -130,6 +129,9 @@ def pointToRealWorld( p, offsets, paperWidth, paperHeight ):
     p[ 1 ] = p[ 1 ] / 512 * paperWidth
 
     rotatedPosition1 = p + np.array( [ offsets[ "offset-Y" ], offsets[ "offset-X" ] ] )
+
+    #swap x and y to match sams coordiates system
+    rotatedPosition1[ 0 ],  rotatedPosition1[ 1 ] = rotatedPosition1[ 1 ], rotatedPosition1[ 0 ]
     return rotatedPosition1
 
 

@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>DrAI - AI Simulator</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: #3498db; /* navy blue background */
+        font-family: Arial, sans-serif;
+      }
+      #canvas-container {
+        position: relative;
+        width: 1280px;
+        height: 853px;
+        margin: 40px auto; /* center the canvas container */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #canvas {
+        border: 1px solid #666;
+        border-radius: 10px;
+        z-index: 1; /* ensure the canvas is on top of the video */
+      }
+      #video-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1280px;
+        height: 853px;
+        display: none;
+      }
+
+      #button-container {
+        position: fixed;
+        bottom: 30px; /* move the buttons up a bit */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #eee; /* light gray background for buttons */
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 2; /* ensure the buttons are on top of the canvas and video */
+      }
+      .button {
+        background-color: #fff; /* white background for buttons */
+        color: #333; /* dark gray text for buttons */
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+      .button:hover {
+        background-color: #f0f0f0; /* light gray background on hover */
+      }
+      .button.active {
+        background-color: #3498db; /* navy blue background on active */
+        color: #fff; /* white text on active */
+      }
+      #size-slider {
+        width: 200px;
+        height: 20px;
+        border-radius: 10px;
+        background-color: #444;
+        outline: none;
+      }
+      #size-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color: #fff; text-align: center; margin-top: 30px; margin-bottom: 0px;">DrAI - AI Simulator</h1>
+    <div id="canvas-container">
+      <canvas id="canvas" width="1280" height="853"></canvas>
+      <div id="video-container">
+        <img id="video-feed" src = "/video_feed" width="1280" height="853"></img>
+      </div>
+    </div>
+    
+    <div id="button-container">
+      <button id="send-btn" class="button">Send</button>
+      <button id="rubber-btn" class="button">Rubber</button>
+      <button id="clear-btn" class="button">Clear</button>
+      <input id="size-slider" type="range" min="1" max="50" value="10">
+    </div>
+    <script src="static/testServer.js"></script>
+  </body>
+</html>
