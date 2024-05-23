@@ -17,74 +17,61 @@ configData = json.load( open( configFile, "r" ) )
 
 
 # Load the stable diffusion weights
-try: 
-    if torch.cuda.is_available():
-        STABLE_MODEL = StableDiffusionImg2ImgPipeline.from_pretrained( configData[ "stable-path" ], torch_dtype = torch.float16 )
-        STABLE_MODEL = STABLE_MODEL.to( "cuda" )
-        print( ">>> [STABLE DIFFUSION]: Stable diffusion successfully loaded to GPU" )
-    else:
-        STABLE_MODEL = StableDiffusionImg2ImgPipeline.from_pretrained( configData[ "stable-path" ], device_type = "cpu", low_cpu_mem_usage = True )
-        print( ">>> [STABLE DIFFUSION]: Stable diffusion successfully loaded to CPU" )
 
-except:
-    print( "<<< ERROR >>> [STABLE DIFFUSION]: Error when setting up Stable diffusion. Check if your gpu is available and if the path to weights is correct" )
-    STABLE_MODEL = None
+if torch.cuda.is_available():
+    STABLE_MODEL = StableDiffusionImg2ImgPipeline.from_pretrained( configData[ "stable-path" ], torch_dtype = torch.float16 )
+    STABLE_MODEL = STABLE_MODEL.to( "cuda" )
+    print( ">>> [STABLE DIFFUSION]: Stable diffusion successfully loaded to GPU" )
+else:
+    STABLE_MODEL = StableDiffusionImg2ImgPipeline.from_pretrained( configData[ "stable-path" ], device_type = "cpu", low_cpu_mem_usage = True )
+    print( ">>> [STABLE DIFFUSION]: Stable diffusion successfully loaded to CPU" )
+
 
 # Load the clip interrogator
-try:
-    config = clip_interrogator.Config(clip_model_name="ViT-L-14/openai" )
-    config.apply_low_vram_defaults()
-    INTER = clip_interrogator.Interrogator( config )
 
-except:
-    print( "<<< ERROR >>> [Interrogator]: Error when setting up the interrogator" )
-    Interrogator = None
+config = clip_interrogator.Config(clip_model_name="ViT-L-14/openai" )
+config.apply_low_vram_defaults()
+INTER = clip_interrogator.Interrogator( config )
+
 
 #Load the LLM
 if configData[ "llm-model" ] == "llama2":
     print( "<<< INFO >>> [LLM]: Using LLama2-7b" )
     LLM_MODEL_ID = "LLama2"
-    try:
-        LLM_MODEL = LlamaCpp( model_path = configData[ "llm-path" ], verbose = False )
-    except:
-        print( "<<< ERROR >>> [LLM-LLAMA2]: No LLM weights found in the given directory" )
-        LLM_MODEL = None
+    LLM_MODEL = LlamaCpp( model_path = configData[ "llm-path" ], verbose = False )
 
 elif configData[ "llm-model" ] == "mistral":
     print( "<<< INFO >>> [LLM]: Using Mistral-7b" )
     LLM_MODEL_ID = "Mistral"
-    try:
-        if torch.cuda.is_available():
-            LLM_MODEL = AutoModelForCausalLM.from_pretrained(
-                model_path_or_repo_id="TheBloke/Mistral-7B-Instruct-v0.1-GGUF", 
-                model_file="mistral-7b-instruct-v0.1.Q2_K.gguf", 
-                model_type="mistral",
-                temperature=0.7,
-                top_p=1,
-                top_k=50,
-                repetition_penalty=1.2,
-                context_length=8096,
-                max_new_tokens=2048,
-                gpu_layers=configData[ "llm-layers" ]
-                )
-            print( ">>> [LLM-MISTRAL]: LLM-MISTRAL successfully loaded to GPU" )
 
-        else:
-            LLM_MODEL = AutoModelForCausalLM.from_pretrained(
-                model_path_or_repo_id="TheBloke/Mistral-7B-Instruct-v0.1-GGUF", 
-                model_file="mistral-7b-instruct-v0.1.Q2_K.gguf", 
-                model_type="mistral",
-                temperature=0.7,
-                top_p=1,
-                top_k=50,
-                repetition_penalty=1.2,
-                context_length=8096,
-                max_new_tokens=2048,
+    if torch.cuda.is_available():
+        LLM_MODEL = AutoModelForCausalLM.from_pretrained(
+            model_path_or_repo_id="TheBloke/Mistral-7B-Instruct-v0.1-GGUF", 
+            model_file="mistral-7b-instruct-v0.1.Q2_K.gguf", 
+            model_type="mistral",
+            temperature=0.7,
+            top_p=1,
+            top_k=50,
+            repetition_penalty=1.2,
+            context_length=8096,
+            max_new_tokens=2048,
+            gpu_layers=configData[ "llm-layers" ]
             )
-            print( ">>> [LLM-MISTRAL]: LLM-MISTRAL successfully loaded to CPU" )
-    except:
-        print( "<<< ERROR >>> [LLM-MISTRAL]: No LLM weights found in the given directory" )
-        LLM_MODEL = None
+        print( ">>> [LLM-MISTRAL]: LLM-MISTRAL successfully loaded to GPU" )
+
+    else:
+        LLM_MODEL = AutoModelForCausalLM.from_pretrained(
+            model_path_or_repo_id="TheBloke/Mistral-7B-Instruct-v0.1-GGUF", 
+            model_file="mistral-7b-instruct-v0.1.Q2_K.gguf", 
+            model_type="mistral",
+            temperature=0.7,
+            top_p=1,
+            top_k=50,
+            repetition_penalty=1.2,
+            context_length=8096,
+            max_new_tokens=2048,
+        )
+        print( ">>> [LLM-MISTRAL]: LLM-MISTRAL successfully loaded to CPU" )
 
 
 #Parent Class of the Layers
